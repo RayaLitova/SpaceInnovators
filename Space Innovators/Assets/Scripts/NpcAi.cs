@@ -46,9 +46,12 @@ public class NpcAi : MonoBehaviour
         if(path == null){
             return;
         }
-
         if(currentWaipoint >= path.vectorPath.Count){
             reachedEndofPath = true;
+            anim.SetBool("up",false);
+            anim.SetBool("left",false);
+            anim.SetBool("down",false);
+            anim.SetBool("right",false);
             return;
         }else{
             reachedEndofPath = false;
@@ -59,16 +62,23 @@ public class NpcAi : MonoBehaviour
 
         anim.SetBool("up",false);
         anim.SetBool("left",false);
+        anim.SetBool("down",false);
+        anim.SetBool("right",false);
+
         if(path.vectorPath[currentWaipoint].x >= transform.localPosition.x && 
         ((int)path.vectorPath[currentWaipoint].y == (int)transform.localPosition.y)){
-            //direction = new Vector2(1f,0);
-            //force = direction * speed * Time.deltaTime;
-        }
+            anim.SetBool("up",false);
+            anim.SetBool("left",false);
+            anim.SetBool("down",false);
+            anim.SetBool("right",true);
+            }
         else if(path.vectorPath[currentWaipoint].x < transform.position.x && 
         ((int)path.vectorPath[currentWaipoint].y == (int)transform.localPosition.y)){
             //if(is_walking_sideways && !was_walking_fb)
-                anim.SetBool("up",false);
-                anim.SetBool("left",true);
+            anim.SetBool("up",false);
+            anim.SetBool("left",true);
+            anim.SetBool("down",false);
+            anim.SetBool("right",false);
             //is_walking_sideways = true;
             //was_walking_fb = false;
             //direction = new Vector2(-1f,0);
@@ -79,8 +89,10 @@ public class NpcAi : MonoBehaviour
             //direction = new Vector2(0,1f);
             //force = direction * speed * Time.deltaTime;
             //if(was_walking_fb && !is_walking_sideways){
-                anim.SetBool("left",false);
-                anim.SetBool("up",true);
+            anim.SetBool("up",true);
+            anim.SetBool("left",false);
+            anim.SetBool("down",false);
+            anim.SetBool("right",false);
            // }
             //was_walking_fb = true;
             //is_walking_sideways = false;
@@ -88,8 +100,10 @@ public class NpcAi : MonoBehaviour
         }
         else if(path.vectorPath[currentWaipoint].y < transform.localPosition.y && 
         ( (int)path.vectorPath[currentWaipoint].x == (int)transform.localPosition.x)){
-            //direction = new Vector2(0,-1f);
-            //force = direction * speed * Time.deltaTime;
+            anim.SetBool("up",false);
+            anim.SetBool("left",false);
+            anim.SetBool("down",true);
+            anim.SetBool("right",false);
         }
         //rb.MovePosition( force*path.vectorPath[currentWaipoint]*Time.deltaTime);
         transform.position =Vector2.Lerp(transform.position,path.vectorPath[currentWaipoint],0.07f);
@@ -100,7 +114,7 @@ public class NpcAi : MonoBehaviour
             currentWaipoint++;
         }
 
-        if(target.position == transform.position){
+        /*if(target.position == transform.position){
             anim.SetBool("up",false);
             anim.SetBool("left",false);
         }
@@ -108,7 +122,7 @@ public class NpcAi : MonoBehaviour
         //anim.SetBool("up",false);
         //anim.SetBool("left",false);
 
-        /*if(rb.velocity.x >= 0.01f){
+        if(rb.velocity.x >= 0.01f){
 
         }else if(rb.velocity.y <= -0.01f){
             anim.SetBool("left",true);
