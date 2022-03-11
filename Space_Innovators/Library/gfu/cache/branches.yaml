@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 2
-  lastUpdatedAtString: 2022-03-11T15:32:48.341+02:00
-  initializedAtString: 2022-03-11T13:32:22.197+02:00
+  lastUpdatedAtString: 2022-03-11T21:00:46.587+02:00
+  initializedAtString: 2022-03-11T19:44:09.189+02:00
   localBranches:
+  - name: Andy
+    tracking: origin/Andy
   - name: main
     tracking: origin/main
-  - name: Raya
-    tracking: origin/Raya
   remoteBranches:
+  - name: origin/Andy
+    tracking: '[None]'
   - name: origin/HEAD
+    tracking: '[None]'
+  - name: origin/main
     tracking: '[None]'
   - name: origin/Raya
     tracking: '[None]'
@@ -35,29 +39,41 @@ MonoBehaviour:
     token: 
   localConfigBranches:
     keys:
+    - Andy
     - main
-    - Raya
     values:
+    - name: Andy
+      remote:
+        name: origin
+        url: https://github.com/RayaLitova/SpaceInnovators.git
+      trackingBranch: Andy
     - name: main
       remote:
         name: origin
         url: https://github.com/RayaLitova/SpaceInnovators.git
       trackingBranch: main
-    - name: Raya
-      remote:
-        name: origin
-        url: https://github.com/RayaLitova/SpaceInnovators.git
-      trackingBranch: Raya
   remoteConfigBranches:
     keys:
     - origin
     subKeys:
     - Values:
+      - Andy
       - HEAD
+      - main
       - Raya
     subKeyValues:
     - Values:
+      - name: Andy
+        remote:
+          name: origin
+          url: https://github.com/RayaLitova/SpaceInnovators.git
+        trackingBranch: 
       - name: HEAD
+        remote:
+          name: origin
+          url: https://github.com/RayaLitova/SpaceInnovators.git
+        trackingBranch: 
+      - name: main
         remote:
           name: origin
           url: https://github.com/RayaLitova/SpaceInnovators.git

@@ -6,26 +6,61 @@ using Pathfinding;
 public class NpcAi : MonoBehaviour
 {
 
-    public Transform target;
+    [SerializeField] public Transform target;
 
-    public float speed = 200f;
+    //public float speed = 200f;
     public float nextWaipointDistance = 0f;
+
+
+    public int O2_needed;
+    public int H20_needed;
+    public int FOOD_needed;
+    public int max_energy;
+    public int energy = 0;
+
+    public EnergyScr ENGbar;
 
     Path path;
     int currentWaipoint = 0;
+    //int currentTarget = 0;
     bool reachedEndofPath = false;
+    
+
+    float _t=0;
+    float o2_timer = 0;
+    float h2o_timer = 0;
+    float food_timer = 0;
 
     Seeker seeker;
     Rigidbody2D rb;
     private Animator anim;
     [SerializeField] Transform NPCGFX;
+    GetWorkNeeded Working;
+
+    bool sleeping = false;
+
+    
+    [SerializeField]public Transform bed;
 
 
-    bool is_walking_sideways = false;
-    bool was_walking_fb = false;
     // Start is called before the first frame update
     void Start()
     {
+        if(transform.tag == "Human"){
+            O2_needed = 1;
+            H20_needed = 1;
+            FOOD_needed = 1;
+            max_energy = 100;
+            
+        }
+        else if(transform.tag == "Neuforian"){
+            O2_needed = -1;
+            H20_needed = 2;
+            FOOD_needed = 0;
+            max_energy = 150;
+        }
+
+        ENGbar.SetMaxEnergy(max_energy);
 
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
@@ -40,9 +75,29 @@ public class NpcAi : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    void RedirectCourse(Transform t){
+        seeker.StartPath(rb.position, t.position, OnPathComplete);
+    }
+
     void FixedUpdate()
     {
+        o2_timer += Time.deltaTime;
+        h2o_timer += Time.deltaTime;
+        food_timer += Time.deltaTime;
+
+        if(o2_timer >= 20f){
+            //obsht kislorod --
+            o2_timer =0;
+        }
+        if(h2o_timer >= 30f && !sleeping){
+            //obsht kislorod --
+            h2o_timer =0;
+        }
+        if(food_timer >= 40f && !sleeping){
+            //obsht kislorod --
+            food_timer=0;
+        }
+
         if(path == null){
             return;
         }
@@ -52,13 +107,37 @@ public class NpcAi : MonoBehaviour
             anim.SetBool("left",false);
             anim.SetBool("down",false);
             anim.SetBool("right",false);
-            return;
+            if(energy <= 0.1*max_energy ){
+                RedirectCourse(bed);
+                sleeping = true;
+            }
+            _t += Time.deltaTime;
+            if(sleeping){
+                 
+ 
+                if (_t >= 1f)
+                {
+                    _t = 0f;
+                    energy++;
+                }
+            }
+            else{
+                if (_t >= 1f){   
+                    _t = 0f;
+                    energy--;
+                    Working = target.GetComponent<GetWorkNeeded>();
+                    Working.Produce();
+                }
+            }
+            ENGbar.SetEnergy(energy);
+            if(energy>=max_energy){
+                RedirectCourse(target);
+                sleeping = false;
+            }
+
         }else{
             reachedEndofPath = false;
         }
-
-        //Vector2 direction = ((Vector2)path.vectorPath[currentWaipoint] - rb.position).normalized;
-        //Vector2 force = new Vector2(0.1f,0.1f);
 
         anim.SetBool("up",false);
         anim.SetBool("left",false);
@@ -74,29 +153,21 @@ public class NpcAi : MonoBehaviour
             }
         else if(path.vectorPath[currentWaipoint].x < transform.position.x && 
         ((int)path.vectorPath[currentWaipoint].y == (int)transform.localPosition.y)){
-            //if(is_walking_sideways && !was_walking_fb)
+
             anim.SetBool("up",false);
             anim.SetBool("left",true);
             anim.SetBool("down",false);
             anim.SetBool("right",false);
-            //is_walking_sideways = true;
-            //was_walking_fb = false;
-            //direction = new Vector2(-1f,0);
-            //force = direction * speed * Time.deltaTime;
+
         }
         else if(path.vectorPath[currentWaipoint].y > transform.localPosition.y && 
         ( (int)path.vectorPath[currentWaipoint].x == (int)transform.localPosition.x)){
-            //direction = new Vector2(0,1f);
-            //force = direction * speed * Time.deltaTime;
-            //if(was_walking_fb && !is_walking_sideways){
+
             anim.SetBool("up",true);
             anim.SetBool("left",false);
             anim.SetBool("down",false);
             anim.SetBool("right",false);
-           // }
-            //was_walking_fb = true;
-            //is_walking_sideways = false;
-           
+
         }
         else if(path.vectorPath[currentWaipoint].y < transform.localPosition.y && 
         ( (int)path.vectorPath[currentWaipoint].x == (int)transform.localPosition.x)){
@@ -105,7 +176,7 @@ public class NpcAi : MonoBehaviour
             anim.SetBool("down",true);
             anim.SetBool("right",false);
         }
-        //rb.MovePosition( force*path.vectorPath[currentWaipoint]*Time.deltaTime);
+
         transform.position =Vector2.Lerp(transform.position,path.vectorPath[currentWaipoint],0.07f);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaipoint]);
@@ -114,27 +185,6 @@ public class NpcAi : MonoBehaviour
             currentWaipoint++;
         }
 
-        /*if(target.position == transform.position){
-            anim.SetBool("up",false);
-            anim.SetBool("left",false);
-        }
-
-        //anim.SetBool("up",false);
-        //anim.SetBool("left",false);
-
-        if(rb.velocity.x >= 0.01f){
-
-        }else if(rb.velocity.y <= -0.01f){
-            anim.SetBool("left",true);
-            
-        }
-        else if(rb.velocity.y >= 0.01f){
-            anim.SetBool("up",true);
-            
-        }
-        else if(rb.velocity.y <= -0.01f){
-
-        }*/
         
 
     }
