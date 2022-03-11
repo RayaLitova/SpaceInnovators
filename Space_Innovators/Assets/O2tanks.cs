@@ -11,6 +11,7 @@ public class O2tanks : MonoBehaviour
     private float nextActionTime = 0f;
     private float period = 100f;
     private bool Alive = true;
+    
     void Update()
     {
         if (Time.time > nextActionTime && Alive){
