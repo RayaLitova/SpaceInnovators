@@ -1,4 +1,4 @@
-Space Innovators/Temp/UnityLockfile
+Space_Innovators/Temp/UnityLockfile
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
@@ -62,13 +62,14 @@ sysinfo.txt
 crashlytics-build.properties
 
 Space_Innovators/Temp/UnityLockfile
-Space Innovators/Library/SceneVisibilityState.asset
+Space_Innovators/Library/SceneVisibilityState.asset
 
-Space Innovators/Logs/**
-Space Innovators/Library/ArtifactDB
-Space Innovators/Library/CurrentLayout-default.dwlt
-Space Innovators/Library/SceneVisibilityState.asset
-Space Innovators/Library/SourceAssetDB
-Space Innovators/Library/StateCache/MainStageHierarchy/81/816629046cf76c7635e20205f470b0be.json
-Space Innovators/Logs/shadercompiler-UnityShaderCompiler.exe0.log
+Space_Innovators/Logs/**
+Space_Innovators/Temp/**
+Space_Innovators/Library/ArtifactDB
+Space_Innovators/Library/CurrentLayout-default.dwlt
+Space_Innovators/Library/SceneVisibilityState.asset
+Space_Innovators/Library/SourceAssetDB
+Space_Innovators/Library/StateCache/MainStageHierarchy/81/816629046cf76c7635e20205f470b0be.json
+Space_Innovators/Logs/shadercompiler-UnityShaderCompiler.exe0.log
 
