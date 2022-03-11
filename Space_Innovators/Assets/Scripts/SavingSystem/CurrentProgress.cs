@@ -52,6 +52,7 @@ public class CurrentProgress
     }
 
     public CurrentProgress(){
+
         //-----------------------RECIPES---------------------------------------------
         recipes[0].name = "Laboratory";
         recipes[0].description = "The laboratory is a room in which are discovered new recipes that become available for creation.";
@@ -87,7 +88,29 @@ public class CurrentProgress
 
         //----------------------RESOURCES------------------------------------
 
-        resources[0]
+        resources[0] = new Resource("Black metal", "build_metal_symbol.png", 0);
+        resources[1] = new Resource("Colored metal", "color_metal_symbol_alt.png", 0);
+        resources[2] = new Resource("Energy", "ENERGY_HUMAN.png", 0);
+        resources[3] = new Resource("Food", "food_symbol.png", 0);
+        resources[4] = new Resource("Fuel", "fuel_symbol_alt.png", 0);
+        resources[5] = new Resource("Medicine", "MEDKIT.png", 0);
+        resources[6] = new Resource("Space rock", "space_rock_symbol.png", 0);
+        resources[7] = new Resource("Water", "water_symbol.png", 0);
+
+        //---------------------------MINIONS---------------------------------------
+
+        minions[0] = new Minion("Harry", {"O2", "Food", "Water"}, 100, 0, 100);
+
+        //-------------------------Days Passed--------------------------------------
+        daysPassed = 0;
+
+        //-------------------------ROOMS--------------------------------
+
+        rooms[0] = new Room("Community", 0, 1);
+        rooms[1] = new Room("Oxygen", 0, 1);
+        rooms[2] = new Room("Communications", 0, 1);
+
+        SavingSystem.Save(this);
     }
 
     public void ApplyProgress(){
@@ -98,7 +121,46 @@ public class CurrentProgress
 [System.Serializable]
 public class CurrentProgressSerialized
 {
+    public Recipe[] recipes;
+    public Resource[] resources;
+    public Minion[] minions;
+    public int daysPassed = 0;
+    public Room[] rooms;
+    
     public CurrentProgressSerialized(CurrentProgress c){
-       
+       for(int i=0;i<c.recipes.length;i++){
+            recipes[i].name = c.recipes[i].name;
+            recipes[i].description = c.recipes[i].description;
+            for(int j=0;j<c.recipes[i].required_resources.length;j++){
+                recipes[i].required_resources[j].name = c.recipes[i].required_resources[j].name;
+                recipes[i].required_resources[j].icon_name = c.recipes[i].required_resources[j].icon_name;
+                recipes[i].required_resources[j].quantity = c.recipes[i].required_resources[j].quantity;
+            }
+            recipes[i].isUnlocked = Convert.ToInteger(c.recipes[i].isUnlocked);
+        }
+
+        for(int i=0;i<c.resources.length;i++){
+            resources[i].name = c.resources[i].name;
+            resources[i].icon_name = c.resources[i].icon_name;
+            resources[i].quantity = c.resources[i].quantity;
+        }
+
+        for(int i=0;i<c.minions.length;i++){
+            minions[i].name = c.minions[i].name;
+            for(int j=0;j<c.minions[i].tags.length;j++){
+                minions[i].tags[j]=c.minions[i].tags[j];
+            }
+            minions[i].energy = c.minions[i].energy;
+            minions[i].sickness = c.minions[i].sickness;
+            minions[i].happiness = c.minions[i].happiness;
+        }
+
+        daysPassed = c.daysPassed;
+
+        for(int i=0;i<c.rooms.length;i++){
+            rooms[i].name = c.rooms[i].name;
+            rooms[i].workDone = c.rooms[i].workDone;
+            rooms[i].level = c.rooms[i].level;
+        }
     }
 }
