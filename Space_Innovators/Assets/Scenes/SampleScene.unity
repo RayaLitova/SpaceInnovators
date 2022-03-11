@@ -139,9 +139,10 @@ GameObject:
   - component: {fileID: 330986319}
   - component: {fileID: 330986318}
   - component: {fileID: 330986320}
+  - component: {fileID: 330986321}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,6 +224,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92105d3db385aa848a81c84322ee6f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  produce_at: 150
+--- !u!114 &330986321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330986317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ac83c6ee155b3478770f40e6c2c515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: name
   produce_at: 150
 --- !u!1 &519420028
 GameObject:
@@ -437,12 +452,12 @@ PrefabInstance:
       objectReference: {fileID: 1108870724}
     - target: {fileID: 1513565184303176822, guid: 896dea04c2110c94886256bb4f54102d, type: 3}
       propertyPath: energy
-      value: 15
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1513565184303176822, guid: 896dea04c2110c94886256bb4f54102d, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 330986319}
+      objectReference: {fileID: 0}
     - target: {fileID: 1513565184303176822, guid: 896dea04c2110c94886256bb4f54102d, type: 3}
       propertyPath: targets.Array.size
       value: 1
@@ -451,6 +466,22 @@ PrefabInstance:
       propertyPath: targets.Array.data[0]
       value: 
       objectReference: {fileID: 330986319}
+    - target: {fileID: 4182398019076148214, guid: 896dea04c2110c94886256bb4f54102d, type: 3}
+      propertyPath: m_Text
+      value: Option A
+      objectReference: {fileID: 0}
+    - target: {fileID: 4335256850916081120, guid: 896dea04c2110c94886256bb4f54102d, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 519420032}
+    - target: {fileID: 5502294309289629626, guid: 896dea04c2110c94886256bb4f54102d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502294309289629626, guid: 896dea04c2110c94886256bb4f54102d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7256881257374545039, guid: 896dea04c2110c94886256bb4f54102d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -623,9 +654,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2125120963}
   - component: {fileID: 2125120962}
+  - component: {fileID: 2125120964}
   m_Layer: 0
   m_Name: Circle (1)
-  m_TagString: Untagged
+  m_TagString: Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -695,6 +727,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2125120964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125120961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ac83c6ee155b3478770f40e6c2c515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: name1
+  produce_at: 150
 --- !u!4 &1166510877398133977 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7522635543105608515, guid: 312de4876f3434b4ba4cdff294010bf2, type: 3}

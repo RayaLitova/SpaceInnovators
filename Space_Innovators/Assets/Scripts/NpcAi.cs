@@ -6,20 +6,26 @@ using Pathfinding;
 public class NpcAi : MonoBehaviour
 {
 
-    [SerializeField] private Transform target;
+    [SerializeField] public Transform target;
 
-    public float speed = 200f;
+    //public float speed = 200f;
     public float nextWaipointDistance = 0f;
 
 
     public int O2_needed;
     public int H20_needed;
     public int FOOD_needed;
+    public int max_energy;
+    public int energy = 0;
+
+    public EnergyScr ENGbar;
 
     Path path;
     int currentWaipoint = 0;
     //int currentTarget = 0;
     bool reachedEndofPath = false;
+    
+
     float _t=0;
     float o2_timer = 0;
     float h2o_timer = 0;
@@ -33,8 +39,10 @@ public class NpcAi : MonoBehaviour
 
     bool sleeping = false;
 
-    [SerializeField]public float energy = 100;
+    
     [SerializeField]public Transform bed;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,12 +50,17 @@ public class NpcAi : MonoBehaviour
             O2_needed = 1;
             H20_needed = 1;
             FOOD_needed = 1;
+            max_energy = 100;
+            
         }
         else if(transform.tag == "Neuforian"){
             O2_needed = -1;
             H20_needed = 2;
             FOOD_needed = 0;
+            max_energy = 150;
         }
+
+        ENGbar.SetMaxEnergy(max_energy);
 
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
@@ -94,7 +107,7 @@ public class NpcAi : MonoBehaviour
             anim.SetBool("left",false);
             anim.SetBool("down",false);
             anim.SetBool("right",false);
-            if(energy <= 10 ){
+            if(energy <= 0.1*max_energy ){
                 RedirectCourse(bed);
                 sleeping = true;
             }
@@ -116,7 +129,8 @@ public class NpcAi : MonoBehaviour
                     Working.Produce();
                 }
             }
-            if(energy>=100){
+            ENGbar.SetEnergy(energy);
+            if(energy>=max_energy){
                 RedirectCourse(target);
                 sleeping = false;
             }

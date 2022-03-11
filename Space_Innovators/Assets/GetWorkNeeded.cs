@@ -5,6 +5,7 @@ using UnityEngine;
 public class GetWorkNeeded : MonoBehaviour
 {
     static int work = 0;
+    public string name = "name";
     [SerializeField]private int produce_at = 150;
     // Start is called before the first frame update
     void Start()
