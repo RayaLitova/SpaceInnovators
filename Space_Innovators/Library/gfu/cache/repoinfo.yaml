@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 1
-  lastUpdatedAtString: 2022-03-11T13:02:59.972+02:00
-  initializedAtString: 2022-03-11T13:02:59.972+02:00
+  lastUpdatedAtString: 2022-03-11T15:32:48.354+02:00
+  initializedAtString: 2022-03-11T13:28:28.053+02:00
   currentGitRemote:
     name: origin
     url: https://github.com/RayaLitova/SpaceInnovators.git
@@ -24,14 +24,14 @@ MonoBehaviour:
     function: 0
     token: 
   currentGitBranch:
-    name: main
-    tracking: origin/main
+    name: Raya
+    tracking: origin/Raya
   currentConfigBranch:
-    name: main
+    name: Raya
     remote:
       name: origin
       url: https://github.com/RayaLitova/SpaceInnovators.git
-    trackingBranch: main
+    trackingBranch: Raya
   currentConfigRemote:
     name: origin
     url: https://github.com/RayaLitova/SpaceInnovators.git
