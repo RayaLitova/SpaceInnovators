@@ -13,11 +13,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 4
-  lastUpdatedAtString: 2022-03-11T13:14:36.069+02:00
-  initializedAtString: 2022-03-11T13:14:36.069+02:00
+  lastUpdatedAtString: 2022-03-11T13:31:18.657+02:00
+  initializedAtString: 2022-03-11T13:31:18.657+02:00
   fileLog:
     path: Space_Innovators/Assets/Scenes/SampleScene.unity
     logEntries:
+    - commitID: 574cae9e668570babda45e2a94aacf239627469f
+      mergeA: 
+      mergeB: 
+      authorName: Ad04a
+      authorEmail: andrey.todorov04@gmail.com
+      commitEmail: andrey.todorov04@gmail.com
+      commitName: Ad04a
+      summary: added github for unity
+      description: 
+      timeString: 2022-03-11T13:20:45.000+02:00
+      commitTimeString: 2022-03-11T13:20:45.000+02:00
+      changes:
+      - path: Space_Innovators\Assets\Scenes\SampleScene.unity
+        fullPath: E:\unity\SpaceInnovators\Space_Innovators\Assets\Scenes\SampleScene.unity
+        projectPath: Assets\Scenes\SampleScene.unity
+        originalPath: 
+        indexStatus: 3
+        workTreeStatus: 0
     - commitID: 171bc50befb28c1ca24f42c382a62b440003c3de
       mergeA: a1463e30f1f64fa49fd753003b17f1d0d00eb24a
       mergeB: 6dc7c523db943be5b51a29f697191c595dec21f5
