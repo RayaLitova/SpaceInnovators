@@ -3,13 +3,13 @@ Space_Innovators/Temp/UnityLockfile
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Mm]emoryCaptures/
+Space_Innovators/[Ll]ibrary/
+Space_Innovators/[Tt]emp/
+Space_Innovators/[Oo]bj/
+Space_Innovators/[Bb]uild/
+Space_Innovators/[Bb]uilds/
+Space_Innovators/[Ll]ogs/
+Space_Innovators/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets//.meta
@@ -73,3 +73,4 @@ Space_Innovators/Library/SourceAssetDB
 Space_Innovators/Library/StateCache/MainStageHierarchy/81/816629046cf76c7635e20205f470b0be.json
 Space_Innovators/Logs/shadercompiler-UnityShaderCompiler.exe0.log
 
+Space Innovators/**
