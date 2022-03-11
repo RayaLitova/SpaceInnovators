@@ -12,8 +12,8 @@ Space Innovators/Temp/UnityLockfile
 /[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
-!/[Aa]ssets//*.meta
-!/[Aa]ssets///*.meta
+!/[Aa]ssets//.meta
+!/[Aa]ssets///.meta
 !/[Aa]ssets////.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
@@ -62,3 +62,11 @@ sysinfo.txt
 crashlytics-build.properties
 
 Space Innovators/Temp/UnityLockfile
+Space Innovators/Library/SceneVisibilityState.asset
+Space Innovators/Logs/**
+Space Innovators/Library/ArtifactDB
+Space Innovators/Library/CurrentLayout-default.dwlt
+Space Innovators/Library/SceneVisibilityState.asset
+Space Innovators/Library/SourceAssetDB
+Space Innovators/Library/StateCache/MainStageHierarchy/81/816629046cf76c7635e20205f470b0be.json
+Space Innovators/Logs/shadercompiler-UnityShaderCompiler.exe0.log
