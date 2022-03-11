@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Saving
+  - Human
+  - Neuforian
   layers:
   - Default
   - TransparentFX
