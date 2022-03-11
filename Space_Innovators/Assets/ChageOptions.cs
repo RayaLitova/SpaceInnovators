@@ -21,8 +21,6 @@ public class ChageOptions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(<string,GameObject> op in options.Stations){
-
-        }
+        
     }
 }
