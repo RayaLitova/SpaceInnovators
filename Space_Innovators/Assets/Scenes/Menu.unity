@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 30516586}
   - component: {fileID: 30516585}
   - component: {fileID: 30516588}
+  - component: {fileID: 30516589}
   m_Layer: 5
   m_Name: LoadBTN
   m_TagString: Untagged
@@ -290,6 +291,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &30516589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30516583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae4063adf2455e43abc7a5401ed56fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisabledButton: {fileID: 21300000, guid: d1ea76edb890c1b4185083c0e25fc2ea, type: 3}
 --- !u!1 &149871612
 GameObject:
   m_ObjectHideFlags: 0
