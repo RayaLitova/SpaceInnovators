@@ -15,7 +15,7 @@ public class CurrentProgress
     public Room[] rooms = new Room[3];
 
     public CurrentProgress(CurrentProgressSerialized c){
-        for(int i=0;i<c.recipes.Length;i++){
+        /*for(int i=0;i<c.recipes.Length;i++){
             recipes[i].name = c.recipes[i].name;
             recipes[i].description = c.recipes[i].description;
             for(int j=0;j<c.recipes[i].required_resources.Length;j++){
@@ -48,7 +48,7 @@ public class CurrentProgress
             rooms[i].name = c.rooms[i].name;
             rooms[i].workDone = c.rooms[i].workDone;
             rooms[i].level = c.rooms[i].level;
-        }
+        }*/
     }
 
     public CurrentProgress(){
@@ -122,17 +122,36 @@ public class CurrentProgress
 }
 
 [System.Serializable]
+public class SerializableClass{
+    public string[] arr = new string[100];
+    public SerializableClass(){
+        arr = new string[10];
+    }
+}
+
+[System.Serializable]
+public class Serializables{
+    public SerializableClass[] arr = new SerializableClass[10];
+    public Serializables(){
+        arr = new SerializableClass[10];
+    }
+}
+
+[System.Serializable]
 public class CurrentProgressSerialized
 {
-    public Recipe[] recipes = new Recipe[6];
+    //public Recipe[] recipes = new Recipe[6];
+    public Serializables[] recipes = new Serializables[6];
     public Resource[] resources = new Resource[8];
     public Minion[] minions = new Minion[1];
     public int daysPassed = 0;
     public Room[] rooms = new Room[3];
     
     public CurrentProgressSerialized(CurrentProgress c){
-       for(int i=0;i<c.recipes.Length;i++){
-            recipes[i] = new Recipe(c.recipes[i].name,c.recipes[i].description,c.recipes[i].required_resources,c.recipes[i].isUnlocked);
+        for(int i=0;i<c.recipes.Length;i++){
+            recipes[i] = new Serializables();
+            recipes[i] = c.recipes[i].RecipeSerialize();
+            //recipes[i] = new Recipe(c.recipes[i].name,c.recipes[i].description,c.recipes[i].required_resources,c.recipes[i].isUnlocked);
         }
 
         for(int i=0;i<c.resources.Length;i++){

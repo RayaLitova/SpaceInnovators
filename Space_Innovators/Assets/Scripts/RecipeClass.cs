@@ -26,4 +26,25 @@ public class Recipe
             this.required_resources[i] = required_resources[i];
         }
     }
+
+    public Serializables RecipeSerialize(){
+        Serializables tmp = new Serializables();
+        tmp.arr[0] = new SerializableClass();
+        tmp.arr[0].arr[0] = this.name;
+        tmp.arr[0].arr[1] = this.description;
+
+        if(this.isUnlocked){
+            tmp.arr[0].arr[2] = "1";
+        }else{
+            tmp.arr[0].arr[2] = "0";
+        }
+
+        for(int i=0;i<=required_resources.Length;i++){
+            tmp.arr[1] = new SerializableClass();
+            tmp.arr[1] = required_resources[i].ResourceSerialize();
+        }
+        
+        return tmp;
+    }
 }
+ 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Statics : MonoBehaviour
 {
 
-    private CurrentProgress c;
+    public static CurrentProgress c;
     private float nextActionTime = 0f;
     private float period = 200f;
 

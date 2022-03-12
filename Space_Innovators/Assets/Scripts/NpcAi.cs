@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.UI;
 
 public class NpcAi : MonoBehaviour
 {
@@ -38,14 +39,22 @@ public class NpcAi : MonoBehaviour
     GetWorkNeeded Working;
 
     bool sleeping = false;
-
+    GameObject new_target;
     
     [SerializeField]public Transform bed;
+    //public Dropdown drop;
+    //private ChageOptions chopt;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //chopt = drop.GetComponent<ChageOptions>();
+        //target.position = new Vector2(target.position.x, target.position.y-1);
+        //if(target==bed){
+       // target = bed;
+        //new_target = new GameObject();   
+
         if(transform.tag == "Human"){
             O2_needed = 1;
             H20_needed = 1;
@@ -61,17 +70,23 @@ public class NpcAi : MonoBehaviour
         }
 
         ENGbar.SetMaxEnergy(max_energy);
-
+        if(/**/target==null){
+            return;
+        }
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         anim = NPCGFX.GetComponent<Animator>();
-        seeker.StartPath(rb.position, target.position, OnPathComplete);
+        seeker.StartPath(rb.position, /**/target.transform.position, OnPathComplete);
     }
 
     void OnPathComplete(Path p){
         if(!p.error){
             path = p;
             currentWaipoint = 0;
+            anim.SetInteger("Speed",0);
+
+
+
         }
     }
 
@@ -81,6 +96,9 @@ public class NpcAi : MonoBehaviour
 
     void FixedUpdate()
     {
+         //target = chopt.target_value;
+            //target.transform.position = new Vector2(target.position.x, target.position.y-0f);
+       // }
         o2_timer += Time.deltaTime;
         h2o_timer += Time.deltaTime;
         food_timer += Time.deltaTime;
@@ -102,86 +120,66 @@ public class NpcAi : MonoBehaviour
             return;
         }
         if(currentWaipoint >= path.vectorPath.Count){
+
             reachedEndofPath = true;
-            anim.SetBool("up",false);
-            anim.SetBool("left",false);
-            anim.SetBool("down",false);
-            anim.SetBool("right",false);
-            if(energy <= 0.1*max_energy ){
-                RedirectCourse(bed);
-                sleeping = true;
-            }
-            _t += Time.deltaTime;
-            if(sleeping){
-                 
- 
-                if (_t >= 1f)
-                {
-                    _t = 0f;
-                    energy++;
-                }
+            if(!sleeping){
+                energy--;
             }
             else{
-                if (_t >= 1f){   
-                    _t = 0f;
-                    energy--;
-                    Working = target.GetComponent<GetWorkNeeded>();
-                    Working.Produce();
-                }
+                energy++;
             }
-            ENGbar.SetEnergy(energy);
-            if(energy>=max_energy){
-                RedirectCourse(target);
-                sleeping = false;
-            }
+            
 
         }else{
             reachedEndofPath = false;
         }
-
-        anim.SetBool("up",false);
-        anim.SetBool("left",false);
-        anim.SetBool("down",false);
-        anim.SetBool("right",false);
+        if(energy <= 0.1*max_energy && sleeping == false){
+                RedirectCourse(bed);
+                currentWaipoint = 0;
+                sleeping = true;
+         }
+         else if(energy >= max_energy && sleeping == true){
+            RedirectCourse(/**/target.transform);
+            currentWaipoint = 0;
+            sleeping = false;
+         }  
+        anim.SetInteger("Speed",0);
 
         if(path.vectorPath[currentWaipoint].x >= transform.localPosition.x && 
         ((int)path.vectorPath[currentWaipoint].y == (int)transform.localPosition.y)){
-            anim.SetBool("up",false);
-            anim.SetBool("left",false);
-            anim.SetBool("down",false);
-            anim.SetBool("right",true);
+            anim.SetInteger("Speed",1);
+            anim.SetFloat("X", 1);
+            anim.SetFloat("Y", 0);
             }
         else if(path.vectorPath[currentWaipoint].x < transform.position.x && 
         ((int)path.vectorPath[currentWaipoint].y == (int)transform.localPosition.y)){
 
-            anim.SetBool("up",false);
-            anim.SetBool("left",true);
-            anim.SetBool("down",false);
-            anim.SetBool("right",false);
+            anim.SetInteger("Speed",1);
+            anim.SetFloat("X", -1);
+            anim.SetFloat("Y", 0);
 
         }
         else if(path.vectorPath[currentWaipoint].y > transform.localPosition.y && 
         ( (int)path.vectorPath[currentWaipoint].x == (int)transform.localPosition.x)){
 
-            anim.SetBool("up",true);
-            anim.SetBool("left",false);
-            anim.SetBool("down",false);
-            anim.SetBool("right",false);
+            anim.SetInteger("Speed",1);
+            anim.SetFloat("X", 0);
+            anim.SetFloat("Y", 1);
 
         }
         else if(path.vectorPath[currentWaipoint].y < transform.localPosition.y && 
         ( (int)path.vectorPath[currentWaipoint].x == (int)transform.localPosition.x)){
-            anim.SetBool("up",false);
-            anim.SetBool("left",false);
-            anim.SetBool("down",true);
-            anim.SetBool("right",false);
+            anim.SetInteger("Speed",1);
+            anim.SetFloat("X", 0);
+            anim.SetFloat("Y", -1);
         }
 
-        transform.position =Vector2.Lerp(transform.position,path.vectorPath[currentWaipoint],0.07f);
+        //transform.position =Vector2.Lerp(transform.position,path.vectorPath[currentWaipoint],0.07f);
+        rb.velocity = new Vector2(anim.GetFloat("X") * 3, anim.GetFloat("Y") * 3);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaipoint]);
         
-        if(distance < nextWaipointDistance){
+        if(distance < nextWaipointDistance /*&& currentWaipoint < path.vectorPath.Count-1*/){
             currentWaipoint++;
         }
 

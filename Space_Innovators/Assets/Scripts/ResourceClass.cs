@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,5 +18,14 @@ public class Resource
         this.name = "None";
         this.icon_name = "None";
         this.quantity = 0;
+    }
+
+    public SerializableClass ResourceSerialize(){
+        SerializableClass temp = new SerializableClass();
+        temp.arr[0] = this.name;
+        temp.arr[1] = this.icon_name;
+        temp.arr[2] = this.quantity.ToString();
+
+        return temp;
     }
 }
