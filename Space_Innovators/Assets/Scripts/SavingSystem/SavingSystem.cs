@@ -2,9 +2,9 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public class SavingSys : MonoBehaviour
+public class SavingSystem : MonoBehaviour
 {
-    public static void Save(CurrentProgress c){
+    public void Save(CurrentProgress c){
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/progress.data";
         CurrentProgressSerialized data = new CurrentProgressSerialized(c);
@@ -14,7 +14,7 @@ public class SavingSys : MonoBehaviour
         fs.Close();
     }
 
-    public static CurrentProgressSerialized Load(){
+    public CurrentProgressSerialized Load(){
         string path = Application.persistentDataPath + "/progress.data";
 
         if(!File.Exists(path)){

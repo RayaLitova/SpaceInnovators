@@ -6,13 +6,14 @@ public class Statics : MonoBehaviour
 {
 
     private CurrentProgress c;
-
     private float nextActionTime = 0f;
     private float period = 200f;
 
     void Start()
     {
-        
+        c = new CurrentProgress();
+        Debug.Log(c.recipes[0]);
+        gameObject.GetComponent<SavingSystem>().Save(c);
     }
 
     void Update()
@@ -20,6 +21,8 @@ public class Statics : MonoBehaviour
         if (Time.time > nextActionTime){
             nextActionTime += period;
             c.daysPassed++;
+            Debug.Log(c.recipes);
+            gameObject.GetComponent<SavingSystem>().Save(c);
         }
     }
 

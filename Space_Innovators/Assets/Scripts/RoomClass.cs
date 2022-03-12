@@ -10,7 +10,7 @@ public class Room
 
     public Room(string name, int workDone, int level){
         this.name = name;
-        this.workDone = world;
+        this.workDone = workDone;
         this.level = level;
     }
 }

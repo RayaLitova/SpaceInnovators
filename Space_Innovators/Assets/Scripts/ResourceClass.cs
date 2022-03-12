@@ -13,4 +13,10 @@ public class Resource
         this.icon_name = icon_name;
         this.quantity = quantity;
     }
+
+    public Resource(){
+        this.name = "None";
+        this.icon_name = "None";
+        this.quantity = 0;
+    }
 }

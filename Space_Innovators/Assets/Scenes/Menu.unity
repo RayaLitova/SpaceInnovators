@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ae4063adf2455e43abc7a5401ed56fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisabledButton: {fileID: 21300000, guid: d1ea76edb890c1b4185083c0e25fc2ea, type: 3}
+  DisabledButton: {fileID: 0}
 --- !u!1 &149871612
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +793,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 637340124}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 637340126}
+        m_TargetAssemblyTypeName: CreateNewGame, Assembly-CSharp
+        m_MethodName: LoadingScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &637340124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,6 +1286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1180524798}
   - component: {fileID: 1180524799}
+  - component: {fileID: 1180524797}
   m_Layer: 0
   m_Name: Statics
   m_TagString: Saving
@@ -1281,6 +1294,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1180524797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180524796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d2f4b58e1e0a14469db7bc326eb81f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1180524798
 Transform:
   m_ObjectHideFlags: 0
@@ -1304,7 +1329,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1180524796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a0a88a5c17a23c429fed124fd08fa3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 207ad77840c1a7148bba7cfee2a21a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1247745628
@@ -1782,8 +1807,8 @@ GameObject:
   - component: {fileID: 1801296476}
   - component: {fileID: 1801296475}
   - component: {fileID: 1801296474}
-  - component: {fileID: 1801296478}
   - component: {fileID: 1801296477}
+  - component: {fileID: 1801296478}
   m_Layer: 0
   m_Name: rocket1
   m_TagString: Untagged
@@ -1908,7 +1933,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56084f06be408c142ab688034ed494f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1801296477}
 --- !u!1 &1974462112
 GameObject:
   m_ObjectHideFlags: 0
