@@ -26,6 +26,7 @@ public class NpcAi : MonoBehaviour
     //int currentTarget = 0;
     bool reachedEndofPath = false;
     
+    bool movementStopped = false;
 
     float _t=0;
     float o2_timer = 0;
@@ -64,7 +65,7 @@ public class NpcAi : MonoBehaviour
         }
         else if(transform.tag == "Neuforian"){
             O2_needed = -1;
-            H20_needed = 2;
+            H20_needed = 3;
             FOOD_needed = 0;
             max_energy = 150;
         }
@@ -84,9 +85,6 @@ public class NpcAi : MonoBehaviour
             path = p;
             currentWaipoint = 0;
             anim.SetInteger("Speed",0);
-
-
-
         }
     }
 
@@ -96,9 +94,6 @@ public class NpcAi : MonoBehaviour
 
     void FixedUpdate()
     {
-         //target = chopt.target_value;
-            //target.transform.position = new Vector2(target.position.x, target.position.y-0f);
-       // }
         o2_timer += Time.deltaTime;
         h2o_timer += Time.deltaTime;
         food_timer += Time.deltaTime;
@@ -124,25 +119,31 @@ public class NpcAi : MonoBehaviour
             reachedEndofPath = true;
             if(!sleeping){
                 energy--;
-            }
-            else{
+            }else{
+                anim.SetBool("Sleeping", true);
+                transform.position = bed.position;
                 energy++;
+                if(energy==max_energy){
+                    movementStopped = false;
+                }else{
+                    movementStopped = true;
+                }
             }
-            
 
         }else{
             reachedEndofPath = false;
+            anim.SetBool("Sleeping", false);
         }
+
         if(energy <= 0.1*max_energy && sleeping == false){
                 RedirectCourse(bed);
                 currentWaipoint = 0;
                 sleeping = true;
-         }
-         else if(energy >= max_energy && sleeping == true){
+        }else if(energy >= max_energy && sleeping == true){
             RedirectCourse(/**/target.transform);
             currentWaipoint = 0;
             sleeping = false;
-         }  
+        }  
         anim.SetInteger("Speed",0);
 
         if(path.vectorPath[currentWaipoint].x >= transform.localPosition.x && 
@@ -175,15 +176,14 @@ public class NpcAi : MonoBehaviour
         }
 
         //transform.position =Vector2.Lerp(transform.position,path.vectorPath[currentWaipoint],0.07f);
-        rb.velocity = new Vector2(anim.GetFloat("X") * 3, anim.GetFloat("Y") * 3);
+        if(!movementStopped){
+            rb.velocity = new Vector2(anim.GetFloat("X") * 3, anim.GetFloat("Y") * 3);
+        }
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaipoint]);
         
         if(distance < nextWaipointDistance /*&& currentWaipoint < path.vectorPath.Count-1*/){
             currentWaipoint++;
         }
-
-        
-
     }
 }

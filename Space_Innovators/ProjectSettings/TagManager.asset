@@ -44,6 +44,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG image
+    uniqueID: 1871889467
+    locked: 0
+  - name: Meteorites
+    uniqueID: 3847668281
+    locked: 0
   - name: Background_floor
     uniqueID: 3957270053
     locked: 0
@@ -52,4 +58,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2005956597
     locked: 0
