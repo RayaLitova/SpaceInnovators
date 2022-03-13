@@ -134,7 +134,7 @@ public class NpcAi : MonoBehaviour
             reachedEndofPath = false;
             anim.SetBool("Sleeping", false);
         }
-
+        ENGbar.SetEnergy(energy);
         if(energy <= 0.1*max_energy && sleeping == false){
                 RedirectCourse(bed);
                 currentWaipoint = 0;
