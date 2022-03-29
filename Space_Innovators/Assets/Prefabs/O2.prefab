@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7656230105963563186}
   - component: {fileID: 99888595020147737}
-  m_Layer: 8
+  m_Layer: 1
   m_Name: pc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,9 +176,9 @@ GameObject:
   - component: {fileID: 9189558817845862274}
   - component: {fileID: 6663741676417364851}
   - component: {fileID: 84365840059313650}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: table
-  m_TagString: Untagged
+  m_TagString: Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -949,7 +949,7 @@ GameObject:
   - component: {fileID: 2440028699301876767}
   - component: {fileID: 2440028699301876736}
   - component: {fileID: 2440028699301876737}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1589,7 +1589,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2440028700631533696}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.43, y: -8.23, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2440028699196057127}

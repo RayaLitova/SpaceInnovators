@@ -17,21 +17,36 @@ public class BuildRegulator : MonoBehaviour
 
     // Start is called before the first frame update
     public void UpdateInteractables(){
-        stations = new List<GameObject>();
+        //stations = GameObject.FindGameObjectsWithTag("Station");
+        // /beds = GameObject.FindGameObjectsWithTag("Bed");
+
+        /*stations = new List<GameObject>();
         beds = new List<GameObject>();
         foreach(GameObject gmob in GameObject.FindGameObjectsWithTag("Station")){
             stations.Add(gmob);
         }
         foreach(GameObject gmob in GameObject.FindGameObjectsWithTag("Bed")){
             beds.Add(gmob);
-        }
+        }*/
+    }
+    // bugva zashtoto ne se promenqt tagovete
+    // opciq za opravqne e da imam masiv s nachanite i sled tova shte se setvat manualy
+    public void addCrewMate(){
+        Vector3 objectPOS = new Vector3(-3.25f, 8f, 0f);
+        Debug.Log(GameObject.FindGameObjectsWithTag("Station"));
+        GameObject newGameObject = Instantiate(Crew[0], objectPOS, Quaternion.identity);
+        newGameObject.GetComponent<NpcAi>().target = GameObject.FindGameObjectsWithTag("Station")[0].transform	;
+         GameObject.FindGameObjectsWithTag("Station")[0].transform.tag = "UsedStation";
+        newGameObject.transform.GetComponent<NpcAi>().bed = GameObject.FindGameObjectsWithTag("Bed")[0].transform;
+        GameObject.FindGameObjectsWithTag("Bed")[0].transform.tag = "UsedBed";
+        newGameObject.transform.GetComponent<NPCStats>().camera = GameObject.Find("Main Camera").transform;
     }
 
-   /* void Start()
+   void Start()
     {
         //GameObject testPrefab = new Comms();
         Vector3 objectPOS = Vector3.zero;
-        GameObject newGameObject = Instantiate(startRooms[2], objectPOS, Quaternion.identity);
+        GameObject newGameObject = Instantiate(startRooms[0], objectPOS, Quaternion.identity);
         newGameObject.SetActive(true);
         MainRoom = newGameObject.transform;
         map[5,5] = 1;
@@ -46,27 +61,18 @@ public class BuildRegulator : MonoBehaviour
         newY = 6;
         objectPOS = Vector3.zero;
         objectPOS = new Vector3((float)(objectPOS.x+((newX-5)*8)), (float)(objectPOS.y+((newY-5)*8.15)), 0f);
-        newGameObject = Instantiate(startRooms[0], objectPOS, Quaternion.identity);
+        newGameObject = Instantiate(startRooms[2], objectPOS, Quaternion.identity);
         map[newX,newY] = 1;
 
         AstarPath.active.Scan();
-        UpdateInteractables();
+        //UpdateInteractables();
         Debug.Log(stations);
-        objectPOS = new Vector3(MainRoom.transform.position.x, MainRoom.transform.position.y, 0f);
-        newGameObject = Instantiate(Crew[0], objectPOS, Quaternion.identity);
-        newGameObject.GetComponent<NpcAi>().target = stations[0].transform	;
-        stations[0].tag = "UsedStation";
-        newGameObject.transform.GetComponent<NpcAi>().bed = beds[0].transform;
-        beds[0].tag = "UsedBed";
-        UpdateInteractables();
+        
+        //UpdateInteractables();
         //Debug.Log(stations);
-        objectPOS = new Vector3(MainRoom.transform.position.x, MainRoom.transform.position.y, 0f);
-        newGameObject = Instantiate(Crew[0], objectPOS, Quaternion.identity);
-        newGameObject.transform.GetComponent<NpcAi>().target = stations[0].transform;
-        stations[0].tag = "UsedStation";
-        newGameObject.transform.GetComponent<NpcAi>().bed = beds[0].transform;
-        beds[0].tag = "UsedBed";
-        UpdateInteractables();
-    }*/
+        addCrewMate();
+        addCrewMate();
+        //UpdateInteractables();
+    }
 
 }
