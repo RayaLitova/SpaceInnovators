@@ -65,7 +65,7 @@ public class BuildRegulator : MonoBehaviour
 
         Debug.Log(stations);
 
-       // addCrewMate(0);
+        addCrewMate(0);
         addCrewMate(0);
      
     }
