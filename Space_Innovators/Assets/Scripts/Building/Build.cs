@@ -5,12 +5,17 @@ using UnityEngine;
 public class Build : MonoBehaviour
 {
     [SerializeField] BuildRegulator BL;
-    //[SerializeField]GameObject to_build;
-
+    [SerializeField] TMPro.TMP_Dropdown DropDown;
+    
     public void build(){
-        BL.newX = 6;
-        BL.newY = 6;
-        BL.buildRoom(BL.newX,BL.newY,3);
+        for(int i=0; i<GameObject.FindGameObjectsWithTag("Menu").Length;i++){
+            GameObject.FindGameObjectsWithTag("UIButton")[i].GetComponent<MenuOpener>().pressed=false;
+            GameObject.FindGameObjectsWithTag("Menu")[i].SetActive(false);    
+        }
+        
+        BL.newX++;
+        BL.newY++;
+        BL.buildRoom(BL.newX,BL.newY,DropDown.value);
         /*Vector3 objectPOS = Vector3.zero;
         objectPOS = new Vector2(-1.3f,-1.2f);
         GameObject newGameObject = Instantiate(to_build, objectPOS, Quaternion.identity);
