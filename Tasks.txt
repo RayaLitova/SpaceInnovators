@@ -5,6 +5,7 @@ Andy:
 Raya:
 	-Building consuming resources
 	-Room functions
+	-meteorite despawn
 
 Secondary tasks:
 	-Trading
