@@ -19,9 +19,11 @@ public class BuildRegulator : MonoBehaviour
     public int newY = 5;
     public float offset = 7.75f;
     Transform MainRoom;
-    GameObject[] startRooms;
+    //GameObject[] startRooms;
     [SerializeField] public GameObject[] Crew;
-    [SerializeField] public GameObject[] unlockedRooms;
+    [SerializeField] public List<GameObject> unlockedRooms;
+    [SerializeField] public List<string> unlockedPlanets;
+    public int[] onBoardCount = new int[10];
     //[SerializeField] Animator[] Aimators;
     List<GameObject> stations;
     List<GameObject> beds;
@@ -35,6 +37,7 @@ public class BuildRegulator : MonoBehaviour
         newGameObject.transform.GetComponent<NpcAi>().bed = GameObject.FindGameObjectsWithTag("Bed")[0].transform;
         GameObject.FindGameObjectsWithTag("Bed")[0].transform.tag = "UsedBed";
         newGameObject.transform.GetComponent<NPCStats>().camera = GameObject.Find("Main Camera").transform;
+        onBoardCount[crewIndex]++;
     }
 
     public void buildRoom(int newX, int newY, int roomIndex){
@@ -65,7 +68,7 @@ public class BuildRegulator : MonoBehaviour
 
         addCrewMate(0);
         addCrewMate(0);
-        addCrewMate(0);
+        //addCrewMate(0);
      
     }
 

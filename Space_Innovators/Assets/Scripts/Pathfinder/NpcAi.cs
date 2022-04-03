@@ -146,13 +146,13 @@ public class NpcAi : MonoBehaviour
         }  
         anim.SetInteger("Speed",0);
 
-        if(path.vectorPath[currentWaipoint].x >= transform.localPosition.x && 
+        if(path.vectorPath[currentWaipoint].x > transform.localPosition.x && 
         ((int)path.vectorPath[currentWaipoint].y == (int)transform.localPosition.y)){
             anim.SetInteger("Speed",1);
             anim.SetFloat("X", 1);
             anim.SetFloat("Y", 0);
             }
-        else if(path.vectorPath[currentWaipoint].x <= transform.localPosition.x && 
+        else if(path.vectorPath[currentWaipoint].x < transform.localPosition.x && 
         ((int)path.vectorPath[currentWaipoint].y == (int)transform.localPosition.y)){
 
             anim.SetInteger("Speed",1);
@@ -160,16 +160,15 @@ public class NpcAi : MonoBehaviour
             anim.SetFloat("Y", 0);
 
         }
-        else if(path.vectorPath[currentWaipoint].y >= transform.localPosition.y && 
-        ( (int)path.vectorPath[currentWaipoint].x <= (int)transform.localPosition.x+1 ||
-        (int)path.vectorPath[currentWaipoint].x >= (int)transform.localPosition.x-1)){
+        else if(path.vectorPath[currentWaipoint].y > transform.localPosition.y && 
+        ( (int)path.vectorPath[currentWaipoint].x == (int)transform.localPosition.x)){
 
             anim.SetInteger("Speed",1);
             anim.SetFloat("X", 0);
             anim.SetFloat("Y", 1);
 
         }
-        else if(path.vectorPath[currentWaipoint].y <= transform.localPosition.y && 
+        else if(path.vectorPath[currentWaipoint].y < transform.localPosition.y && 
         ( (int)path.vectorPath[currentWaipoint].x == (int)transform.localPosition.x)){
             anim.SetInteger("Speed",1);
             anim.SetFloat("X", 0);
