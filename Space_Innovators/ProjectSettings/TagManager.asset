@@ -10,6 +10,10 @@ TagManager:
   - Station
   - Room
   - Bed
+  - UsedStation
+  - UsedBed
+  - Menu
+  - UIButton
   layers:
   - Default
   - TransparentFX
