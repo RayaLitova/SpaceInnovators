@@ -4,18 +4,35 @@ using UnityEngine;
 
 public class Build : MonoBehaviour
 {
-    [SerializeField] BuildRegulator BL;
-    [SerializeField] TMPro.TMP_Dropdown DropDown;
     
+    [SerializeField] ChoosePlaceToBuild script;
+    void OnEnable(){
+        StartCoroutine(transform.name);
+        //transform.GetComponent<ChoosePlaceToBuild>().enabled = false;
+    }
+
     public void build(){
-        for(int i=0; i<GameObject.FindGameObjectsWithTag("Menu").Length;i++){
+        print(GameObject.FindGameObjectsWithTag("Menu"));
+        for(int i=0; i<GameObject.FindGameObjectsWithTag("UIButton").Length;i++){
             GameObject.FindGameObjectsWithTag("UIButton")[i].GetComponent<MenuOpener>().pressed=false;
-            GameObject.FindGameObjectsWithTag("Menu")[i].SetActive(false);    
+            GameObject.FindGameObjectsWithTag("UIButton")[i].GetComponent<MenuOpener>().canBePressed = false;
+            //GameObject.FindGameObjectsWithTag("Menu")[i].SetActive(false);
+            
+            //GameObject.FindGameObjectsWithTag("UIButton")[i].SetActive(false);
+
         }
-        
-        BL.newX++;
-        BL.newY++;
-        BL.buildRoom(BL.newX,BL.newY,DropDown.value);
+        for(int i=0; i<GameObject.FindGameObjectsWithTag("Menu").Length;i++){
+                    //GameObject.FindGameObjectsWithTag("UIButton")[i].GetComponent<MenuOpener>().pressed=false;
+                    //GameObject.FindGameObjectsWithTag("UIButton")[i].GetComponent<MenuOpener>().canBePressed = false;
+                    GameObject.FindGameObjectsWithTag("Menu")[i].SetActive(false);
+                    
+                }
+        //BL.newX++;
+        //BL.newY++;
+        //ChoosePlaceToBuid();
+        script.working = true;
+        //if(transform.GetComponent<ChoosePlaceToBuild>().enabled == true)StartCoroutine(transform.name);
+        //BL.buildRoom(newX,newY,DropDown.value);
         /*Vector3 objectPOS = Vector3.zero;
         objectPOS = new Vector2(-1.3f,-1.2f);
         GameObject newGameObject = Instantiate(to_build, objectPOS, Quaternion.identity);
