@@ -1,0 +1,11 @@
+Andy:
+	-Fix pathfinding / targeting
+	-Building
+
+Raya:
+	-Building consuming resources
+	-Room functions
+
+Secondary tasks:
+	-Trading
+	-Saving system

@@ -1,25 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Meteorite : MonoBehaviour
 {
-    private bool isMeteoriteActive = false;
-    public GameObject Res;
+    private bool isMeteoriteActive = true;
+    public ResourcesClass res;
     public GameObject gatheredMenu;
+    private System.Random random = new System.Random();
 
     bool gatheredMenuActive = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if(gatheredMenuActive){
             gatheredMenu.SetActive(true);
+            gatheredMenuActive = false;
+            isMeteoriteActive = true;
+            gameObject.SetActive(false);
         }
         if(isMeteoriteActive){
             gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 0.02f);
@@ -41,9 +40,13 @@ public class Meteorite : MonoBehaviour
     }
 
     public void GetResources(){
+        GameObject text;
         isMeteoriteActive = false;
-        Res.GetComponent<ResourcesScript>().resources[0].quantity += 1;
-        Res.GetComponent<ResourcesScript>().resources[6].quantity += 3;
+        for(int i=0; i <= random.Next(4);i++){
+            res.AddRandomResource(2,3,gatheredMenu.transform.Find("Text (" + i + ")").gameObject.GetComponent<Text>());
+            //Debug.Log(gatheredMenu.transform.Find("Text (" + i + ")").gameObject.GetComponent<Text>());
+
+        }
         gatheredMenuActive = true;
     }
 }
