@@ -3,38 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
+
+/*
+Map Values:
+    0 - Empty, but way from structures
+    1 - Taken
+    2 - Empty and close to structure
+    3 - Damaged    
+*/
+
 public class BuildRegulator : MonoBehaviour
 {
     public int[,] map = new int[11, 11];
     public int newX = 5;
     public int newY = 5;
-    float offset = 7.75f;
+    public float offset = 7.75f;
     Transform MainRoom;
-    [SerializeField] GameObject[] startRooms;
-    [SerializeField] GameObject[] Crew;
+    GameObject[] startRooms;
+    [SerializeField] public GameObject[] Crew;
+    [SerializeField] public GameObject[] unlockedRooms;
     //[SerializeField] Animator[] Aimators;
     List<GameObject> stations;
     List<GameObject> beds;
 
-    // Start is called before the first frame update
-    public void UpdateInteractables(){
-        //stations = GameObject.FindGameObjectsWithTag("Station");
-        // /beds = GameObject.FindGameObjectsWithTag("Bed");
-
-        /*stations = new List<GameObject>();
-        beds = new List<GameObject>();
-        foreach(GameObject gmob in GameObject.FindGameObjectsWithTag("Station")){
-            stations.Add(gmob);
-        }
-        foreach(GameObject gmob in GameObject.FindGameObjectsWithTag("Bed")){
-            beds.Add(gmob);
-        }*/
-    }
-    // bugva zashtoto ne se promenqt tagovete
-    // opciq za opravqne e da imam masiv s nachanite i sled tova shte se setvat manualy
     public void addCrewMate(int crewIndex){
         Vector3 objectPOS = Vector3.zero;
-        Debug.Log(GameObject.FindGameObjectsWithTag("Station"));
+        //Debug.Log(GameObject.FindGameObjectsWithTag("Station"));
         GameObject newGameObject = Instantiate(Crew[crewIndex], objectPOS, Quaternion.identity);
         newGameObject.GetComponent<NpcAi>().target = GameObject.FindGameObjectsWithTag("Station")[0].transform	;
         GameObject.FindGameObjectsWithTag("Station")[0].transform.tag = "UsedStation";
@@ -46,8 +40,12 @@ public class BuildRegulator : MonoBehaviour
     public void buildRoom(int newX, int newY, int roomIndex){
         Vector3 objectPOS = Vector3.zero;
         objectPOS = new Vector3((float)(objectPOS.x+((newX-5f)*offset)), (float)(objectPOS.y+((newY-5f)*offset)), 0f);
-        GameObject newGameObject = Instantiate(startRooms[roomIndex], objectPOS, Quaternion.identity);
+        GameObject newGameObject = Instantiate(unlockedRooms[roomIndex], objectPOS, Quaternion.identity);
         map[newX,newY] = 1;
+        if(map[newX+1,newY] != 1)map[newX+1,newY] = 2;
+        if(map[newX-1,newY] != 1)map[newX-1,newY] = 2;
+        if(map[newX,newY+1] != 1)map[newX,newY+1] = 2;
+        if(map[newX,newY-1] != 1)map[newX,newY-1] = 2;
         AstarPath.active.Scan();
     }
 
@@ -65,7 +63,8 @@ public class BuildRegulator : MonoBehaviour
 
         Debug.Log(stations);
 
-       // addCrewMate(0);
+        addCrewMate(0);
+        addCrewMate(0);
         addCrewMate(0);
      
     }
