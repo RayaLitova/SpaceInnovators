@@ -16,6 +16,7 @@ public class RoomStatics : MonoBehaviour
     public int[] producedResourcesQuantity;
 
     private GameObject mario;
+    private int work = 0;
 
     void Start(){
         mario = GameObject.Find("marioIdle");
@@ -46,5 +47,15 @@ public class RoomStatics : MonoBehaviour
         if(SatisfiedRequirements < planets.Length) return false;
 
         return true;
+    }
+
+    public void Produce(){
+        work++;
+        if(work>=produce_at * (1/roomLevel)){
+            for(int i=0; i<producedResources.Length; i++){
+                GameObject.Find("marioIdle").gameObject.GetComponent<ResourcesClass>().AddResource(producedResources[i], producedResourcesQuantity[i]);
+            }
+            work=0;
+        }
     }
 }

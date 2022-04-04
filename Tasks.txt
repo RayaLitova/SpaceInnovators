@@ -3,6 +3,7 @@ Andy:
 	-Crew menu
 	-Storage
 	-Door scripts
+
 	
 Raya:
 	-Lab
@@ -10,8 +11,6 @@ Raya:
 	-meteorite despawn
 	-Minions substract resources / die
 	-storage affects storage
-	-Lab created once
-	-substract resources on build
 	
 Secondary tasks:
 	-Trading
@@ -21,6 +20,7 @@ Secondary tasks:
 	-random events
 	-Clear useless/unused scripts
 	-sounds
+	-game over
 
 Tasks:
 	-Requirements/owned UI text

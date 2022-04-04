@@ -8,6 +8,7 @@ public class NPCStats : MonoBehaviour
     public int Water;
     public int Food;
     public int max_energy;
+    public int health=100;
 
     void Start(){
         int[] Stats = NPCStats.GetStatsByTag(transform.tag);
@@ -15,6 +16,15 @@ public class NPCStats : MonoBehaviour
         Water = Stats[1];
         Food = Stats[2];
         max_energy = Stats[3];
+    }
+
+    public void Consume(string name, int quantity){
+        if(!GameObject.Find("marioIdle").GetComponent<ResourcesClass>().SubtractResource(name,quantity)){
+            health-=15;
+            if(health<=0){
+                gameObject.GetComponent<NpcAi>().Die();
+            }
+        }
     }
 
     public static int[] GetStatsByTag(string Tag){
