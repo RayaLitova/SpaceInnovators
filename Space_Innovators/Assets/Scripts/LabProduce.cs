@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class LabProduce : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] public List<GameObject> unlockableRooms;    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private int unlock = -1;
+    private System.Random random = new System.Random();
+
+    public GameObject UnlockRoom(){
+        if(unlock==0){
+            GameObject room = unlockableRooms[random.Next(unlockableRooms.Count)];
+            unlockableRooms.Remove(room);
+            unlock = random.Next(1, 4);
+            return room;
+        }
+        unlock--;
+        if(unlock==0 || unlock==-1){
+            unlock = random.Next(1, 4);
+        }
+        return null;
     }
 }
