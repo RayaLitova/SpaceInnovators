@@ -80,8 +80,8 @@ public class BuildRegulator : MonoBehaviour
         newY = 6;
         buildRoom(newX,newY,2);
 
-        addCrewMate(0,0);
-        addCrewMate(0,0);
+        //addCrewMate(0,0);
+       // addCrewMate(0,0);
      
     }
 

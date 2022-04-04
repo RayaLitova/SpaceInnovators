@@ -74,6 +74,8 @@ public class NpcAi : MonoBehaviour
         target.tag = "Station";
         bed.tag = "Bed";
         Destroy(gameObject);
+        BuildRegulator mario = GameObject.Find("marioIdle").GetComponent<BuildRegulator>();
+        mario.onBoardCount[System.Array.IndexOf(mario.Tags,transform.tag)]--;
     }
 
     void FixedUpdate()

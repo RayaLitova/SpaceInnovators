@@ -84,5 +84,9 @@ public class ChoosePlaceToBuild : MonoBehaviour
         created = false;
         working = false;
         Done = false;
+        GameObject.Find("BuildPlacementMenu").SetActive(false);
+        GameObject.Find("CoosePlaceButton").SetActive(false);
+        GameObject.Find("CoosePlaceButton").GetComponent<MenuOpener>().pressed=false;
+        GameObject.Find("CoosePlaceButton").SetActive(false);
     }
 }
