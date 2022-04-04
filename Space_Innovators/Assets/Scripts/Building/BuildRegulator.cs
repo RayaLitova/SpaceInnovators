@@ -20,15 +20,16 @@ public class BuildRegulator : MonoBehaviour
     public float offset = 7.75f;
     Transform MainRoom;
     //GameObject[] startRooms;
-    [SerializeField] public GameObject[] Crew;
+    [SerializeField] GameObject Crewmate;
+    [SerializeField] public string[] Tags;
     [SerializeField] public List<GameObject> unlockedRooms;
     [SerializeField] public List<string> unlockedPlanets;
     public int[] onBoardCount = new int[10];
     //[SerializeField] Animator[] Aimators;
-    List<GameObject> stations;
-    List<GameObject> beds;
+    //List<GameObject> stations;
+    //List<GameObject> beds;
 
-    public void addCrewMate(int crewIndex){
+    /*public void addCrewMate(int crewIndex){
         Vector3 objectPOS = Vector3.zero;
         //Debug.Log(GameObject.FindGameObjectsWithTag("Station"));
         GameObject newGameObject = Instantiate(Crew[crewIndex], objectPOS, Quaternion.identity);
@@ -37,6 +38,28 @@ public class BuildRegulator : MonoBehaviour
         newGameObject.transform.GetComponent<NpcAi>().bed = GameObject.FindGameObjectsWithTag("Bed")[0].transform;
         GameObject.FindGameObjectsWithTag("Bed")[0].transform.tag = "UsedBed";
         newGameObject.transform.GetComponent<NPCStats>().camera = GameObject.Find("Main Camera").transform;
+        onBoardCount[crewIndex]++;
+    }*/
+
+    public void addCrewMate(int crewIndex, int targetIndex){
+        /*if(targetIndex==-1){
+            //printirai che nqma target
+            return;
+        }
+        if(GameObject.FindGameObjectsWithTag("Bed").Length < 1){
+            //printirai che nqma leglo
+            return;
+        }*/
+        Vector3 objectPOS = Vector3.zero;
+        //Debug.Log(GameObject.FindGameObjectsWithTag("Station"));
+        GameObject newGameObject = Instantiate(Crewmate, objectPOS, Quaternion.identity);
+        newGameObject.tag = Tags[crewIndex];
+        newGameObject.GetComponent<NpcAi>().target = GameObject.FindGameObjectsWithTag("Station")[targetIndex].transform	;
+        GameObject.FindGameObjectsWithTag("Station")[targetIndex].transform.tag = "UsedStation";
+        newGameObject.transform.GetComponent<NpcAi>().bed = GameObject.FindGameObjectsWithTag("Bed")[0].transform;
+        GameObject.FindGameObjectsWithTag("Bed")[0].transform.tag = "UsedBed";
+        //print("shahaha");
+        //newGameObject.transform.GetComponent<NPCStats>().camera = GameObject.Find("Main Camera").transform;
         onBoardCount[crewIndex]++;
     }
 
@@ -64,10 +87,10 @@ public class BuildRegulator : MonoBehaviour
         newY = 6;
         buildRoom(newX,newY,2);
 
-        Debug.Log(stations);
+        //Debug.Log(stations);
 
-        addCrewMate(0);
-        addCrewMate(0);
+        addCrewMate(0,0);
+        addCrewMate(0,0);
         //addCrewMate(0);
      
     }

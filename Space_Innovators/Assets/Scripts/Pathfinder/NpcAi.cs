@@ -8,18 +8,20 @@ public class NpcAi : MonoBehaviour
 {
 
     [SerializeField] public Transform target;
+    NPCStats Stats;
+    //[SerializeField] NPCStats stats;
 
     //public float speed = 200f;
     public float nextWaipointDistance = 0f;
 
 
-    public int O2_needed;
-    public int H20_needed;
-    public int FOOD_needed;
+    //public int O2_needed;
+    //public int H20_needed;
+    //public int FOOD_needed;
     public int max_energy;
     public int energy = 0;
 
-    public EnergyScr ENGbar;
+    //public EnergyScr ENGbar;
 
     Path path;
     int currentWaipoint = 0;
@@ -50,13 +52,15 @@ public class NpcAi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Stats = transform.GetComponent<NPCStats>();
+        //max_energy = transform.GetComponent<NPCStats>().max_energy;
         //chopt = drop.GetComponent<ChageOptions>();
         //target.position = new Vector2(target.position.x, target.position.y-1);
         //if(target==bed){
        // target = bed;
         //new_target = new GameObject();   
 
-        if(transform.tag == "Human"){
+        /*if(transform.tag == "Human"){
             O2_needed = 1;
             H20_needed = 1;
             FOOD_needed = 1;
@@ -68,9 +72,9 @@ public class NpcAi : MonoBehaviour
             H20_needed = 3;
             FOOD_needed = 0;
             max_energy = 150;
-        }
+        }*/
 
-        ENGbar.SetMaxEnergy(max_energy);
+        //ENGbar.SetMaxEnergy(Stats.max_energy);
         if(/**/target==null){
             return;
         }
@@ -123,7 +127,7 @@ public class NpcAi : MonoBehaviour
                 anim.SetBool("Sleeping", true);
                 transform.position = bed.position;
                 energy++;
-                if(energy==max_energy){
+                if(energy==Stats.max_energy){
                     movementStopped = false;
                 }else{
                     movementStopped = true;
@@ -134,12 +138,12 @@ public class NpcAi : MonoBehaviour
             reachedEndofPath = false;
             anim.SetBool("Sleeping", false);
         }
-        ENGbar.SetEnergy(energy);
-        if(energy <= 0.1*max_energy && sleeping == false){
+        //ENGbar.SetEnergy(energy);
+        if(energy <= 0.1*Stats.max_energy && sleeping == false){
                 RedirectCourse(bed);
                 currentWaipoint = 0;
                 sleeping = true;
-        }else if(energy >= max_energy && sleeping == true){
+        }else if(energy >= Stats.max_energy && sleeping == true){
             RedirectCourse(/**/target.transform);
             currentWaipoint = 0;
             sleeping = false;

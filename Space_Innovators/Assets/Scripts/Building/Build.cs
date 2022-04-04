@@ -6,13 +6,13 @@ public class Build : MonoBehaviour
 {
     
     [SerializeField] ChoosePlaceToBuild script;
-    void OnEnable(){
+    /*void OnEnable(){
         StartCoroutine(transform.name);
         //transform.GetComponent<ChoosePlaceToBuild>().enabled = false;
-    }
+    }*/
 
     public void build(){
-        print(GameObject.FindGameObjectsWithTag("Menu"));
+        //print(GameObject.FindGameObjectsWithTag("Menu"));
         for(int i=0; i<GameObject.FindGameObjectsWithTag("UIButton").Length;i++){
             GameObject.FindGameObjectsWithTag("UIButton")[i].GetComponent<MenuOpener>().pressed=false;
             GameObject.FindGameObjectsWithTag("UIButton")[i].GetComponent<MenuOpener>().canBePressed = false;
