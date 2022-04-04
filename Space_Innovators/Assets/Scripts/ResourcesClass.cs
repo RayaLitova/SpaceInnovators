@@ -14,16 +14,16 @@ public class ResourcesClass : MonoBehaviour
     private int nonGatherableResources = 5;
 
     void Start(){
-        resources.Add("Black metal", 5);
-        resources.Add("Colored metal", 5);
+        resources.Add("Black metal", 17);
+        resources.Add("Colored metal", 10);
         resources.Add("Fuel", 0);
         resources.Add("Space rock", 5);
-        resources.Add("Water", 5);
+        resources.Add("Water", 9);
         resources.Add("Energy", 0);
         resources.Add("Food", 0);
         resources.Add("Medicine", 0);
         resources.Add("O2", 0);
-        resources.Add("Cotton", 0);
+        resources.Add("Cotton", 8);
 
         icons.Add("Black metal", "build_metal_symbol");
         icons.Add("Colored metal", "color_metal_symbol_alt");
@@ -43,9 +43,13 @@ public class ResourcesClass : MonoBehaviour
         Debug.Log(name+": "+resources[name]);
     }
 
-    public void SubstractResource(string name, int quantity){
+    public bool SubtractResource(string name, int quantity){
+        if(resources[name]<quantity){
+            return false;
+        }
         resources[name] -= quantity;
         Debug.Log(name+": "+resources[name]);
+        return true;
     }
 
     public void AddRandomResource(int min, int max, Text text = null){
@@ -61,11 +65,17 @@ public class ResourcesClass : MonoBehaviour
         Debug.Log(name+": "+resources[name]);
     }
 
-    public void SubstractRandomResource(int min, int max){
+    public void SubtractRandomResource(int min, int max){
         rnd = random.Next(resources.Count);
         string name = resources.ElementAt(rnd).Key;
         resources[name] -= random.Next(min, max+1);
         Debug.Log(name+": " + resources[name]);
+    }
+
+    public void PrintResources(){
+        for(int i=0; i<resources.Count;i++){
+            Debug.Log(resources.ElementAt(i).Key+": "+resources.ElementAt(i).Value);
+        }
     }
 
 }

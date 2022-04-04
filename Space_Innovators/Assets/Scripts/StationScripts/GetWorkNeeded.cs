@@ -6,7 +6,7 @@ public class GetWorkNeeded : MonoBehaviour
 {
     static int work = 0;
 
-    public void Produce(){
+    public void Producea(){
         work++;
         if(work>=gameObject.GetComponent<RoomStatics>().produce_at * (1/gameObject.GetComponent<RoomStatics>().roomLevel)){
             for(int i=0; i<gameObject.GetComponent<RoomStatics>().producedResources.Length; i++){
