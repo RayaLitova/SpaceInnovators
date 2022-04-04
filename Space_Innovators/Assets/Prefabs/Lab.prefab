@@ -904,6 +904,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8002160bb3978bb4b85508fa9d5e55a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlockableRooms:
+  - {fileID: 8902655021416011805, guid: e2044583f38033649ab8a0a5fbacec20, type: 3}
 --- !u!1 &6345306532905213922
 GameObject:
   m_ObjectHideFlags: 0
