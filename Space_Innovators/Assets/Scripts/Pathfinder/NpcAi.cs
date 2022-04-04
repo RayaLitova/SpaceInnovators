@@ -45,36 +45,10 @@ public class NpcAi : MonoBehaviour
     GameObject new_target;
     
     [SerializeField]public Transform bed;
-    //public Dropdown drop;
-    //private ChageOptions chopt;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         Stats = transform.GetComponent<NPCStats>();
-        //max_energy = transform.GetComponent<NPCStats>().max_energy;
-        //chopt = drop.GetComponent<ChageOptions>();
-        //target.position = new Vector2(target.position.x, target.position.y-1);
-        //if(target==bed){
-       // target = bed;
-        //new_target = new GameObject();   
-
-        /*if(transform.tag == "Human"){
-            O2_needed = 1;
-            H20_needed = 1;
-            FOOD_needed = 1;
-            max_energy = 100;
-            
-        }
-        else if(transform.tag == "Neuforian"){
-            O2_needed = -1;
-            H20_needed = 3;
-            FOOD_needed = 0;
-            max_energy = 150;
-        }*/
-
-        //ENGbar.SetMaxEnergy(Stats.max_energy);
         if(/**/target==null){
             return;
         }
@@ -96,6 +70,12 @@ public class NpcAi : MonoBehaviour
         seeker.StartPath(rb.position, t.position, OnPathComplete);
     }
 
+    public void Die(){
+        target.tag = "Station";
+        bed.tag = "Bed";
+        Destroy(gameObject);
+    }
+
     void FixedUpdate()
     {
         o2_timer += Time.deltaTime;
@@ -103,15 +83,15 @@ public class NpcAi : MonoBehaviour
         food_timer += Time.deltaTime;
 
         if(o2_timer >= 20f){
-            //obsht kislorod --
+            Stats.Consume("O2", Stats.O2);
             o2_timer =0;
         }
         if(h2o_timer >= 30f && !sleeping){
-            //obsht kislorod --
+            Stats.Consume("Water", Stats.Water);
             h2o_timer =0;
         }
         if(food_timer >= 40f && !sleeping){
-            //obsht kislorod --
+            Stats.Consume("Food", Stats.Food);
             food_timer=0;
         }
 
@@ -123,6 +103,7 @@ public class NpcAi : MonoBehaviour
             reachedEndofPath = true;
             if(!sleeping){
                 energy--;
+                target.parent.gameObject.GetComponent<RoomStatics>().Produce();
             }else{
                 anim.SetBool("Sleeping", true);
                 transform.position = bed.position;
@@ -138,7 +119,6 @@ public class NpcAi : MonoBehaviour
             reachedEndofPath = false;
             anim.SetBool("Sleeping", false);
         }
-        //ENGbar.SetEnergy(energy);
         if(energy <= 0.1*Stats.max_energy && sleeping == false){
                 RedirectCourse(bed);
                 currentWaipoint = 0;
@@ -179,7 +159,6 @@ public class NpcAi : MonoBehaviour
             anim.SetFloat("Y", -1);
         }
 
-        //transform.position =Vector2.Lerp(transform.position,path.vectorPath[currentWaipoint],0.07f);
         if(!movementStopped){
             rb.velocity = new Vector2(anim.GetFloat("X") * 3, anim.GetFloat("Y") * 3);
         }

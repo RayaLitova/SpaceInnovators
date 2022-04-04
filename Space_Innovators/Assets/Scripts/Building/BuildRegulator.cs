@@ -42,18 +42,25 @@ public class BuildRegulator : MonoBehaviour
         Vector3 objectPOS = Vector3.zero;
         objectPOS = new Vector3((float)(objectPOS.x+((newX-5f)*offset)), (float)(objectPOS.y+((newY-5f)*offset)), 0f);
         GameObject newGameObject = Instantiate(unlockedRooms[roomIndex], objectPOS, Quaternion.identity);
-
-        if(unlockedRooms[roomIndex].name == "Lab"){
-            unlockedRooms.RemoveAt(roomIndex);
-        }
-
         map[newX,newY] = 1;
         if(map[newX+1,newY] != 1)map[newX+1,newY] = 2;
         if(map[newX-1,newY] != 1)map[newX-1,newY] = 2;
         if(map[newX,newY+1] != 1)map[newX,newY+1] = 2;
         if(map[newX,newY-1] != 1)map[newX,newY-1] = 2;
         BuiltRooms.Add(newGameObject.name);
-        
+
+        GameObject.Find("marioIdle").GetComponent<ResourcesClass>().PrintResources();
+        Debug.Log(unlockedRooms[roomIndex].GetComponent<RoomStatics>().resourcesNames.Length);
+        for(int i=0; i < unlockedRooms[roomIndex].GetComponent<RoomStatics>().resourcesNames.Length; i++){
+            string name = unlockedRooms[roomIndex].GetComponent<RoomStatics>().resourcesNames[i];
+            int quantity = unlockedRooms[roomIndex].GetComponent<RoomStatics>().resourcesQuanity[i];
+            gameObject.GetComponent<ResourcesClass>().SubtractResource(name, quantity);
+        }
+        GameObject.Find("marioIdle").GetComponent<ResourcesClass>().PrintResources();
+
+        if(unlockedRooms[roomIndex].name == "Lab"){
+            unlockedRooms.RemoveAt(roomIndex);
+        }
         AstarPath.active.Scan();
     }
 
