@@ -51,9 +51,17 @@ public class RoomStatics : MonoBehaviour
 
     public void Produce(){
         work++;
+        Debug.Log(gameObject.name);
         if(work>=produce_at * (1/roomLevel)){
-            for(int i=0; i<producedResources.Length; i++){
-                GameObject.Find("marioIdle").gameObject.GetComponent<ResourcesClass>().AddResource(producedResources[i], producedResourcesQuantity[i]);
+            if(gameObject.name == "Lab(Clone)"){
+                GameObject room = gameObject.GetComponent<LabProduce>().UnlockRoom();
+                if(room!=null){
+                    GameObject.Find("marioIdle").gameObject.GetComponent<BuildRegulator>().unlockedRooms.Add(room);
+                }
+            }else{
+                for(int i=0; i<producedResources.Length; i++){
+                    GameObject.Find("marioIdle").gameObject.GetComponent<ResourcesClass>().AddResource(producedResources[i], producedResourcesQuantity[i]);
+                }
             }
             work=0;
         }

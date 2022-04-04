@@ -1,15 +1,11 @@
 Andy:
 	-Fix pathfinding
 	-Crew menu
-	-Storage
 	-Door scripts
 
 	
 Raya:
-	-Lab
 	-Comms
-	-meteorite despawn
-	-Minions substract resources / die
 	-storage affects storage
 	
 Secondary tasks:
@@ -28,6 +24,7 @@ Tasks:
 	-Background expand
 	-notification prefab
 	-after building storage => button (check inventory)
+	-room upgrade
 	
 
 	
