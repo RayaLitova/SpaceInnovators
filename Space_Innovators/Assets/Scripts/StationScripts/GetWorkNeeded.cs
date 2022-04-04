@@ -7,7 +7,9 @@ public class GetWorkNeeded : MonoBehaviour
     static int work = 0;
     public string name = "name";
     [SerializeField]private int produce_at = 150;
-    // Start is called before the first frame update
+    public string resource;
+    public int resourceQuantity;
+
     void Start()
     {
         
@@ -16,7 +18,7 @@ public class GetWorkNeeded : MonoBehaviour
     public void Produce(){
        work++;
        if(work>=produce_at){
-           //
+           GameObject.Find("marioIdle").gameObject.GetComponent<ResourcesClass>().AddResource(resource, resourceQuantity);
            work=0;
        }
     }
@@ -24,6 +26,6 @@ public class GetWorkNeeded : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Produce();
     }
 }

@@ -10,7 +10,7 @@ public class ResourcesClass : MonoBehaviour
     public Dictionary<string, string> icons = new Dictionary<string, string>();
     private int rnd;
     private System.Random random = new System.Random();
-    private int nonGatherableResources = 3;
+    private int nonGatherableResources = 4;
 
     void Start(){
         resources.Add("Black metal", 0);
@@ -21,6 +21,7 @@ public class ResourcesClass : MonoBehaviour
         resources.Add("Energy", 0);
         resources.Add("Food", 0);
         resources.Add("Medicine", 0);
+        resources.Add("O2", 0);
 
         icons.Add("Black metal", "build_metal_symbol");
         icons.Add("Colored metal", "color_metal_symbol_alt");
@@ -30,15 +31,18 @@ public class ResourcesClass : MonoBehaviour
         icons.Add("Energy", "ENERGY_HUMAN");
         icons.Add("Food", "food_symbol");
         icons.Add("Medicine", "MEDKIT");
+        icons.Add("O2", "MEDKIT");
 
     }
     
     public void AddResource(string name, int quantity){
         resources[name] += quantity;
+        Debug.Log(name+": "+resources[name]);
     }
 
     public void SubstractResource(string name, int quantity){
         resources[name] -= quantity;
+        Debug.Log(name+": "+resources[name]);
     }
 
     public void AddRandomResource(int min, int max, Text text = null){
@@ -51,12 +55,14 @@ public class ResourcesClass : MonoBehaviour
             text.text = quantity.ToString() + "x "+ name;
             text.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(icons[name]);
         }
+        Debug.Log(name+": "+resources[name]);
     }
 
     public void SubstractRandomResource(int min, int max){
         rnd = random.Next(resources.Count);
         string name = resources.ElementAt(rnd).Key;
         resources[name] -= random.Next(min, max+1);
+        Debug.Log(name+": "+resources[name]);
     }
 
 }
