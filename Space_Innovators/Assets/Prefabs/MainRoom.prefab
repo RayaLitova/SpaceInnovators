@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1376056372230999520}
   - component: {fileID: 1376056372230999521}
+  - component: {fileID: 5551437344376871283}
   m_Layer: 0
   m_Name: MainRoom
   m_TagString: Untagged
@@ -45,6 +46,28 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &5551437344376871283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376056372230999550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934a66ce4efff444eaa4d5a9d7d5e5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourcesNames:
+  - Black metal
+  - Cotton
+  resourcesQuanity: 0400000008000000
+  produce_at: 0
+  roomLevel: 0
+  planets: []
+  rooms: []
+  producedResources: []
+  producedResourcesQuantity: 
 --- !u!1 &4101124859937116216
 GameObject:
   m_ObjectHideFlags: 0

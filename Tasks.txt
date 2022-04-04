@@ -1,12 +1,34 @@
 Andy:
-	-Fix pathfinding / targeting
-	-Building
-
+	-Fix pathfinding
+	-Crew menu
+	-Storage
+	-Door scripts
+	
 Raya:
-	-Building consuming resources
-	-Room functions
+	-Lab
+	-Comms
 	-meteorite despawn
-
+	-Minions substract resources / die
+	-storage affects storage
+	-Lab created once
+	-substract resources on build
+	
 Secondary tasks:
 	-Trading
+	-Advanced Comms
 	-Saving system
+	-UI build
+	-random events
+	-Clear useless/unused scripts
+	-sounds
+
+Tasks:
+	-Requirements/owned UI text
+	-Stop camera
+	-Background expand
+	-notification prefab
+	-after building storage => button (check inventory)
+	
+
+	
+	

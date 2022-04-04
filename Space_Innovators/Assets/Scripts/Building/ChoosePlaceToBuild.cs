@@ -18,17 +18,10 @@ public class ChoosePlaceToBuild : MonoBehaviour
     bool Done = false;
     public bool working = false;
     GameObject newGameObject = null;
-   /* void Start(){
-        StartCoroutine(transform.name);
-        transform.GetComponent<ChoosePlaceToBuild>().enabled = false;
-    }*/
 
 
     void Update(){
-        //print("booooooooooooooooooooooo");
         if(working){
-            //newX = 5;
-            //newY = 5;
             Vector3 objectPOS = new Vector3(0,0,1);
             
             if(!created){
@@ -36,21 +29,15 @@ public class ChoosePlaceToBuild : MonoBehaviour
                 created = true;
                 newX = 5;
                 newY = 5;
+                if(!BL.unlockedRooms[DropDown.value].GetComponent<RoomStatics>().CheckRequirements()){
+                    Debug.Log("Not enough resources!");
+                    Cancel();
+                }
             } 
-            //objectPOS = new Vector3((float)(objectPOS.x+((newX-5f)*offset)), (float)(objectPOS.y+((newY-5f)*offset)), 0f);
             
             if(Done){
                 BL.buildRoom(newX,newY,DropDown.value);
-                for(int i=0; i<GameObject.FindGameObjectsWithTag("UIButton").Length;i++){
-                    //GameObject.FindGameObjectsWithTag("UIButton")[i].GetComponent<MenuOpener>().enabled = true;
-                    GameObject.FindGameObjectsWithTag("UIButton")[i].GetComponent<MenuOpener>().canBePressed = true;
-                    //GameObject.FindGameObjectsWithTag("UIbutton")[i].SetActive(true);
-                }
-                Destroy(newGameObject);
-                newGameObject = null;
-                created = false;
-                working = false;
-                Done = false;
+                Cancel();
                 
             }
             newGameObject.transform.position = new Vector3((float)(objectPOS.x+((newX-5f)*BL.offset)), (float)(objectPOS.y+((newY-5f)*BL.offset)), 0f);
@@ -79,7 +66,21 @@ public class ChoosePlaceToBuild : MonoBehaviour
                     text.fading = 255;
                 }
             }
+            if(Input.GetKeyDown(KeyCode.Escape)){
+                Cancel();
+            }
+
         }   
 
+    }
+
+    void Cancel(){
+        for(int i=0; i<GameObject.FindGameObjectsWithTag("UIButton").Length;i++)
+            GameObject.FindGameObjectsWithTag("UIButton")[i].GetComponent<MenuOpener>().canBePressed = true;
+        Destroy(newGameObject);
+        newGameObject = null;
+        created = false;
+        working = false;
+        Done = false;
     }
 }
