@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FadingCant : MonoBehaviour
 {
     Text text;
-    public byte fading = 0;
+    public float fading = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +17,6 @@ public class FadingCant : MonoBehaviour
     void FixedUpdate()
     {   
         if(fading!=0){fading-=3;}
-        text.color = new Color32(255,255,255,fading);
+        text.color = new Color(text.color.r,text.color.b,text.color.g,fading/255);
     }
 }

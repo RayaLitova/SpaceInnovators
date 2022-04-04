@@ -4,30 +4,34 @@ using UnityEngine;
 
 public class NPCStats : MonoBehaviour
 {
-    [SerializeField]public GameObject statCanvas;
-    [SerializeField]public Transform camera;    // now you have to drag and drop your canvas in the editor in the script component
-    public bool statActive = false;
-    public bool following = false;
+    public int O2;
+    public int Water;
+    public int Food;
+    public int max_energy;
 
-    // Start is called before the first frame update
-    public void Activate()
-    {
-        statActive = !statActive;
-            statCanvas.SetActive(statActive);
-            following = !following;
+    void Start(){
+        int[] Stats = NPCStats.GetStatsByTag(transform.tag);
+        O2 = Stats[0];
+        Water = Stats[1];
+        Food = Stats[2];
+        max_energy = Stats[3];
     }
 
-    void OnMouseOver(){
-        if(Input.GetMouseButtonDown(1)){
-            Activate();
+    public static int[] GetStatsByTag(string Tag){
+        int[] Stats = new int[4];
+        if(Tag == "Human"){
+            Stats[0] = 1;
+            Stats[1] = 1;
+            Stats[2]= 1;
+            Stats[3] = 100;
+            
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(following){
-            camera.position = new Vector3( transform.position.x, transform.position.y, -2);
+        else if(Tag == "Floaromian"){//Neuforian
+            Stats[0] = -1;
+            Stats[1] = 3;
+            Stats[2] = 0;
+            Stats[3] = 150;
         }
+        return Stats;
     }
 }
