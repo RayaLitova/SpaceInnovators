@@ -19,47 +19,22 @@ public class BuildRegulator : MonoBehaviour
     public int newY = 5;
     public float offset = 7.75f;
     Transform MainRoom;
-    //GameObject[] startRooms;
     [SerializeField] GameObject Crewmate;
     [SerializeField] public string[] Tags;
     [SerializeField] public List<GameObject> unlockedRooms;
+    [SerializeField] private List<string> BuiltRooms;
     [SerializeField] public List<string> unlockedPlanets;
     public int[] onBoardCount = new int[10];
-    //[SerializeField] Animator[] Aimators;
-    //List<GameObject> stations;
-    //List<GameObject> beds;
-
-    /*public void addCrewMate(int crewIndex){
-        Vector3 objectPOS = Vector3.zero;
-        //Debug.Log(GameObject.FindGameObjectsWithTag("Station"));
-        GameObject newGameObject = Instantiate(Crew[crewIndex], objectPOS, Quaternion.identity);
-        newGameObject.GetComponent<NpcAi>().target = GameObject.FindGameObjectsWithTag("Station")[0].transform	;
-        GameObject.FindGameObjectsWithTag("Station")[0].transform.tag = "UsedStation";
-        newGameObject.transform.GetComponent<NpcAi>().bed = GameObject.FindGameObjectsWithTag("Bed")[0].transform;
-        GameObject.FindGameObjectsWithTag("Bed")[0].transform.tag = "UsedBed";
-        newGameObject.transform.GetComponent<NPCStats>().camera = GameObject.Find("Main Camera").transform;
-        onBoardCount[crewIndex]++;
-    }*/
+  
 
     public void addCrewMate(int crewIndex, int targetIndex){
-        /*if(targetIndex==-1){
-            //printirai che nqma target
-            return;
-        }
-        if(GameObject.FindGameObjectsWithTag("Bed").Length < 1){
-            //printirai che nqma leglo
-            return;
-        }*/
         Vector3 objectPOS = Vector3.zero;
-        //Debug.Log(GameObject.FindGameObjectsWithTag("Station"));
         GameObject newGameObject = Instantiate(Crewmate, objectPOS, Quaternion.identity);
         newGameObject.tag = Tags[crewIndex];
         newGameObject.GetComponent<NpcAi>().target = GameObject.FindGameObjectsWithTag("Station")[targetIndex].transform	;
         GameObject.FindGameObjectsWithTag("Station")[targetIndex].transform.tag = "UsedStation";
         newGameObject.transform.GetComponent<NpcAi>().bed = GameObject.FindGameObjectsWithTag("Bed")[0].transform;
         GameObject.FindGameObjectsWithTag("Bed")[0].transform.tag = "UsedBed";
-        //print("shahaha");
-        //newGameObject.transform.GetComponent<NPCStats>().camera = GameObject.Find("Main Camera").transform;
         onBoardCount[crewIndex]++;
     }
 
@@ -67,12 +42,23 @@ public class BuildRegulator : MonoBehaviour
         Vector3 objectPOS = Vector3.zero;
         objectPOS = new Vector3((float)(objectPOS.x+((newX-5f)*offset)), (float)(objectPOS.y+((newY-5f)*offset)), 0f);
         GameObject newGameObject = Instantiate(unlockedRooms[roomIndex], objectPOS, Quaternion.identity);
+
+        if(unlockedRooms[roomIndex].name == "Lab"){
+            unlockedRooms.RemoveAt(roomIndex);
+        }
+
         map[newX,newY] = 1;
         if(map[newX+1,newY] != 1)map[newX+1,newY] = 2;
         if(map[newX-1,newY] != 1)map[newX-1,newY] = 2;
         if(map[newX,newY+1] != 1)map[newX,newY+1] = 2;
         if(map[newX,newY-1] != 1)map[newX,newY-1] = 2;
+        BuiltRooms.Add(newGameObject.name);
+        
         AstarPath.active.Scan();
+    }
+
+    public List<string> GetBuiltRooms(){
+        return BuiltRooms;
     }
 
    void Start()
@@ -87,11 +73,8 @@ public class BuildRegulator : MonoBehaviour
         newY = 6;
         buildRoom(newX,newY,2);
 
-        //Debug.Log(stations);
-
         addCrewMate(0,0);
         addCrewMate(0,0);
-        //addCrewMate(0);
      
     }
 

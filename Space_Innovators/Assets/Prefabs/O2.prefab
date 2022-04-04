@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 1742859150175527083}
   - component: {fileID: 9189558817845862274}
   - component: {fileID: 6663741676417364851}
-  - component: {fileID: 84365840059313650}
   m_Layer: 8
   m_Name: table
   m_TagString: Station
@@ -193,20 +192,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.25, y: 0.7259476}
   m_EdgeRadius: 0
---- !u!114 &84365840059313650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2331910188245920189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ac83c6ee155b3478770f40e6c2c515, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: name
-  produce_at: 150
 --- !u!1 &2440028700631533696
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +202,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2440028700631533726}
   - component: {fileID: 2440028700631533727}
+  - component: {fileID: 4282627939491614746}
+  - component: {fileID: 3575548547620815088}
   m_Layer: 0
   m_Name: O2
   m_TagString: Untagged
@@ -256,6 +243,42 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &4282627939491614746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2440028700631533696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ac83c6ee155b3478770f40e6c2c515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3575548547620815088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2440028700631533696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934a66ce4efff444eaa4d5a9d7d5e5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourcesNames:
+  - Black metal
+  - Water
+  - Colored metal
+  resourcesQuanity: 040000000400000001000000
+  produce_at: 150
+  roomLevel: 1
+  planets: []
+  rooms: []
+  producedResources:
+  - O2
+  producedResourcesQuantity: 0a000000
 --- !u!1 &5573196060655485433
 GameObject:
   m_ObjectHideFlags: 0

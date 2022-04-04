@@ -502,6 +502,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6198123156612010101}
   - component: {fileID: 6198123156612010100}
+  - component: {fileID: 5206982914904882380}
+  - component: {fileID: 4626712529546828820}
   m_Layer: 0
   m_Name: Communications
   m_TagString: Untagged
@@ -537,6 +539,40 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &5206982914904882380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198123156612010091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934a66ce4efff444eaa4d5a9d7d5e5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourcesNames:
+  - Colored metal
+  - Black metal
+  resourcesQuanity: 0400000004000000
+  produce_at: 150
+  roomLevel: 1
+  planets: []
+  rooms: []
+  producedResources: []
+  producedResourcesQuantity: 
+--- !u!114 &4626712529546828820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198123156612010091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b019f19b3d23ba84db5463badd3d0135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7727348401808084588
 PrefabInstance:
   m_ObjectHideFlags: 0

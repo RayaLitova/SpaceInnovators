@@ -7,7 +7,6 @@ public class UpdateBuildOptions : MonoBehaviour
 {
     [SerializeField] BuildRegulator BR;
     [SerializeField] TMPro.TMP_Dropdown DropDown;
-    // Start is called before the first frame update
 
     public void UpdateOptions(){
         DropDown.ClearOptions();

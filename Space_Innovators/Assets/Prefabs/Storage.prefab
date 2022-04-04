@@ -2165,6 +2165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8902655021416011807}
   - component: {fileID: 8902655021416011804}
+  - component: {fileID: 1445574354653731442}
   m_Layer: 0
   m_Name: Storage
   m_TagString: Untagged
@@ -2208,6 +2209,26 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &1445574354653731442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8902655021416011805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934a66ce4efff444eaa4d5a9d7d5e5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourcesNames: []
+  resourcesQuanity: 
+  produce_at: 0
+  roomLevel: 0
+  planets: []
+  rooms: []
+  producedResources: []
+  producedResourcesQuantity: 
 --- !u!1 &8902655021450531048
 GameObject:
   m_ObjectHideFlags: 0

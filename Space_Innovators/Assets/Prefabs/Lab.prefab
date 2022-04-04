@@ -830,6 +830,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5555745174492201641}
   - component: {fileID: 5555745174492201640}
+  - component: {fileID: 210593064546324293}
+  - component: {fileID: 3599653159181443138}
   m_Layer: 0
   m_Name: Lab
   m_TagString: Untagged
@@ -866,6 +868,42 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &210593064546324293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5555745174492201655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934a66ce4efff444eaa4d5a9d7d5e5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourcesNames:
+  - Colored Metal
+  - Space rock
+  - Black metal
+  - Water
+  resourcesQuanity: 02000000030000000400000001000000
+  produce_at: 200
+  roomLevel: 1
+  planets: []
+  rooms: []
+  producedResources: []
+  producedResourcesQuantity: 
+--- !u!114 &3599653159181443138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5555745174492201655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8002160bb3978bb4b85508fa9d5e55a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6345306532905213922
 GameObject:
   m_ObjectHideFlags: 0
