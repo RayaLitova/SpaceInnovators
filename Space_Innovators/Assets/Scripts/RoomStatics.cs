@@ -66,4 +66,34 @@ public class RoomStatics : MonoBehaviour
             work=0;
         }
     }
+
+    public string GetReqirementsByIndex(int index){
+        if(index<resourcesNames.Length)return resourcesNames[index];
+        return "";
+    }
+
+    public int CheckReqirementsQuantityByIndex(int index){
+        if(index<resourcesNames.Length)return  resourcesQuanity[index];
+        return 0;
+    }
+
+    public string GetReqirementsQuantityByIndex(int index){
+        if(index<resourcesNames.Length)return  " x"+resourcesQuanity[index];
+        return "";
+    }
+
+    public static string GetDescription(int roomIndex){
+        if(roomIndex == 0){//MainRoom
+            return "Provides beds for the crew";
+        }else if(roomIndex == 1){//O2
+            return "Produces oxygen based on level";
+        }else if(roomIndex == 2){//Communications
+            return "Allows communication with planets";
+        }else if(roomIndex == 3){//Lab
+            return "Unlock new rooms and upgrades through progress";
+        }else if(roomIndex == 4){//Storage
+            return "Allows you to store more materials";
+        }
+        return "No description";
+    }
 }

@@ -34,7 +34,8 @@ public class ResourcesClass : MonoBehaviour
         icons.Add("Food", "food_symbol");
         icons.Add("Medicine", "MEDKIT");
         icons.Add("O2", "o22");
-        icons.Add("Cotton", "MEDKIT");
+        icons.Add("Cotton", "cotton");
+        icons.Add("", "empty_symbol");
 
     }
     
@@ -76,6 +77,11 @@ public class ResourcesClass : MonoBehaviour
         for(int i=0; i<resources.Count;i++){
             Debug.Log(resources.ElementAt(i).Key+": "+resources.ElementAt(i).Value);
         }
+    }
+
+    public int CheckResource(string Name){
+        if(Name=="")return 0;
+        return resources[Name];
     }
 
 }

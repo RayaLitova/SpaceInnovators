@@ -15,6 +15,7 @@ public class ChoosePlaceToBuild : MonoBehaviour
     [SerializeField] Camera camera;
     [SerializeField] FadingCant cantBuild;
     [SerializeField] FadingCant NotEnoughRes;
+    [SerializeField] GameObject menu;
     bool created = false;
     bool Done = false;
     public bool working = false;
@@ -26,6 +27,7 @@ public class ChoosePlaceToBuild : MonoBehaviour
             Vector3 objectPOS = new Vector3(0,0,1);
             
             if(!created){
+                menu.SetActive(true);
                 newGameObject = Instantiate(img, objectPOS, Quaternion.identity);
                 created = true;
                 newX = 5;
@@ -84,9 +86,6 @@ public class ChoosePlaceToBuild : MonoBehaviour
         created = false;
         working = false;
         Done = false;
-        GameObject.Find("BuildPlacementMenu").SetActive(false);
-        GameObject.Find("CoosePlaceButton").SetActive(false);
-        GameObject.Find("CoosePlaceButton").GetComponent<MenuOpener>().pressed=false;
-        GameObject.Find("CoosePlaceButton").SetActive(false);
+        menu.SetActive(false);
     }
 }
