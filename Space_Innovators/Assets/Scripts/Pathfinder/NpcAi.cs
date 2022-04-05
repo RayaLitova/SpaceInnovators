@@ -18,8 +18,8 @@ public class NpcAi : MonoBehaviour
     //public int O2_needed;
     //public int H20_needed;
     //public int FOOD_needed;
-    public int max_energy;
-    public int energy = 0;
+    //public int max_energy;
+    //public int energy = 0;
 
     //public EnergyScr ENGbar;
 
@@ -74,6 +74,8 @@ public class NpcAi : MonoBehaviour
         target.tag = "Station";
         bed.tag = "Bed";
         Destroy(gameObject);
+        BuildRegulator mario = GameObject.Find("marioIdle").GetComponent<BuildRegulator>();
+        mario.onBoardCount[System.Array.IndexOf(mario.Tags,transform.tag)]--;
     }
 
     void FixedUpdate()
@@ -102,13 +104,13 @@ public class NpcAi : MonoBehaviour
 
             reachedEndofPath = true;
             if(!sleeping){
-                energy--;
+                Stats.energy--;
                 target.parent.gameObject.GetComponent<RoomStatics>().Produce();
             }else{
                 anim.SetBool("Sleeping", true);
                 transform.position = bed.position;
-                energy++;
-                if(energy==Stats.max_energy){
+                Stats.energy++;
+                if(Stats.energy==Stats.max_energy){
                     movementStopped = false;
                 }else{
                     movementStopped = true;
@@ -119,11 +121,11 @@ public class NpcAi : MonoBehaviour
             reachedEndofPath = false;
             anim.SetBool("Sleeping", false);
         }
-        if(energy <= 0.1*Stats.max_energy && sleeping == false){
+        if(Stats.energy <= 0.1*Stats.max_energy && sleeping == false){
                 RedirectCourse(bed);
                 currentWaipoint = 0;
                 sleeping = true;
-        }else if(energy >= Stats.max_energy && sleeping == true){
+        }else if(Stats.energy >= Stats.max_energy && sleeping == true){
             RedirectCourse(/**/target.transform);
             currentWaipoint = 0;
             sleeping = false;

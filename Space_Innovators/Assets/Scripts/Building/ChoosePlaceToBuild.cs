@@ -13,7 +13,9 @@ public class ChoosePlaceToBuild : MonoBehaviour
     [SerializeField] TMPro.TMP_Dropdown DropDown;
     [SerializeField] GameObject img;
     [SerializeField] Camera camera;
-    [SerializeField] FadingCant text;
+    [SerializeField] FadingCant cantBuild;
+    [SerializeField] FadingCant NotEnoughRes;
+    [SerializeField] GameObject menu;
     bool created = false;
     bool Done = false;
     public bool working = false;
@@ -25,12 +27,14 @@ public class ChoosePlaceToBuild : MonoBehaviour
             Vector3 objectPOS = new Vector3(0,0,1);
             
             if(!created){
+                menu.SetActive(true);
                 newGameObject = Instantiate(img, objectPOS, Quaternion.identity);
                 created = true;
                 newX = 5;
                 newY = 5;
                 if(!BL.unlockedRooms[DropDown.value].GetComponent<RoomStatics>().CheckRequirements()){
                     Debug.Log("Not enough resources!");
+                    NotEnoughRes.fading = 255;
                     Cancel();
                 }
             } 
@@ -63,7 +67,7 @@ public class ChoosePlaceToBuild : MonoBehaviour
                 if(BL.map[newX,newY]==2){
                     Done = true;
                 }else{
-                    text.fading = 255;
+                    cantBuild.fading = 255;
                 }
             }
             if(Input.GetKeyDown(KeyCode.Escape)){
@@ -82,5 +86,6 @@ public class ChoosePlaceToBuild : MonoBehaviour
         created = false;
         working = false;
         Done = false;
+        menu.SetActive(false);
     }
 }

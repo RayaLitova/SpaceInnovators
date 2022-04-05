@@ -47,7 +47,7 @@ public class BuildRegulator : MonoBehaviour
         if(map[newX-1,newY] != 1)map[newX-1,newY] = 2;
         if(map[newX,newY+1] != 1)map[newX,newY+1] = 2;
         if(map[newX,newY-1] != 1)map[newX,newY-1] = 2;
-        BuiltRooms.Add(newGameObject.name);
+        BuiltRooms.Add(newGameObject.name.Split('(')[0]);
 
         GameObject.Find("marioIdle").GetComponent<ResourcesClass>().PrintResources();
         Debug.Log(unlockedRooms[roomIndex].GetComponent<RoomStatics>().resourcesNames.Length);
@@ -56,7 +56,7 @@ public class BuildRegulator : MonoBehaviour
             int quantity = unlockedRooms[roomIndex].GetComponent<RoomStatics>().resourcesQuanity[i];
             gameObject.GetComponent<ResourcesClass>().SubtractResource(name, quantity);
         }
-        GameObject.Find("marioIdle").GetComponent<ResourcesClass>().PrintResources();
+        //GameObject.Find("marioIdle").GetComponent<ResourcesClass>().PrintResources();
 
         if(unlockedRooms[roomIndex].name == "Lab"){
             unlockedRooms.RemoveAt(roomIndex);
@@ -74,14 +74,14 @@ public class BuildRegulator : MonoBehaviour
 
         newX = 4;
         newY = 5;
-        buildRoom(newX,newY,1);
+        //buildRoom(newX,newY,1);
 
         newX = 5;
         newY = 6;
         buildRoom(newX,newY,2);
 
-        addCrewMate(0,0);
-        addCrewMate(0,0);
+        //addCrewMate(0,0);
+       // addCrewMate(0,0);
      
     }
 
