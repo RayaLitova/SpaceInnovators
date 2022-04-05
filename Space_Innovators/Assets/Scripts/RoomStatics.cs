@@ -72,6 +72,16 @@ public class RoomStatics : MonoBehaviour
         return "";
     }
 
+    public string GetRoomsByIndex(int index){
+        if(index<rooms.Length)return rooms[index];
+        return "";
+    }
+
+    public string GetPlanetsByIndex(int index){
+        if(index<planets.Length)return planets[index];
+        return "";
+    }
+
     public int CheckReqirementsQuantityByIndex(int index){
         if(index<resourcesNames.Length)return  resourcesQuanity[index];
         return 0;

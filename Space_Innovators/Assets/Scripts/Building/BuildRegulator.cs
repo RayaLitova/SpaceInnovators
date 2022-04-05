@@ -47,7 +47,7 @@ public class BuildRegulator : MonoBehaviour
         if(map[newX-1,newY] != 1)map[newX-1,newY] = 2;
         if(map[newX,newY+1] != 1)map[newX,newY+1] = 2;
         if(map[newX,newY-1] != 1)map[newX,newY-1] = 2;
-        BuiltRooms.Add(newGameObject.name);
+        BuiltRooms.Add(newGameObject.name.Split('(')[0]);
 
         GameObject.Find("marioIdle").GetComponent<ResourcesClass>().PrintResources();
         Debug.Log(unlockedRooms[roomIndex].GetComponent<RoomStatics>().resourcesNames.Length);
