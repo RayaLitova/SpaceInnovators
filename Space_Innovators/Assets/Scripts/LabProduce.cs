@@ -7,10 +7,11 @@ public class LabProduce : MonoBehaviour
     [SerializeField] public List<GameObject> unlockableRooms;  
     [SerializeField] public List<GameObject> upgrades;   
 
-    private int unlock = -1;
+    private int unlock = 0;
     private System.Random random = new System.Random();
 
     public GameObject UnlockRoom(){
+        Debug.Log(unlock);
         if(unlock==0){
             GameObject room = unlockableRooms[random.Next(unlockableRooms.Count)];
             unlockableRooms.Remove(room);
