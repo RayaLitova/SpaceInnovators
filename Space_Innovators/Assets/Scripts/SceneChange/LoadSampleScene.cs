@@ -10,7 +10,7 @@ public class LoadSampleScene : MonoBehaviour
     IEnumerator Start()
     {
         yield return new WaitForSeconds(2f);
-        AsyncOperation op = SceneManager.LoadSceneAsync("Rooms");
+        AsyncOperation op = SceneManager.LoadSceneAsync("SampleScene");
     }
 
 }
