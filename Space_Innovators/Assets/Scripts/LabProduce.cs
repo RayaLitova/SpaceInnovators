@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LabProduce : MonoBehaviour
 {
-    [SerializeField] public List<GameObject> unlockableRooms;    
+    [SerializeField] public List<GameObject> unlockableRooms;  
+    [SerializeField] public List<GameObject> upgrades;   
 
     private int unlock = -1;
     private System.Random random = new System.Random();

@@ -26,9 +26,12 @@ public class NotificationControl : MonoBehaviour
 
         Color c = n.transform.GetChild(0).GetComponent<Image>().color;
         c.a = 255f;
+
+        Color c1 = n.transform.GetChild(1).GetComponent<Text>().color;
+        c1.a = 255f;
         n.transform.GetChild(0).GetComponent<Image>().color = c;
-        n.transform.GetChild(1).GetComponent<Text>().color = c;
-        n.transform.GetChild(2).GetComponent<Text>().color = c;
+        n.transform.GetChild(1).GetComponent<Text>().color = c1;
+        n.transform.GetChild(2).GetComponent<Text>().color = c1;
 
         notificationNumber++;
         if(notificationNumber==4){
@@ -57,15 +60,7 @@ public class NotificationControl : MonoBehaviour
         GameObject.Find("Notification ("+notificationNumber+")").SetActive(false);
     }
 
-    void Start(){
-        for(int i=0; i<7; i++){
-            CreateNotification(i.ToString(),i.ToString());
-        }
-
-    }
-
     void Update(){
-        Debug.Log(awaiting);
         if(!isFull && awaiting.Count>0){
             CreateNotification(awaiting.ElementAt(0).Key, awaiting.ElementAt(0).Value, true);
         }
