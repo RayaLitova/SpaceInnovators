@@ -7,13 +7,11 @@ Andy:
 Raya:
 	-Comms
 	-storage affects storage
-	-notification prefab
 	
 Secondary tasks:
 	-Trading
 	-Advanced Comms
 	-Saving system
-	-UI build
 	-random events
 	-Clear useless/unused scripts
 	-sounds

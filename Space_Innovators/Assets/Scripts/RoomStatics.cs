@@ -58,6 +58,8 @@ public class RoomStatics : MonoBehaviour
                 if(room!=null){
                     GameObject.Find("marioIdle").gameObject.GetComponent<BuildRegulator>().unlockedRooms.Add(room);
                 }
+            }else if(gameObject.name == "Communications(Clone)"){
+                gameObject.GetComponent<CommProduce>().RecieveRandomResources();
             }else{
                 for(int i=0; i<producedResources.Length; i++){
                     GameObject.Find("marioIdle").gameObject.GetComponent<ResourcesClass>().AddResource(producedResources[i], producedResourcesQuantity[i]);
