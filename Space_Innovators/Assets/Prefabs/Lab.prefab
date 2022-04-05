@@ -889,7 +889,8 @@ MonoBehaviour:
   produce_at: 200
   roomLevel: 1
   planets: []
-  rooms: []
+  rooms:
+  - O2
   producedResources: []
   producedResourcesQuantity: 
 --- !u!114 &3599653159181443138
@@ -1206,7 +1207,7 @@ GameObject:
   - component: {fileID: 4628949231756499438}
   - component: {fileID: 3643526932462418744}
   m_Layer: 8
-  m_Name: table
+  m_Name: Lab Station
   m_TagString: Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

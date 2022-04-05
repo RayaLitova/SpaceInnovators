@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 9189558817845862274}
   - component: {fileID: 6663741676417364851}
   m_Layer: 8
-  m_Name: table
+  m_Name: O2 Sation
   m_TagString: Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2883,7 +2883,7 @@ PrefabInstance:
     - target: {fileID: 4411599390730109592, guid: cb1b3c3539a4e6d44a9273c4074ac1fd, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[6].m_Data
       value: 
-      objectReference: {fileID: 7128482742518063316, guid: f991ecd814caf1d4c9a6cb7a2be0d455, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4411599390730109592, guid: cb1b3c3539a4e6d44a9273c4074ac1fd, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[7].m_Data
       value: 
@@ -2914,7 +2914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4411599390730109592, guid: cb1b3c3539a4e6d44a9273c4074ac1fd, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[4].m_RefCount
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4411599390730109592, guid: cb1b3c3539a4e6d44a9273c4074ac1fd, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[5].m_RefCount
@@ -2922,7 +2922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4411599390730109592, guid: cb1b3c3539a4e6d44a9273c4074ac1fd, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[6].m_RefCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4411599390730109592, guid: cb1b3c3539a4e6d44a9273c4074ac1fd, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[7].m_RefCount
@@ -2978,7 +2978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4411599390730109592, guid: cb1b3c3539a4e6d44a9273c4074ac1fd, type: 3}
       propertyPath: m_Tiles.Array.data[10].second.m_TileSpriteIndex
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4411599390730109592, guid: cb1b3c3539a4e6d44a9273c4074ac1fd, type: 3}
       propertyPath: m_Tiles.Array.data[11].second.m_TileSpriteIndex

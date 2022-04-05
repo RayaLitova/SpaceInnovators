@@ -68,4 +68,55 @@ public class RoomStatics : MonoBehaviour
             work=0;
         }
     }
+
+    public string GetReqirementsByIndex(int index){
+        if(index<resourcesNames.Length)return resourcesNames[index];
+        return "";
+    }
+
+    public string GetRoomsByIndex(int index){
+        if(index<rooms.Length)return rooms[index];
+        return "";
+    }
+
+    public string GetPlanetsByIndex(int index){
+        if(index<planets.Length)return planets[index];
+        return "";
+    }
+
+    public int CheckReqirementsQuantityByIndex(int index){
+        if(index<resourcesNames.Length)return  resourcesQuanity[index];
+        return 0;
+    }
+
+    public string GetReqirementsQuantityByIndex(int index){
+        if(index<resourcesNames.Length)return  " x"+resourcesQuanity[index];
+        return "";
+    }
+
+    public static string GetDescription(string roomIndex){
+        if(roomIndex == "MainRoom"){//MainRoom
+            return "Provides beds for the crew";
+
+        }else if(roomIndex == "O2"){//O2
+            return "Produces oxygen based on level";
+
+        }else if(roomIndex == "Communications"){//Communications
+            return "Allows communication with planets";
+
+        }else if(roomIndex == "Lab"){//Lab
+            return "Unlock new rooms and upgrades through progress";
+
+        }else if(roomIndex == "Storage"){//Storage
+            return "Allows you to store more materials";
+
+        }else if(roomIndex == "WaterSatiton"){//WaterSatiton
+            return "Produces water based on level";
+
+        }else if(roomIndex == "VerticalFarm"){//VerticalFarm
+            return "Produces food based on level";
+
+        }
+        return "No description";
+    }
 }
