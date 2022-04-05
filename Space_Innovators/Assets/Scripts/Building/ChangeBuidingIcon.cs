@@ -73,7 +73,7 @@ public class ChangeBuidingIcon : MonoBehaviour
 
 
         //description
-        Desc.text = RoomStatics.GetDescription(drop.value);
+        Desc.text = RoomStatics.GetDescription(mario.GetComponent<BuildRegulator>().unlockedRooms[drop.value].name);
     }
 
 }

@@ -74,7 +74,7 @@ public class BuildRegulator : MonoBehaviour
 
         newX = 4;
         newY = 5;
-        buildRoom(newX,newY,1);
+        //buildRoom(newX,newY,1);
 
         newX = 5;
         newY = 6;

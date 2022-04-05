@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 4219707156724799866}
   - component: {fileID: 4454610163601370920}
   m_Layer: 8
-  m_Name: map
+  m_Name: Communication Station
   m_TagString: Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

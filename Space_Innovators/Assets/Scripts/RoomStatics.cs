@@ -92,17 +92,28 @@ public class RoomStatics : MonoBehaviour
         return "";
     }
 
-    public static string GetDescription(int roomIndex){
-        if(roomIndex == 0){//MainRoom
+    public static string GetDescription(string roomIndex){
+        if(roomIndex == "MainRoom"){//MainRoom
             return "Provides beds for the crew";
-        }else if(roomIndex == 1){//O2
+
+        }else if(roomIndex == "O2"){//O2
             return "Produces oxygen based on level";
-        }else if(roomIndex == 2){//Communications
+
+        }else if(roomIndex == "Communications"){//Communications
             return "Allows communication with planets";
-        }else if(roomIndex == 3){//Lab
+
+        }else if(roomIndex == "Lab"){//Lab
             return "Unlock new rooms and upgrades through progress";
-        }else if(roomIndex == 4){//Storage
+
+        }else if(roomIndex == "Storage"){//Storage
             return "Allows you to store more materials";
+
+        }else if(roomIndex == "WaterSatiton"){//WaterSatiton
+            return "Produces water based on level";
+
+        }else if(roomIndex == "VerticalFarm"){//VerticalFarm
+            return "Produces food based on level";
+
         }
         return "No description";
     }
