@@ -11,6 +11,7 @@ public class LabProduce : MonoBehaviour
     private System.Random random = new System.Random();
 
     public GameObject UnlockRoom(){
+        Debug.Log(unlock);
         if(unlock==0){
             GameObject room = unlockableRooms[random.Next(unlockableRooms.Count)];
             unlockableRooms.Remove(room);
