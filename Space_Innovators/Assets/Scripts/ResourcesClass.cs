@@ -7,6 +7,7 @@ using System.Linq;
 public class ResourcesClass : MonoBehaviour
 {
     public Dictionary<string, int> resources = new Dictionary<string, int>();
+    public Dictionary<string, int> resourcesMax = new Dictionary<string, int>();
     public Dictionary<string, string> icons = new Dictionary<string, string>();
 
     private int rnd;
@@ -18,12 +19,23 @@ public class ResourcesClass : MonoBehaviour
         resources.Add("Colored metal", 10);
         resources.Add("Fuel", 0);
         resources.Add("Space rock", 5);
-        resources.Add("Water", 9);
+        resources.Add("Water", 10);
         resources.Add("Energy", 0);
-        resources.Add("Food", 0);
+        resources.Add("Food", 10);
         resources.Add("Medicine", 0);
-        resources.Add("O2", 0);
+        resources.Add("O2", 10);
         resources.Add("Cotton", 8);
+
+        resourcesMax.Add("Black metal", 10);
+        resourcesMax.Add("Colored metal", 10);
+        resourcesMax.Add("Fuel", 10);
+        resourcesMax.Add("Space rock", 5);
+        resourcesMax.Add("Water", 50);
+        resourcesMax.Add("Energy", 0);
+        resourcesMax.Add("Food", 50);
+        resourcesMax.Add("Medicine", 5);
+        resourcesMax.Add("O2", 50);
+        resourcesMax.Add("Cotton", 20);
 
         icons.Add("Black metal", "build_metal_symbol");
         icons.Add("Colored metal", "color_metal_symbol_alt");

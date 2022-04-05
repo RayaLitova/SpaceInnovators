@@ -56,7 +56,7 @@ public class BuildRegulator : MonoBehaviour
             int quantity = unlockedRooms[roomIndex].GetComponent<RoomStatics>().resourcesQuanity[i];
             gameObject.GetComponent<ResourcesClass>().SubtractResource(name, quantity);
         }
-        GameObject.Find("marioIdle").GetComponent<ResourcesClass>().PrintResources();
+        //GameObject.Find("marioIdle").GetComponent<ResourcesClass>().PrintResources();
 
         if(unlockedRooms[roomIndex].name == "Lab"){
             unlockedRooms.RemoveAt(roomIndex);
