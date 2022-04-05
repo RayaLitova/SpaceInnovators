@@ -162,7 +162,8 @@ public class NpcAi : MonoBehaviour
         }
 
         if(!movementStopped){
-            rb.velocity = new Vector2(anim.GetFloat("X") * 3, anim.GetFloat("Y") * 3);
+            //rb.velocity = new Vector2(anim.GetFloat("X") * 3, anim.GetFloat("Y") * 3);
+            transform.position = Vector3.Lerp(transform.position, path.vectorPath[currentWaipoint], 0.05f);
         }
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaipoint]);
