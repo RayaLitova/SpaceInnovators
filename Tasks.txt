@@ -7,6 +7,7 @@ Andy:
 Raya:
 	-Comms
 	-storage affects storage
+	-notification prefab
 	
 Secondary tasks:
 	-Trading
@@ -22,7 +23,6 @@ Tasks:
 	-Requirements/owned UI text
 	-Stop camera
 	-Background expand
-	-notification prefab
 	-after building storage => button (check inventory)
 	-room upgrade
 	

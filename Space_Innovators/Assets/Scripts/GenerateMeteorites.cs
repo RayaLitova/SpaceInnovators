@@ -19,6 +19,7 @@ public class GenerateMeteorites : MonoBehaviour
             if(!meteorite.activeSelf){
                 meteorite.SetActive(true);
                 meteorite.transform.position = new Vector2(random.Next(-100, 100),random.Next(-100, 100));
+                gameObject.GetComponent<NotificationControl>().CreateNotification("test","test");
             }
             
         }
