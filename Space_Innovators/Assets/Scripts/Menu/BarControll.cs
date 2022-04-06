@@ -2,38 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class BarControll : MonoBehaviour
 {
-    [SerializeField] Slider[] Bars;
-    [SerializeField] Text[] vals;
-    [SerializeField] Text[] maxVals;
-    ResourcesClass Resources;
     
+    //[SerializeField] List<Text> vals;
+    //[SerializeField] List<Text> maxVals;
+    ResourcesClass resources;
+    [SerializeField] ScrollRect ScrollView;
+    [SerializeField] GameObject ScrollContent;
+    [SerializeField] GameObject ScrollItem;
+    Dictionary<GameObject, string> Bars = new Dictionary<GameObject, string>();
+    bool created = false;
+
     void Start(){
-        Resources = GameObject.Find("marioIdle").GetComponent<ResourcesClass>();
+        resources = GameObject.Find("marioIdle").GetComponent<ResourcesClass>();
+        
         //print(Resources.resourcesMax["O2"]+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         
     }
 
-
-    public void SetValue(int barIndex, int value){
-        Bars[barIndex].value = value; 
-        vals[barIndex].text = value.ToString();
+    void GenerateItem(string resourceName){
+        GameObject item = Instantiate(ScrollItem);
+        item.transform.SetParent(ScrollContent.transform, false);
+        SetValue(item,resources.resources[resourceName]);
+        SetMaxValue(item,resources.resourcesMax[resourceName]);
+        item.transform.Find("Name").gameObject.GetComponent<Text>().text = resourceName;
+        item.transform.Find("Content").Find("icon").gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(resources.icons[resourceName]);
+        Bars.Add(item, resourceName);
     }
 
-    public void SetMaxValue( int barIndex, int value){
-        Bars[barIndex].maxValue = value; 
-        maxVals[barIndex].text = value.ToString();
+    public void SetValue(GameObject slider, int value){
+        slider.transform.Find("Content").gameObject.GetComponent<Slider>().value = value; 
+        slider.transform.Find("current").GetComponent<Text>().text = value.ToString();
+        //print("KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
+    }
+
+    public void SetMaxValue(GameObject slider, int value){
+        slider.transform.Find("Content").gameObject.GetComponent<Slider>().maxValue = value; 
+        slider.transform.Find("max").GetComponent<Text>().text = value.ToString();
     }
 
     void Update(){
-        SetMaxValue(0,Resources.resourcesMax["O2"]);
-        SetMaxValue(1,Resources.resourcesMax["Water"]);
-        SetMaxValue(2,Resources.resourcesMax["Food"]);
-        SetValue(0,Resources.resources["O2"]);
-        SetValue(1,Resources.resources["Water"]);
-        SetValue(2,Resources.resources["Food"]);
+        if(!created){
+            for(int i=0;i<resources.resourcesMax.Count;i++){
+                GenerateItem(resources.resourcesMax.ElementAt(i).Key);
+            }
+            ScrollView.verticalNormalizedPosition = 1;
+            created = true;
+            
+        }
+        
+        for(int i=0;i<Bars.Count;i++){
+            SetValue(Bars.ElementAt(i).Key,resources.resources[Bars.ElementAt(i).Value]);
+            SetMaxValue(Bars.ElementAt(i).Key,resources.resourcesMax[Bars.ElementAt(i).Value]);
+        }
     }
 
 }

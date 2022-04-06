@@ -30,8 +30,8 @@ public class ChoosePlaceToBuild : MonoBehaviour
                 menu.SetActive(true);
                 newGameObject = Instantiate(img, objectPOS, Quaternion.identity);
                 created = true;
-                newX = 5;
-                newY = 5;
+                newX = BL.GetCenter();
+                newY = BL.GetCenter();
                 if(!BL.unlockedRooms[DropDown.value].GetComponent<RoomStatics>().CheckRequirements()){
                     Debug.Log("Not enough resources!");
                     NotEnoughRes.fading = 255;
@@ -44,24 +44,32 @@ public class ChoosePlaceToBuild : MonoBehaviour
                 Cancel();
                 
             }
-            newGameObject.transform.position = new Vector3((float)(objectPOS.x+((newX-5f)*BL.offset)), (float)(objectPOS.y+((newY-5f)*BL.offset)), 0f);
+            newGameObject.transform.position = new Vector3((float)(objectPOS.x+((newX-BL.GetCenter())*BL.offset)), (float)(objectPOS.y+((newY-BL.GetCenter())*BL.offset)), 0f);
             camera.transform.position = new Vector3(newGameObject.transform.localPosition.x, newGameObject.transform.localPosition.y, -10);
-            if(BL.map[newX,newY]!=2){
-                newGameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(255,0,0,147);
-            }else{
-                newGameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0,255,0,147);
-            }
+            
             if (Input.GetKeyDown(KeyCode.UpArrow)){  
-                newY++;  
+                newY++;
+                if(newY>=BL.GetGridSize()) {
+                    newY = BL.GetGridSize()-1;
+                } 
             }          
             if (Input.GetKeyDown(KeyCode.DownArrow)){  
                 newY--;
+                if(newY<0) {
+                    newY = 0;
+                } 
             }             
             if (Input.GetKeyDown(KeyCode.LeftArrow)){  
                 newX--;
+                if(newX<0) {
+                    newX = 0;
+                } 
             }              
             if (Input.GetKeyDown(KeyCode.RightArrow)){  
                 newX++; 
+                if(newX>=BL.GetGridSize()) {
+                    newX = BL.GetGridSize()-1;
+                } 
             }  
             if (Input.GetKeyDown(KeyCode.Return)){  
                 if(BL.map[newX,newY]==2){
@@ -69,6 +77,11 @@ public class ChoosePlaceToBuild : MonoBehaviour
                 }else{
                     cantBuild.fading = 255;
                 }
+            }
+            if(BL.map[newX,newY]!=2){
+                newGameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(255,0,0,147);
+            }else{
+                newGameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0,255,0,147);
             }
             if(Input.GetKeyDown(KeyCode.Escape)){
                 Cancel();
