@@ -146,9 +146,12 @@ public class ResourcesClass : MonoBehaviour
                 FoodValue += 60;
             }
         }
-        foreach(KeyValuePair<string,int> item in resourcesMax){
-            resourcesMax[item.Key] = maxValue;
+
+        for(int i=0;i<resourcesMax.Count;i++){
+
+            resourcesMax[resourcesMax.ElementAt(i).Key] = maxValue;
         }
+
         resourcesMax["O2"] = OxygenValue;
         resourcesMax["Water"] = WaterValue;
         resourcesMax["Food"] = FoodValue;
