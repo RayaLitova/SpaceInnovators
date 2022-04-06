@@ -681,8 +681,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220, y: -258.18}
-  m_SizeDelta: {x: 1457.2241, y: 130.9153}
+  m_AnchoredPosition: {x: 233.83, y: -208}
+  m_SizeDelta: {x: 1401.89, y: 125.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &33123078
 MonoBehaviour:
@@ -706,7 +706,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: f17f90cf0f4fb134f963a400040927da, type: 3}
-    m_FontSize: 100
+    m_FontSize: 85
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -4171,8 +4171,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -35.000004, y: -312.34998}
-  m_SizeDelta: {x: 119.11, y: 22.33}
+  m_AnchoredPosition: {x: -35.56, y: -313.74}
+  m_SizeDelta: {x: 119.67, y: 23.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &439461968
 MonoBehaviour:
@@ -12915,8 +12915,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -388, y: -386.2123}
-  m_SizeDelta: {x: 971.1995, y: 125.1508}
+  m_AnchoredPosition: {x: -278, y: -299}
+  m_SizeDelta: {x: 916.33, y: 120.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1397196397
 MonoBehaviour:
@@ -12940,10 +12940,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: f17f90cf0f4fb134f963a400040927da, type: 3}
-    m_FontSize: 100
+    m_FontSize: 85
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 100
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -13365,7 +13365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1454764738
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14108,7 +14108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -35.000004, y: 44}
+  m_AnchoredPosition: {x: -13, y: 32}
   m_SizeDelta: {x: 74.43, y: 74.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1496593531
@@ -14184,8 +14184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8569eb56b383e4ba0d3214f8c35f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newX: 5
-  newY: 5
   offset: 7.75
   Crewmate: {fileID: 7256881257374545043, guid: 896dea04c2110c94886256bb4f54102d, type: 3}
   Tags:
@@ -14216,7 +14214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAQIewuWfD/agIAACUFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziVjDAWnt9YQ0kMSJrSTiy9CWmMNsuSR5ADJ8N+7km3skhPivbertx/yJxHKVsCcNmsj+JPmQH6MiD+Tb6OefIQT3Wu1FR/Qad4Ed4UX0aB5pU5oxCc+zOoSnBHsp9pLL44QrJXItSlXfA+pts4inFNpASmjnY9WCH2OyAl/xvc+5IyneOFPH3i6j0YXPDJQDkwv7YSdrFHViklaVsC95V4cR9e8USNUWE6rie5in19LKWzrhrhzFapNaWVrrAUFXFCsLliYhIgCxL5wPucw/CXPLbjWmKHnpTDYpiYv+aWb3pXUHhp371TW/qZpMgu+mqRPX/jxJNC50eVjd+8kVOUKwQ6v9MyodYPmDuHlwHpo0pHKA91JeCtAPeu10bXiSDpT+9DaQrzs/15LSwtghx5vrN6AdfV1RPEdVjdJ5tP5ahwt2nn5gi6hFadUinIXBjFrgK3Uof1hG8DgqH6j+7Arts2LqLf018Ifuh8uVUs8CGMdUm3Jynvd6dp4KXnAgx8Dq12qjYKAtgVUoKh05w1mcbfjvOEGt94wD9S/nvbulusexU1IgHt9FN1QG31sBucJW+jjE9jipXZSKOhde+IZ+5RqpZp1G/akC9vWJqdsELavBf9/z8hsEeUc5tOYstk8+Z6M890UWBzveMIXScLmJCyiUFgolZvGadsfnJrqkytcuu6rMlobWoXV54Ye1+Kj1IOeC5XrLTMA6qXJcDUOBi/BZ8pXXGCHtuCcUGHe5DMjUrMD8OyaKAuVrk7O0KzPkpFKvGvnkYyk4TOSEQ9fF3tj4F3A0V/eJbuQyz9QSwMEFAAACAgAABAh7Pu7TxxtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tJKJuUFaSqqZsVFisomZhamFblqScWqykVFSikWKuYVFsplSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAABAh7C5Z8P9qAgAAJQUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAABAh7Pu7TxxtAAAAeAAAAAkAJAAAAAAAAAAAAAAAtwIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABvAwAAAAA=
+    dataString: UEsDBBQAAAgIAAAQIeyQFYoyYAIAABgFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMziVjPkpIb61JSA8kTGgnF1+EtMYaZMmjDz6S4b93JdvYpdMTy3tvV29XK38SoWwFzGmzNIKvNAfybUBCTL4MOvIZTnSn1UZ8QKt5F9wVQUSj5o06oREfhTSrS3BGsO9qJ4M4QdArkWtTPvIdpNo6i3BOpQWkjHYhWyH0OSAn/Bk+hJQzRuP7EH1g9JAMLhgyUA5MJ22FraxWecUkLSvgwXInniWtHKMoVNhOo0nuZqG+llLYxg1x5yp2m9LKeuwFBVxQ7C5aGN2NEShA7AoXvPbTX/PcgmuMGXpeCINjquuSH7qeXUntvnZ3oNKHkybzafRVF139ww9Hkc6NLp/bc0exK1cItn+jZ0at6w23Dy961uOQjlTu6VbCewHqRS+N9ooj6YwPqd7CeNH9vbaWFsD2HV5bvQF99f8rCj1cYvenVIpyG2c/rYGN1HHicQHA4O38RMNxPWxTAtHg4reFX3TX36OGeBLGOqSaLlWwt9XeBCl5wiBMnnmXaqMgoo3nChSV7rzGKu72Bm+43qk3zBMND6Y5u+Had3CTEuFOnyQ31Fof67sKhC30cQW2ePVOCgWd60C84JxSrVS9Yf2ZtGkbb3LKemk7L/jfq0Wm90nOYTYZUzadzb/Oh/l2Amw83vI5v5/P2YzE3RMKG6VyXTtt5oO3prriCves/ZAMloZWcdu5ocel+Ch1b+ZC5XrDDIB6rStcjYPBQ/Bl8kcucEIbcE6oeN/kMyNSsz3w7Fooi50+npyhWVclI5U4aBeQjKTxy5GRAF93eW3gIOAYDm+LXcjlD1BLAwQUAAAICAAAECHs+7tPHG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0kom5QVpKqpmxUWKyiZmFqYVuWpJxarKRUVKKRYq5hUWymVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAECHskBWKMmACAAAYBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAECHs+7tPHG0AAAB4AAAACQAkAAAAAAAAAAAAAACtAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAGUDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -18645,7 +18643,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

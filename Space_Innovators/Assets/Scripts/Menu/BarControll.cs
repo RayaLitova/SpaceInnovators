@@ -36,7 +36,7 @@ public class BarControll : MonoBehaviour
     public void SetValue(GameObject slider, int value){
         slider.transform.Find("Content").gameObject.GetComponent<Slider>().value = value; 
         slider.transform.Find("current").GetComponent<Text>().text = value.ToString();
-        print("KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
+        //print("KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
     }
 
     public void SetMaxValue(GameObject slider, int value){
