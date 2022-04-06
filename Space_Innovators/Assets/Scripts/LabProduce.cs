@@ -16,6 +16,7 @@ public class LabProduce : MonoBehaviour
             GameObject room = unlockableRooms[random.Next(unlockableRooms.Count)];
             unlockableRooms.Remove(room);
             unlock = random.Next(1, 4);
+            GameObject.Find("marioIdle").GetComponent<NotificationControl>().CreateNotification("New room blueprint discovered!", "The lab has discovered the blueprint for "+room.name+"!");
             return room;
         }
         unlock--;

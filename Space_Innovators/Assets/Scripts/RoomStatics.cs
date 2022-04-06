@@ -53,12 +53,12 @@ public class RoomStatics : MonoBehaviour
         work++;
         Debug.Log(gameObject.name);
         if(work>=produce_at * (1/roomLevel)){
-            if(gameObject.name == "Lab(Clone)"){
+            if(gameObject.name == "Lab"){
                 GameObject room = gameObject.GetComponent<LabProduce>().UnlockRoom();
                 if(room!=null){
                     GameObject.Find("marioIdle").gameObject.GetComponent<BuildRegulator>().unlockedRooms.Add(room);
                 }
-            }else if(gameObject.name == "Communications(Clone)"){
+            }else if(gameObject.name == "Communications"){
                 gameObject.GetComponent<CommProduce>().RecieveRandomResources();
             }else{
                 for(int i=0; i<producedResources.Length; i++){
