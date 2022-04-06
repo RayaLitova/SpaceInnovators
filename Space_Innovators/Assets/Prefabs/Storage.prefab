@@ -1804,8 +1804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934a66ce4efff444eaa4d5a9d7d5e5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourcesNames: []
-  resourcesQuanity: 
+  resourcesNames:
+  - Black metal
+  resourcesQuanity: 04000000
   produce_at: 0
   roomLevel: 0
   planets: []

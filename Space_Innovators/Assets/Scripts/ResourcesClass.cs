@@ -36,13 +36,13 @@ public class ResourcesClass : MonoBehaviour
         resourcesMax.Add("Black metal", 10);
         resourcesMax.Add("Colored metal", 10);
         resourcesMax.Add("Fuel", 10);
-        resourcesMax.Add("Space rock", 5);
+        resourcesMax.Add("Space rock", 10);
         resourcesMax.Add("Water", 50);
         resourcesMax.Add("Energy", 0);
         resourcesMax.Add("Food", 50);
-        resourcesMax.Add("Medicine", 5);
+        resourcesMax.Add("Medicine", 10);
         resourcesMax.Add("O2", 50);
-        resourcesMax.Add("Cotton", 20);
+        resourcesMax.Add("Cotton", 10);
 
         icons.Add("Black metal", "build_metal_symbol");
         icons.Add("Colored metal", "color_metal_symbol_alt");
@@ -61,6 +61,9 @@ public class ResourcesClass : MonoBehaviour
     
     public void AddResource(string name, int quantity){
         resources[name] += quantity;
+        if(resources[name]>resourcesMax[name]){
+            resources[name]=resourcesMax[name];
+        }
         Debug.Log(name+": "+resources[name]);
     }
 
@@ -89,6 +92,9 @@ public class ResourcesClass : MonoBehaviour
         string name = resources.ElementAt(rnd).Key;
         int quantity = random.Next(min, max+1);
         resources[name] += quantity;
+        if(resources[name]>resourcesMax[name]){
+            resources[name]=resourcesMax[name];
+        }
         if(text!=null){
             text.gameObject.SetActive(true);
             text.text = quantity.ToString() + "x "+ name;
@@ -101,6 +107,9 @@ public class ResourcesClass : MonoBehaviour
         rnd = random.Next(resources.Count);
         string name = resources.ElementAt(rnd).Key;
         resources[name] -= random.Next(min, max+1);
+        if(resources[name]<0){
+            resources[name]=0;
+        }
         Debug.Log(name+": " + resources[name]);
     }
 
@@ -113,6 +122,40 @@ public class ResourcesClass : MonoBehaviour
     public int CheckResource(string Name){
         if(Name=="")return 0;
         return resources[Name];
+    }
+
+    void Update(){
+        int maxValue=10;
+        int OxygenValue=50;
+        int WaterValue=40;
+        int FoodValue=30;
+        foreach(string room in transform.GetComponent<BuildRegulator>().GetBuiltRooms()){
+            if(room == "Storage"){
+                maxValue+=20;
+            }
+            if(room == "BigStorage"){
+                maxValue+=40;
+            }
+            if(room == "O2Storage"){
+                OxygenValue += 100;
+            }
+            if(room == "WaterStorage"){
+                WaterValue += 80;
+            }
+            if(room == "FoodStorage"){
+                FoodValue += 60;
+            }
+        }
+
+        for(int i=0;i<resourcesMax.Count;i++){
+
+            resourcesMax[resourcesMax.ElementAt(i).Key] = maxValue;
+        }
+
+        resourcesMax["O2"] = OxygenValue;
+        resourcesMax["Water"] = WaterValue;
+        resourcesMax["Food"] = FoodValue;
+
     }
 
 }
