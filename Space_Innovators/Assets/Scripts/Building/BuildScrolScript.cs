@@ -36,12 +36,5 @@ public class BuildScrolScript : MonoBehaviour
         }
         ScrollView.horizontalNormalizedPosition = 1;
         
-            
-        
-        
-        /*for(int i=0;i<Bars.Count;i++){
-            SetValue(Bars.ElementAt(i).Key,resources.resources[Bars.ElementAt(i).Value]);
-            SetMaxValue(Bars.ElementAt(i).Key,resources.resourcesMax[Bars.ElementAt(i).Value]);
-        }*/
     }
 }

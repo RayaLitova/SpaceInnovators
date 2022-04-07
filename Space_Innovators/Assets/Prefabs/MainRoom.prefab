@@ -62,7 +62,7 @@ MonoBehaviour:
   resourcesNames:
   - Black metal
   - Cotton
-  resourcesQuanity: 0400000008000000
+  resourcesQuanity: 0500000008000000
   produce_at: 0
   roomLevel: 0
   planets: []

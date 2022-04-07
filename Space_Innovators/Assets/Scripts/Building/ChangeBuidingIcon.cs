@@ -13,6 +13,7 @@ public class ChangeBuidingIcon : MonoBehaviour
     [SerializeField] GameObject[] PlanetReqs;
     //[SerializeField] TMPro.TMP_Dropdown drop;
     public GameObject room;
+    public GameObject roomRes;
     RoomStatics roomStats;
 
     public void Update(){
@@ -69,6 +70,10 @@ public class ChangeBuidingIcon : MonoBehaviour
 
         //description
         Desc.text = RoomStatics.GetDescription(room.name);
+    }
+
+    public void Reset(){
+        room = roomRes;
     }
 
 }
