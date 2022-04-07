@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 4454610163601370920}
   m_Layer: 8
   m_Name: Communication Station
-  m_TagString: Station
+  m_TagString: Communications
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

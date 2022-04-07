@@ -10502,7 +10502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1046564493
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10730,7 +10730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1059734747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12583,7 +12583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1181705637
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16450,11 +16450,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 7.75
   Crewmate: {fileID: 7256881257374545043, guid: 896dea04c2110c94886256bb4f54102d, type: 3}
-  Tags:
-  - Human
-  - Hydropian
-  - Terrakian
-  - Floaromian
   unlockedRooms:
   - {fileID: 1376056372230999550, guid: 3a2be67aba355214cb492bf8544e0564, type: 3}
   - {fileID: 2440028700631533696, guid: 915b18a3867100c488c405c850e6fb7b, type: 3}
@@ -16463,7 +16458,6 @@ MonoBehaviour:
   BuiltRooms: []
   unlockedPlanets:
   - Earth
-  onBoardCount: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &1496593535
 MonoBehaviour:
   m_ObjectHideFlags: 0

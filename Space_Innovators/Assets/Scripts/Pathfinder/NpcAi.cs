@@ -7,11 +7,12 @@ using UnityEngine.UI;
 public class NpcAi : MonoBehaviour
 {
 
-    [SerializeField] public Transform target;
+    [SerializeField] public Transform actualTarget;
+    //[SerializeField] public Transform TempTarget;
     NPCStats Stats;
     //[SerializeField] NPCStats stats;
 
-    //public float speed = 200f;
+    float speed = 0.04f;
     public float nextWaipointDistance = 0f;
 
 
@@ -42,20 +43,30 @@ public class NpcAi : MonoBehaviour
     GetWorkNeeded Working;
 
     bool sleeping = false;
-    GameObject new_target;
+    bool wanderingForUpgrade = false;
+    bool wanderingForWork = false;
+    Transform currentTarget;
     
     [SerializeField]public Transform bed;
 
     void Start()
     {
         Stats = transform.GetComponent<NPCStats>();
-        if(/**/target==null){
-            return;
-        }
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         anim = NPCGFX.GetComponent<Animator>();
-        seeker.StartPath(rb.position, /**/target.transform.position, OnPathComplete);
+
+        if(/**/actualTarget==null){
+            wanderingForWork = true;
+            currentTarget = GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform;
+
+        }else{
+            if(actualTarget.tag == "Upgrading"){
+                wanderingForUpgrade=true;
+            }
+        }
+
+        seeker.StartPath(rb.position, /**/currentTarget.transform.position, OnPathComplete);
     }
 
     void OnPathComplete(Path p){
@@ -68,18 +79,21 @@ public class NpcAi : MonoBehaviour
 
     void RedirectCourse(Transform t){
         seeker.StartPath(rb.position, t.position, OnPathComplete);
+        currentWaipoint = 0;
     }
 
     public void Die(){
-        target.tag = "Station";
+        actualTarget.tag = actualTarget.tag.Split(':')[1];
         bed.tag = "Bed";
         Destroy(gameObject);
         BuildRegulator mario = GameObject.Find("marioIdle").GetComponent<BuildRegulator>();
-        mario.onBoardCount[System.Array.IndexOf(mario.Tags,transform.tag)]--;
+        mario.onBoardCount[transform.tag.Split('-')[0]]--;
     }
 
     void FixedUpdate()
     {
+       
+        
         o2_timer += Time.deltaTime;
         h2o_timer += Time.deltaTime;
         food_timer += Time.deltaTime;
@@ -88,11 +102,11 @@ public class NpcAi : MonoBehaviour
             Stats.Consume("O2", Stats.O2);
             o2_timer =0;
         }
-        if(h2o_timer >= 30f && !sleeping){
+        if(h2o_timer >= 30f ){
             Stats.Consume("Water", Stats.Water);
             h2o_timer =0;
         }
-        if(food_timer >= 40f && !sleeping){
+        if(food_timer >= 40f ){
             Stats.Consume("Food", Stats.Food);
             food_timer=0;
         }
@@ -101,19 +115,38 @@ public class NpcAi : MonoBehaviour
             return;
         }
         if(currentWaipoint >= path.vectorPath.Count){
-
             reachedEndofPath = true;
-            if(!sleeping){
-                Stats.energy--;
-                target.parent.gameObject.GetComponent<RoomStatics>().Produce();
-            }else{
-                anim.SetBool("Sleeping", true);
-                transform.position = bed.position;
-                Stats.energy++;
-                if(Stats.energy==Stats.max_energy){
-                    movementStopped = false;
+            if(wanderingForUpgrade || wanderingForWork){
+                speed = 0.02f;
+                RedirectCourse(GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform);
+                
+                if(wanderingForWork){
+                    if(GameObject.FindGameObjectsWithTag(Stats.targetTag).Length!=0){
+                        actualTarget = GameObject.FindGameObjectsWithTag(Stats.targetTag)[0].transform;
+                        actualTarget.tag = "Used:"+ actualTarget.tag;
+                        currentTarget = actualTarget;
+                        wanderingForWork=false;
+                    }
                 }else{
-                    movementStopped = true;
+                    if(actualTarget.tag != "Upgrading"){
+                        currentTarget=actualTarget;
+                        wanderingForUpgrade = false;
+                    }
+                }
+            }else{
+                speed =0.04f;
+                if(!sleeping){
+                    Stats.energy--;
+                    currentTarget.parent.gameObject.GetComponent<RoomStatics>().Produce();
+                }else{
+                    anim.SetBool("Sleeping", true);
+                    transform.position = bed.position;
+                    Stats.energy++;
+                    if(Stats.energy==Stats.max_energy){
+                        movementStopped = false;
+                    }else{
+                        movementStopped = true;
+                    }
                 }
             }
 
@@ -123,11 +156,11 @@ public class NpcAi : MonoBehaviour
         }
         if(Stats.energy <= 0.1*Stats.max_energy && sleeping == false){
                 RedirectCourse(bed);
-                currentWaipoint = 0;
+                //currentWaipoint = 0;
                 sleeping = true;
         }else if(Stats.energy >= Stats.max_energy && sleeping == true){
-            RedirectCourse(/**/target.transform);
-            currentWaipoint = 0;
+            RedirectCourse(/**/currentTarget.transform);
+            //currentWaipoint = 0;
             sleeping = false;
         }  
         anim.SetInteger("Speed",0);
@@ -163,7 +196,7 @@ public class NpcAi : MonoBehaviour
 
         if(!movementStopped){
             //rb.velocity = new Vector2(anim.GetFloat("X") * 3, anim.GetFloat("Y") * 3);
-            transform.position = Vector3.Lerp(transform.position, path.vectorPath[currentWaipoint], 0.05f);
+            transform.position = Vector3.Lerp(transform.position, path.vectorPath[currentWaipoint], speed);
         }
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaipoint]);

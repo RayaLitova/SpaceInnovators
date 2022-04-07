@@ -12,12 +12,15 @@ public class NPCStats : MonoBehaviour
     public int max_energy;
     public int health;
     public int max_health;
+    public string Planet;
+    public string Profession;
+    public string targetTag;
     [SerializeField] Slider[] Bars;
     [SerializeField] Text[] vals;
     [SerializeField] Text[] maxVals;
 
     void Start(){
-        int[] Stats = NPCStats.GetStatsByTag(transform.tag);
+        int[] Stats = NPCStats.GetStatsByTag(Planet);
         O2 = Stats[0];
         Water = Stats[1];
         Food = Stats[2];
@@ -27,6 +30,7 @@ public class NPCStats : MonoBehaviour
         SetMaxValue(1,max_energy);
         energy = max_energy;
         health = max_health;
+        targetTag = NPCStats.GetTargetTagByTag(Profession);
         
     }
 
@@ -39,9 +43,32 @@ public class NPCStats : MonoBehaviour
         }
     }
 
+    public static string GetTargetTagByTag(string Tag){
+        string targettag = "";
+        if(Tag.Contains("Oxygen Manager")){
+            targettag = "O2";           
+        }
+        else if(Tag.Contains("Navigator")){//Neuforian
+            targettag = "Communications";
+        }
+        else if(Tag.Contains("Researcher")){//Neuforian
+            targettag = "Lab";
+        }
+        else if(Tag.Contains("WaterManager")){//Neuforian
+            targettag = "Water Station";
+        }
+        else if(Tag.Contains("Botanist")){//Neuforian
+            targettag = "Vertival Farm";
+        }
+        else if(Tag.Contains("Mechanic")){//Neuforian
+            targettag = "Upgrading";
+        }
+        return targettag;
+    }
+
     public static int[] GetStatsByTag(string Tag){
         int[] Stats = new int[5];
-        if(Tag == "Human"){
+        if(Tag.Contains("Earth")){
             Stats[0] = 1;
             Stats[1] = 1;
             Stats[2]= 1;
@@ -49,7 +76,7 @@ public class NPCStats : MonoBehaviour
             Stats[4] = 100;
             
         }
-        else if(Tag == "Floaromian"){//Neuforian
+        else if(Tag.Contains("Floaroma")){//Neuforian
             Stats[0] = -1;
             Stats[1] = 3;
             Stats[2] = 0;

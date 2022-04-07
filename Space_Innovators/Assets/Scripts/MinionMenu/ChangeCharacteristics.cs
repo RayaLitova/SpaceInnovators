@@ -18,8 +18,8 @@ public class ChangeCharacteristics : MonoBehaviour
     }
     public void ChangeCharacteristic()
     {
-        o2.text = NPCStats.GetStatsByTag(BL.Tags[drop.value])[0].ToString();
-        water.text = NPCStats.GetStatsByTag(BL.Tags[drop.value])[1].ToString();
-        food.text = NPCStats.GetStatsByTag(BL.Tags[drop.value])[2].ToString();
+        o2.text = NPCStats.GetStatsByTag("Earth"/*tuka sloji da e value ot scrol za paneti*/)[0].ToString();
+        water.text = NPCStats.GetStatsByTag("Earth"/*tuka sloji da e value ot scrol za paneti*/)[1].ToString();
+        food.text = NPCStats.GetStatsByTag("Earth"/*tuka sloji da e value ot scrol za paneti*/)[2].ToString();
     }
 }

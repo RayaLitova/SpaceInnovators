@@ -17,6 +17,6 @@ public class UpdateCount : MonoBehaviour
     void Update()
     {   
         //count = DropDown.value;
-        text.text = BR.onBoardCount[DropDown.value].ToString();
+        text.text = BR.onBoardCount["Earth"]/*tuka sloji da e value ot scrol za paneti*/.ToString();
     }
 }

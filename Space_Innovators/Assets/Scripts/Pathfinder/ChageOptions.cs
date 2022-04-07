@@ -48,8 +48,8 @@ public class ChageOptions : MonoBehaviour
 
     public void DropdownItemSelected(Dropdown dropdown){
         int index = dropdown.value;
-        print(index);
-        print(AI.target);
+        //print(index);
+        //print(AI.target);
         target_value = Stations[dropdown.options[index].text].transform;
         //return Stations[dropdown.options[index].text].transform;
 

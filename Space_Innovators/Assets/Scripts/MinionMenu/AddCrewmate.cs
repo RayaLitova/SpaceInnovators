@@ -25,7 +25,7 @@ public class AddCrewmate : MonoBehaviour
             NotEnoughBed.fading = 255;
             return;
         }
-        BL.addCrewMate(PlanetDown.value, TargetDown.value-1);
+        BL.addCrewMate("Earth"/*tuka sloji da e value ot scrol za paneti*/, "Water Manager"/*tuka sloji da e value ot scrol za profesii*/);
         
     }
 }

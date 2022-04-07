@@ -6,14 +6,20 @@ TagManager:
   tags:
   - Saving
   - Human
-  - Neuforian
-  - Station
   - Room
   - Bed
-  - UsedStation
   - UsedBed
   - Menu
   - UIButton
+  - Excursion
+  - Station
+  - O2
+  - Used:O2
+  - Communications
+  - Used:Communications
+  - Lab
+  - Used:Lab
+  - Upgrading
   layers:
   - Default
   - TransparentFX
