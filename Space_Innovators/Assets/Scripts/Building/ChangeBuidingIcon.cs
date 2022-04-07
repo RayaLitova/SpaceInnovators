@@ -5,44 +5,39 @@ using UnityEngine.UI;
 
 public class ChangeBuidingIcon : MonoBehaviour
 {
-    [SerializeField] public Sprite[] Images;
+    //[SerializeField] public Sprite[] Images;
     [SerializeField] Image img;
     [SerializeField] Text Desc;
     [SerializeField] GameObject[] MatReqs;
     [SerializeField] GameObject[] RoomReqs;
     [SerializeField] GameObject[] PlanetReqs;
-    [SerializeField] TMPro.TMP_Dropdown drop;
-    
-    void OnEnable(){
-        drop.value = 0;
-        ChangeCharacteristic();   
-    }
+    //[SerializeField] TMPro.TMP_Dropdown drop;
+    public GameObject room;
+    RoomStatics roomStats;
 
-    public void ChangeImage(){
-        img.sprite = Images[drop.value];
-    }
-
-    public void ChangeCharacteristic(){
+    public void Update(){
         //img.sprite = Images[drop.value];
         GameObject mario = GameObject.Find("marioIdle");
-        RoomStatics room = mario.GetComponent<BuildRegulator>().unlockedRooms[drop.value].GetComponent<RoomStatics>();
+        roomStats = room.GetComponent<RoomStatics>();
+
+        img.sprite = roomStats.GetIcon();
 
         //materials requierd
         for(int i=0; i<5;i++){
-            string txt = room.GetReqirementsByIndex(i);
-            if(mario.GetComponent<ResourcesClass>().CheckResource(txt)<room.CheckReqirementsQuantityByIndex(i)){
+            string txt = roomStats.GetReqirementsByIndex(i);
+            if(mario.GetComponent<ResourcesClass>().CheckResource(txt)<roomStats.CheckReqirementsQuantityByIndex(i)){
                 MatReqs[i].transform.GetChild(1).GetComponent<Text>().color = new Color32(150,21,21,255);
             }else{
                 MatReqs[i].transform.GetChild(1).GetComponent<Text>().color = new Color32(0,0,0,255);
             }
             MatReqs[i].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(mario.GetComponent<ResourcesClass>().icons[txt]);
-            MatReqs[i].transform.GetChild(1).GetComponent<Text>().text = txt +  room.GetReqirementsQuantityByIndex(i);
+            MatReqs[i].transform.GetChild(1).GetComponent<Text>().text = txt +  roomStats.GetReqirementsQuantityByIndex(i);
         }
 
         //rooms requierd
         for(int i=0; i<3;i++){
             int check=0;
-            string txt = room.GetRoomsByIndex(i);
+            string txt = roomStats.GetRoomsByIndex(i);
             
             foreach(string go in mario.GetComponent<BuildRegulator>().GetBuiltRooms()){
                 if(go==txt)check++;
@@ -58,7 +53,7 @@ public class ChangeBuidingIcon : MonoBehaviour
         //planets required
         for(int i=0; i<2;i++){
             int check=0;
-            string txt = room.GetPlanetsByIndex(i);
+            string txt = roomStats.GetPlanetsByIndex(i);
             
             foreach(string go in mario.GetComponent<BuildRegulator>().unlockedPlanets){
                 if(go==txt)check++;
@@ -73,7 +68,7 @@ public class ChangeBuidingIcon : MonoBehaviour
 
 
         //description
-        Desc.text = RoomStatics.GetDescription(mario.GetComponent<BuildRegulator>().unlockedRooms[drop.value].name);
+        Desc.text = RoomStatics.GetDescription(room.name);
     }
 
 }
