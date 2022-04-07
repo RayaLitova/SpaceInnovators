@@ -1807,7 +1807,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: bd2cb0e38417b7e45844000d58390e2c, type: 3}
   resourcesNames:
   - Black metal
-  resourcesQuanity: 04000000
+  resourcesQuanity: 05000000
   produce_at: 0
   roomLevel: 0
   planets: []

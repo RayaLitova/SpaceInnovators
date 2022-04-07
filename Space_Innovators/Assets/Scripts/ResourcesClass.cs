@@ -126,24 +126,24 @@ public class ResourcesClass : MonoBehaviour
 
     void Update(){
         int maxValue=10;
-        int OxygenValue=50;
-        int WaterValue=40;
-        int FoodValue=30;
+        int OxygenValue=30;
+        int WaterValue=20;
+        int FoodValue=10;
         foreach(string room in transform.GetComponent<BuildRegulator>().GetBuiltRooms()){
             if(room == "Storage"){
                 maxValue+=20;
             }
             if(room == "BigStorage"){
-                maxValue+=40;
+                maxValue+=25;
             }
             if(room == "O2Storage"){
-                OxygenValue += 100;
+                OxygenValue += 45;
             }
             if(room == "WaterStorage"){
-                WaterValue += 80;
+                WaterValue += 30;
             }
             if(room == "FoodStorage"){
-                FoodValue += 60;
+                FoodValue += 15;
             }
         }
 

@@ -59,6 +59,7 @@ public class RoomStatics : MonoBehaviour
                 GameObject room = gameObject.GetComponent<LabProduce>().UnlockRoom();
                 if(room!=null){
                     GameObject.Find("marioIdle").gameObject.GetComponent<BuildRegulator>().unlockedRooms.Add(room);
+                    GameObject.Find("BuildButton").gameObject.GetComponent<BuildScrolScript>().UpdateBuildOptions();
                 }
             }else if(gameObject.name == "Communications"){
                 gameObject.GetComponent<CommProduce>().RecieveRandomResources();
@@ -116,7 +117,7 @@ public class RoomStatics : MonoBehaviour
         }else if(roomIndex == "Storage"){//Storage
             return "Allows you to store more materials";
 
-        }else if(roomIndex == "WaterSatiton"){//WaterSatiton
+        }else if(roomIndex == "Water Station"){//WaterSatiton
             return "Produces water based on level";
 
         }else if(roomIndex == "VerticalFarm"){//VerticalFarm

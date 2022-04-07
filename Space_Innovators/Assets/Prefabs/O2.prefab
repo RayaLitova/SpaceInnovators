@@ -270,9 +270,9 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 8ebf0cffe448ac14cb6ff3c1ac75269d, type: 3}
   resourcesNames:
   - Black metal
-  - Water
   - Colored metal
-  resourcesQuanity: 040000000400000001000000
+  - Water
+  resourcesQuanity: 050000000100000004000000
   produce_at: 150
   roomLevel: 1
   planets: []
