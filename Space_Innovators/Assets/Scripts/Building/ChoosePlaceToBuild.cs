@@ -10,7 +10,8 @@ public class ChoosePlaceToBuild : MonoBehaviour
     int newY = 5;
 
     [SerializeField] BuildRegulator BL;
-    [SerializeField] TMPro.TMP_Dropdown DropDown;
+    //[SerializeField] TMPro.TMP_Dropdown DropDown;
+    [SerializeField] ChangeBuidingIcon BuildButton;
     [SerializeField] GameObject img;
     [SerializeField] Camera camera;
     [SerializeField] FadingCant cantBuild;
@@ -32,7 +33,7 @@ public class ChoosePlaceToBuild : MonoBehaviour
                 created = true;
                 newX = BL.GetCenter();
                 newY = BL.GetCenter();
-                if(!BL.unlockedRooms[DropDown.value].GetComponent<RoomStatics>().CheckRequirements()){
+                if(!BuildButton.room.GetComponent<RoomStatics>().CheckRequirements()){
                     Debug.Log("Not enough resources!");
                     NotEnoughRes.fading = 255;
                     Cancel();
@@ -40,7 +41,7 @@ public class ChoosePlaceToBuild : MonoBehaviour
             } 
             
             if(Done){
-                BL.buildRoom(newX,newY,DropDown.value);
+                BL.buildRoom(newX,newY,BuildButton.room);
                 Cancel();
                 
             }

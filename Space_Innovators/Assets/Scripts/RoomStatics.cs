@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomStatics : MonoBehaviour
 {
+    [SerializeField] Sprite Icon;
     public string[] resourcesNames;
     public int[] resourcesQuanity;
 
@@ -92,6 +94,10 @@ public class RoomStatics : MonoBehaviour
     public string GetReqirementsQuantityByIndex(int index){
         if(index<resourcesNames.Length)return  " x"+resourcesQuanity[index];
         return "";
+    }
+
+    public Sprite GetIcon(){
+        return Icon;
     }
 
     public static string GetDescription(string roomIndex){

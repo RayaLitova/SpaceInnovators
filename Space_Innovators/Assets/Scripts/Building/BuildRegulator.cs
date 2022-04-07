@@ -47,10 +47,10 @@ public class BuildRegulator : MonoBehaviour
         onBoardCount[crewIndex]++;
     }
 
-    public void buildRoom(int newX, int newY, int roomIndex){
+    public void buildRoom(int newX, int newY, GameObject room){
         Vector3 objectPOS = Vector3.zero;
         objectPOS = new Vector3((float)(objectPOS.x+((newX-center)*offset)), (float)(objectPOS.y+((newY-center)*offset)), 0f);
-        GameObject newGameObject = Instantiate(unlockedRooms[roomIndex], objectPOS, Quaternion.identity);
+        GameObject newGameObject = Instantiate(room, objectPOS, Quaternion.identity);
         newGameObject.name = newGameObject.name.Split('(')[0];
 
         map[newX,newY] = 1;
@@ -90,14 +90,14 @@ public class BuildRegulator : MonoBehaviour
         if(newY!=0){if(map[newX,newY-1] != 1) map[newX,newY-1] = 2;}
 
         BuiltRooms.Add(newGameObject.name);
-        for(int i=0; i < unlockedRooms[roomIndex].GetComponent<RoomStatics>().resourcesNames.Length; i++){
-            string name = unlockedRooms[roomIndex].GetComponent<RoomStatics>().resourcesNames[i];
-            int quantity = unlockedRooms[roomIndex].GetComponent<RoomStatics>().resourcesQuanity[i];
+        for(int i=0; i < room.GetComponent<RoomStatics>().resourcesNames.Length; i++){
+            string name = room.GetComponent<RoomStatics>().resourcesNames[i];
+            int quantity = room.GetComponent<RoomStatics>().resourcesQuanity[i];
             gameObject.GetComponent<ResourcesClass>().SubtractResource(name, quantity);
         }
 
-        if(unlockedRooms[roomIndex].name == "Lab"){
-            unlockedRooms.RemoveAt(roomIndex);
+        if(room.name == "Lab"){
+            unlockedRooms.Remove(room);
         }
         AstarPath.active.Scan();
     }
@@ -108,18 +108,18 @@ public class BuildRegulator : MonoBehaviour
 
     void Start()
     {
-        buildRoom(center,center,0);
+        buildRoom(center,center,unlockedRooms[0]);
 
         //newX -= 1 ;
         //newY = 5;
-        buildRoom(center-1,center,1);
+        buildRoom(center-1,center,unlockedRooms[1]);
 
         //newX += 1;
         //newY += 1;
-        buildRoom(center,center+1,2);
+        buildRoom(center,center+1,unlockedRooms[2]);
 
-        addCrewMate(0,0);
-        addCrewMate(0,0);
+        //addCrewMate(0,0);
+        //addCrewMate(0,0);
      
     }
 

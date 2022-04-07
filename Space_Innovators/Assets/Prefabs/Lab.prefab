@@ -880,6 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934a66ce4efff444eaa4d5a9d7d5e5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 1cf9f97c444ef954f894dfec14758091, type: 3}
   resourcesNames:
   - Colored metal
   - Space rock
@@ -907,6 +908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockableRooms:
   - {fileID: 8902655021416011805, guid: e2044583f38033649ab8a0a5fbacec20, type: 3}
+  upgrades: []
 --- !u!1 &6345306532905213922
 GameObject:
   m_ObjectHideFlags: 0

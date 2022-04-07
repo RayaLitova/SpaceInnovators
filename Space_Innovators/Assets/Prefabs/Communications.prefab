@@ -551,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934a66ce4efff444eaa4d5a9d7d5e5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 60b858789193ccd46adffc71f60741be, type: 3}
   resourcesNames:
   - Colored metal
   - Black metal
