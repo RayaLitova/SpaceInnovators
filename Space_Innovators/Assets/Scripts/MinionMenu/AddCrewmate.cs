@@ -6,16 +6,16 @@ using UnityEngine.UI;
 public class AddCrewmate : MonoBehaviour
 {
     [SerializeField] BuildRegulator BL;
-    [SerializeField] TMPro.TMP_Dropdown PlanetDown;
-    [SerializeField] TMPro.TMP_Dropdown TargetDown;
+    //[SerializeField] TMPro.TMP_Dropdown PlanetDown;
+    //[SerializeField] TMPro.TMP_Dropdown TargetDown;
+    //public string Planet;
+    //public string Profession;
+    [SerializeField] ChangePlanetIcon CrewButton;
     [SerializeField] FadingCant NotEnoughBed;
     [SerializeField] FadingCant NoTarget;
 
-    void Start(){
-    }
-
     public void AddCrew(){
-        if(TargetDown.value==0){
+        if(CrewButton.Profession==""){
             //printirai che nqma target
             NoTarget.fading = 255;
             return;
@@ -25,7 +25,7 @@ public class AddCrewmate : MonoBehaviour
             NotEnoughBed.fading = 255;
             return;
         }
-        BL.addCrewMate("Earth"/*tuka sloji da e value ot scrol za paneti*/, "Water Manager"/*tuka sloji da e value ot scrol za profesii*/);
+        BL.addCrewMate(CrewButton.Planet/*tuka sloji da e value ot scrol za paneti*/, CrewButton.Profession/*tuka sloji da e value ot scrol za profesii*/);
         
     }
 }

@@ -12,7 +12,7 @@ public class NpcAi : MonoBehaviour
     NPCStats Stats;
     //[SerializeField] NPCStats stats;
 
-    float speed = 0.04f;
+    float speed = 0.02f;
     public float nextWaipointDistance = 0f;
 
 
@@ -114,25 +114,27 @@ public class NpcAi : MonoBehaviour
         if(path == null){
             return;
         }
+        if(wanderingForWork){
+            if(GameObject.FindGameObjectsWithTag(Stats.targetTag).Length!=0){
+                actualTarget = GameObject.FindGameObjectsWithTag(Stats.targetTag)[0].transform;
+                actualTarget.tag = "Used:"+ actualTarget.tag;
+                currentTarget = actualTarget;
+                wanderingForWork=false;
+            }
+        }else if(wanderingForUpgrade){
+            if(actualTarget.tag != "Upgrading"){
+                currentTarget=actualTarget;
+                wanderingForUpgrade = false;
+            }
+        }else if(actualTarget.tag ==  "Upgrading"){
+            wanderingForUpgrade = true;
+        }
         if(currentWaipoint >= path.vectorPath.Count){
             reachedEndofPath = true;
             if(wanderingForUpgrade || wanderingForWork){
-                speed = 0.02f;
+                sleeping = false;
+                speed = 0.02f;           
                 RedirectCourse(GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform);
-                
-                if(wanderingForWork){
-                    if(GameObject.FindGameObjectsWithTag(Stats.targetTag).Length!=0){
-                        actualTarget = GameObject.FindGameObjectsWithTag(Stats.targetTag)[0].transform;
-                        actualTarget.tag = "Used:"+ actualTarget.tag;
-                        currentTarget = actualTarget;
-                        wanderingForWork=false;
-                    }
-                }else{
-                    if(actualTarget.tag != "Upgrading"){
-                        currentTarget=actualTarget;
-                        wanderingForUpgrade = false;
-                    }
-                }
             }else{
                 speed =0.04f;
                 if(!sleeping){
@@ -154,11 +156,11 @@ public class NpcAi : MonoBehaviour
             reachedEndofPath = false;
             anim.SetBool("Sleeping", false);
         }
-        if(Stats.energy <= 0.1*Stats.max_energy && sleeping == false){
+        if(Stats.energy <= 0.1*Stats.max_energy && sleeping == false ){
                 RedirectCourse(bed);
                 //currentWaipoint = 0;
                 sleeping = true;
-        }else if(Stats.energy >= Stats.max_energy && sleeping == true){
+        }else if(Stats.energy >= Stats.max_energy && sleeping == true ){
             RedirectCourse(/**/currentTarget.transform);
             //currentWaipoint = 0;
             sleeping = false;

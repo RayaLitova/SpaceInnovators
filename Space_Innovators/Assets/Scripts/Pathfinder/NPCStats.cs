@@ -18,6 +18,7 @@ public class NPCStats : MonoBehaviour
     [SerializeField] Slider[] Bars;
     [SerializeField] Text[] vals;
     [SerializeField] Text[] maxVals;
+    [SerializeField] Text proftext;
 
     void Start(){
         int[] Stats = NPCStats.GetStatsByTag(Planet);
@@ -30,8 +31,8 @@ public class NPCStats : MonoBehaviour
         SetMaxValue(1,max_energy);
         energy = max_energy;
         health = max_health;
-        targetTag = NPCStats.GetTargetTagByTag(Profession);
-        
+        targetTag = NPCStats.GetTargetTagByTag(Profession, Planet);
+        proftext.text = Profession;
     }
 
     public void Consume(string name, int quantity){
@@ -43,24 +44,25 @@ public class NPCStats : MonoBehaviour
         }
     }
 
-    public static string GetTargetTagByTag(string Tag){
+    public static string GetTargetTagByTag(string Tag, string Planet){
         string targettag = "";
         if(Tag.Contains("Oxygen Manager")){
             targettag = "O2";           
         }
-        else if(Tag.Contains("Navigator")){//Neuforian
+        else if(Tag.Contains("Navigator")){
             targettag = "Communications";
         }
-        else if(Tag.Contains("Researcher")){//Neuforian
-            targettag = "Lab";
+        else if(Tag.Contains("Researcher")){
+                targettag = "Lab";        
         }
-        else if(Tag.Contains("WaterManager")){//Neuforian
+        else if(Tag.Contains("Water Manager")){
             targettag = "Water Station";
         }
-        else if(Tag.Contains("Botanist")){//Neuforian
-            targettag = "Vertival Farm";
+        else if(Tag.Contains("Botanist")){
+            //napravi checkvane na tagove i tuk i za lab che sa po specific
+            targettag = "Vertical Farm";  
         }
-        else if(Tag.Contains("Mechanic")){//Neuforian
+        else if(Tag.Contains("Mechanic")){
             targettag = "Upgrading";
         }
         return targettag;

@@ -164,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6487955666610517762}
   m_Layer: 5
-  m_Name: ScrollBuildButton
+  m_Name: ScrollBuildButton 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 6487955666674612187}
   - component: {fileID: 6487955666674612184}
   - component: {fileID: 6487955666674612185}
-  - component: {fileID: 6487955666674612134}
+  - component: {fileID: 6444290220581851228}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6487955666674612134}
+      - m_Target: {fileID: 6444290220581851228}
         m_TargetAssemblyTypeName: BuildScrollButton, Assembly-CSharp
         m_MethodName: ChangeRoomToBuild
         m_Mode: 1
@@ -325,7 +325,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6487955666674612134
+--- !u!114 &6444290220581851228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

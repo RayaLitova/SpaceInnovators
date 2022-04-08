@@ -27,13 +27,33 @@ public class BuildRegulator : MonoBehaviour
     [SerializeField] public List<GameObject> unlockedRooms;
     [SerializeField] private List<string> BuiltRooms;
     [SerializeField] public List<string> unlockedPlanets;
+    public Dictionary<string,Sprite> planetIcons = new Dictionary<string,Sprite>();
     public Dictionary<string,int> onBoardCount = new Dictionary<string,int>();
+    public Dictionary<string,List<string>> ProfessionsForPlanet = new Dictionary<string,List<string>>();
   
     public int GetCenter(){
         return center;
     }
     public int GetGridSize(){
         return gridSize;
+    }
+
+    public void UnclockPlanet(string PlanetName, List<string> AdditionaProfesions){
+        unlockedPlanets.Add(PlanetName);
+        onBoardCount.Add(PlanetName,0);
+        planetIcons.Add(PlanetName, Resources.Load<Sprite>(PlanetName+"Icon"));
+        ProfessionsForPlanet.Add(PlanetName, new List<string>());
+        ProfessionsForPlanet[PlanetName].Add("Oxygen Manager");
+        ProfessionsForPlanet[PlanetName].Add("Navigator");
+        ProfessionsForPlanet[PlanetName].Add("Researcher");
+        ProfessionsForPlanet[PlanetName].Add("Water Manager");
+        ProfessionsForPlanet[PlanetName].Add("Botanist");
+        ProfessionsForPlanet[PlanetName].Add("Mechanic");
+        if(AdditionaProfesions!=null){
+            foreach(string prof in AdditionaProfesions){
+                ProfessionsForPlanet[PlanetName].Add(prof);
+            }
+        }
     }
 
     public void addCrewMate( string Planet, string Profession){
@@ -109,21 +129,22 @@ public class BuildRegulator : MonoBehaviour
     }
 
     void Start()
-    {
-        onBoardCount.Add("Earth",0);
+    {   
+        
+        
+        UnclockPlanet("Earth", null);
+        List<string> Floaromaspecific  = new List<string>();
+        Floaromaspecific.Add("nqkva profesiq deto shte e samo za tam");
+        UnclockPlanet("Floaroma", Floaromaspecific);
         buildRoom(center,center,unlockedRooms[0]);
 
-        //newX -= 1 ;
-        //newY = 5;
         buildRoom(center-1,center,unlockedRooms[1]);
 
-        //newX += 1;
-        //newY += 1;
         buildRoom(center,center+1,unlockedRooms[2]);
 
-        addCrewMate("Earth","Oxygen Manager");
-        addCrewMate("Earth","Navigator");
-        addCrewMate("Earth","Researcher");
+        //addCrewMate("Earth","Oxygen Manager");
+        //addCrewMate("Earth","Navigator");
+        //addCrewMate("Earth","Researcher");
      
     }
 

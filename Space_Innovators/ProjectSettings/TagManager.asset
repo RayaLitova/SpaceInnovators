@@ -20,6 +20,10 @@ TagManager:
   - Lab
   - Used:Lab
   - Upgrading
+  - Vertical Farm
+  - Used:Vertical Farm
+  - Water Station
+  - Used:Water Station
   layers:
   - Default
   - TransparentFX
