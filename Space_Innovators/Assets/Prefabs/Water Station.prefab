@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6952251459972626025}
   - component: {fileID: 8682460933640204198}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bottle (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3532513507614645397}
   - component: {fileID: 6255450555448187119}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bottle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6982503796601903881}
   - component: {fileID: 3414870624621349616}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bottle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3898097725590940712}
   - component: {fileID: 3966986314749795268}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pc_arcade (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3050934517314444325}
   - component: {fileID: 5421034657090908677}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +493,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4634744498624713582}
   - component: {fileID: 1810525505073878256}
-  m_Layer: 0
+  - component: {fileID: 8553983753058752432}
+  m_Layer: 8
   m_Name: bottle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,6 +566,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &8553983753058752432
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143943474606175587}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5457311, y: 0.39401853, z: 0.19999999}
+  m_Center: {x: -0.065742254, y: -0.030342616, z: 0}
 --- !u!1 &5214731307624701158
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,7 +589,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3516461687933825430}
   - component: {fileID: 1506097390709601998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bottle (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,9 +671,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1036505737595003438}
   - component: {fileID: 2951961498513506289}
+  - component: {fileID: 5215018174701791202}
   m_Layer: 8
   m_Name: WaterStation
-  m_TagString: Station
+  m_TagString: Water Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -729,6 +744,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &5215018174701791202
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5493737700527607631}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7708334, y: 0.9375, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5801754878366985146
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +767,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2286860437072988207}
   - component: {fileID: 5559544482535908261}
-  m_Layer: 0
+  - component: {fileID: 4912508056719850051}
+  m_Layer: 8
   m_Name: pc_arcade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,6 +840,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &4912508056719850051
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5801754878366985146}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.108715, y: 0.8333329, z: 0.20000003}
+  m_Center: {x: 0.34602425, y: 0, z: 0}
 --- !u!1 &6472425487011913056
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +862,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5387615678185175799}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: furniture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -862,7 +904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8745623456601451951}
   - component: {fileID: 3288864627025671585}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bottle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -944,7 +986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2412339758790167554}
   - component: {fileID: 8449743646106480510}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bottle (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1026,7 +1068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6663054320733196797}
   - component: {fileID: 2268922866705791608}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pc_arcade (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

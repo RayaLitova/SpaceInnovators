@@ -23,11 +23,13 @@ public class BuildRegulator : MonoBehaviour
     public float offset = 7.75f;
     Transform MainRoom;
     [SerializeField] GameObject Crewmate;
-    [SerializeField] public string[] Tags;
+    //[SerializeField] public string[] Tags;
     [SerializeField] public List<GameObject> unlockedRooms;
     [SerializeField] private List<string> BuiltRooms;
     [SerializeField] public List<string> unlockedPlanets;
-    public int[] onBoardCount = new int[10];
+    public Dictionary<string,Sprite> planetIcons = new Dictionary<string,Sprite>();
+    public Dictionary<string,int> onBoardCount = new Dictionary<string,int>();
+    public Dictionary<string,List<string>> ProfessionsForPlanet = new Dictionary<string,List<string>>();
   
     public int GetCenter(){
         return center;
@@ -36,15 +38,35 @@ public class BuildRegulator : MonoBehaviour
         return gridSize;
     }
 
-    public void addCrewMate(int crewIndex, int targetIndex){
+    public void UnclockPlanet(string PlanetName, List<string> AdditionaProfesions){
+        unlockedPlanets.Add(PlanetName);
+        onBoardCount.Add(PlanetName,0);
+        planetIcons.Add(PlanetName, Resources.Load<Sprite>(PlanetName+"Icon"));
+        ProfessionsForPlanet.Add(PlanetName, new List<string>());
+        ProfessionsForPlanet[PlanetName].Add("Oxygen Manager");
+        ProfessionsForPlanet[PlanetName].Add("Navigator");
+        ProfessionsForPlanet[PlanetName].Add("Researcher");
+        ProfessionsForPlanet[PlanetName].Add("Water Manager");
+        ProfessionsForPlanet[PlanetName].Add("Botanist");
+        ProfessionsForPlanet[PlanetName].Add("Mechanic");
+        if(AdditionaProfesions!=null){
+            foreach(string prof in AdditionaProfesions){
+                ProfessionsForPlanet[PlanetName].Add(prof);
+            }
+        }
+    }
+
+    public void addCrewMate( string Planet, string Profession){
         Vector3 objectPOS = Vector3.zero;
         GameObject newGameObject = Instantiate(Crewmate, objectPOS, Quaternion.identity);
-        newGameObject.tag = Tags[crewIndex];
-        newGameObject.GetComponent<NpcAi>().target = GameObject.FindGameObjectsWithTag("Station")[targetIndex].transform	;
-        GameObject.FindGameObjectsWithTag("Station")[targetIndex].transform.tag = "UsedStation";
+        //newGameObject.tag = Planet+"-"+Profession;
+        newGameObject.GetComponent<NPCStats>().Planet = Planet;
+        newGameObject.GetComponent<NPCStats>().Profession = Profession;
+        newGameObject.GetComponent<NpcAi>().actualTarget = null;
+        //GameObject.FindGameObjectsWithTag("Station")[targetIndex].transform.tag = "UsedStation";
         newGameObject.transform.GetComponent<NpcAi>().bed = GameObject.FindGameObjectsWithTag("Bed")[0].transform;
         GameObject.FindGameObjectsWithTag("Bed")[0].transform.tag = "UsedBed";
-        onBoardCount[crewIndex]++;
+        onBoardCount[Planet]++;
     }
 
     public void buildRoom(int newX, int newY, GameObject room){
@@ -107,19 +129,22 @@ public class BuildRegulator : MonoBehaviour
     }
 
     void Start()
-    {
+    {   
+        
+        
+        UnclockPlanet("Earth", null);
+        List<string> Floaromaspecific  = new List<string>();
+        Floaromaspecific.Add("nqkva profesiq deto shte e samo za tam");
+        UnclockPlanet("Floaroma", Floaromaspecific);
         buildRoom(center,center,unlockedRooms[0]);
 
-        //newX -= 1 ;
-        //newY = 5;
         buildRoom(center-1,center,unlockedRooms[1]);
 
-        //newX += 1;
-        //newY += 1;
         buildRoom(center,center+1,unlockedRooms[2]);
 
-        //addCrewMate(0,0);
-        //addCrewMate(0,0);
+        //addCrewMate("Earth","Oxygen Manager");
+        //addCrewMate("Earth","Navigator");
+        //addCrewMate("Earth","Researcher");
      
     }
 

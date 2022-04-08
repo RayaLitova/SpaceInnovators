@@ -6,14 +6,14 @@ public class UpdateAddCrewOptions : MonoBehaviour
 {
     [SerializeField] BuildRegulator BR;
     [SerializeField] TMPro.TMP_Dropdown DropDown;
+    [SerializeField] ChangePlanetIcon CrewButton;
 
-    public void UpdateOptions(){
-        DropDown.ClearOptions();
-        List<string> options = new List<string>();
-        foreach(string go in BR.unlockedPlanets){
-           options.Add(go);
-        }
-        DropDown.AddOptions(options);
-        DropDown.RefreshShownValue();
+    void OnEnable(){
+        DropDown.value = 0;
+        CrewButton.Profession = "";
+    }
+
+    public void ChangeProfession(){
+       CrewButton.Profession = BR.ProfessionsForPlanet[CrewButton.Planet][DropDown.value-1];
     }
 }

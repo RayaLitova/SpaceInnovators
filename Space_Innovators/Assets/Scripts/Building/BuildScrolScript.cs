@@ -18,11 +18,6 @@ public class BuildScrolScript : MonoBehaviour
         item.transform.Find("Button").gameObject.GetComponent<Image>().sprite = room.GetComponent<RoomStatics>().GetIcon();
         item.transform.Find("Button").gameObject.GetComponent<BuildScrollButton>().room = room;
         item.transform.Find("Button").gameObject.GetComponent<BuildScrollButton>().buildbutton = GameObject.Find("BuildButton").gameObject.GetComponent<ChangeBuidingIcon>();
-        //SetValue(item,resources.resources[resourceName]);
-        //SetMaxValue(item,resources.resourcesMax[resourceName]);
-        //item.transform.Find("Name").gameObject.GetComponent<Text>().text = resourceName;
-        //item.transform.Find("Content").Find("icon").gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(resources.icons[resourceName]);
-       // Bars.Add(item, resourceName);
     }
 
     // Update is called once per frame
@@ -31,8 +26,9 @@ public class BuildScrolScript : MonoBehaviour
             Destroy(child.gameObject);
         }
         foreach(GameObject room in BL.unlockedRooms){
+            print("muuuuuuuuuuuuuuuuuuuuuuuuuuuu");
             GenerateItem(room);
-            //print("muuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+            
         }
         ScrollView.horizontalNormalizedPosition = 1;
         
