@@ -44,8 +44,6 @@ public class Meteorite : MonoBehaviour
         isMeteoriteActive = false;
         for(int i=0; i <= random.Next(4);i++){
             res.AddRandomResource(2,3,gatheredMenu.transform.Find("Text (" + i + ")").gameObject.GetComponent<Text>());
-            //Debug.Log(gatheredMenu.transform.Find("Text (" + i + ")").gameObject.GetComponent<Text>());
-
         }
         gatheredMenuActive = true;
     }
