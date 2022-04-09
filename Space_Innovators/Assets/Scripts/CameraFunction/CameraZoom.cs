@@ -11,7 +11,7 @@ public class CameraZoom : MonoBehaviour
 
     void OnGUI(){
         Event e = Event.current;
-        if (e.isMouse)
+        if (e.isMouse && GameObject.Find("marioIdle").GetComponent<CameraMovement>().isCameraEnabled)
         {
             if(e.clickCount == 2){
                 targetZoom = 4.5f;
@@ -27,12 +27,13 @@ public class CameraZoom : MonoBehaviour
     }
 
     void Update(){
-        float scrollData;
-        scrollData = Input.GetAxis("Mouse ScrollWheel");
+        if(GameObject.Find("marioIdle").GetComponent<CameraMovement>().isCameraEnabled){
+            float scrollData;
+            scrollData = Input.GetAxis("Mouse ScrollWheel");
 
-        targetZoom -= scrollData * zoomFactor;
-        targetZoom = Mathf.Clamp(targetZoom, 4.5f, 20f);
-        Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, targetZoom, Time.deltaTime * zoomSpeed);
-
+            targetZoom -= scrollData * zoomFactor;
+            targetZoom = Mathf.Clamp(targetZoom, 4.5f, 20f);
+            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, targetZoom, Time.deltaTime * zoomSpeed);
+        }
     }
 }
