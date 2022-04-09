@@ -72,6 +72,9 @@ public class ResourcesClass : MonoBehaviour
             return false;
         }
         resources[name] -= quantity;
+        if(resources[name]>resourcesMax[name]){
+            resources[name]=resourcesMax[name];
+        }
         Debug.Log(name+": "+resources[name]);
         return true;
     }

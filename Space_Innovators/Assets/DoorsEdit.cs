@@ -18,4 +18,11 @@ public class DoorsEdit : MonoBehaviour
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
         gameObject.layer = 7; //Walls
     }
+
+    public bool isClosed(){
+        if(gameObject.GetComponent<SpriteRenderer>().sprite == closed){
+            return true;
+        }
+        return false;
+    }
 }

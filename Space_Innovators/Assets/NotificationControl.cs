@@ -25,13 +25,14 @@ public class NotificationControl : MonoBehaviour
         n.transform.GetChild(2).GetComponent<Text>().text = text;
 
         Color c = n.transform.GetChild(0).GetComponent<Image>().color;
-        c.a = 1;
+        c.a = 1f;
 
         Color c1 = n.transform.GetChild(1).GetComponent<Text>().color;
-        c1.a = 1;
+        c1.a = 1f;
         n.transform.GetChild(0).GetComponent<Image>().color = c;
         n.transform.GetChild(1).GetComponent<Text>().color = c1;
         n.transform.GetChild(2).GetComponent<Text>().color = c1;
+        n.GetComponent<NotificationHide>().change(n.transform.GetChild(2).GetComponent<Text>().color.a);
 
         notificationNumber++;
         if(notificationNumber==4){

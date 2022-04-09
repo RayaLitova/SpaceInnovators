@@ -11,6 +11,8 @@ public class RoomStatics : MonoBehaviour
 
     public int produce_at;
     public int roomLevel;
+    public int condition = 100;
+
     public string[] planets;
     public string[] rooms;
 

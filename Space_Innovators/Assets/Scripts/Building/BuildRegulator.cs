@@ -79,27 +79,35 @@ public class BuildRegulator : MonoBehaviour
 
         rooms[newX,newY] = newGameObject;
         if(newX!=gridSize-1){
-            if(rooms[newX+1,newY] != null){
-                newGameObject.transform.Find("SmallRoom").transform.Find("DoorRight").GetComponent<DoorsEdit>().OpenDoor();
-                rooms[newX+1,newY].transform.Find("SmallRoom").transform.Find("DoorLeft").GetComponent<DoorsEdit>().OpenDoor();
+            if(rooms[newX+1,newY] != null){ //right
+                GameObject door1 = newGameObject.transform.Find("SmallRoom").transform.Find("DoorRight").gameObject;
+                GameObject door2 = rooms[newX+1,newY].transform.Find("SmallRoom").transform.Find("DoorLeft").gameObject;
+                rooms[newX+1,newY].transform.Find("SmallRoom").transform.Find("Canvas").transform.Find("HorizontalDoorsButton").GetComponent<DoorButton>().SetDoors(door2, door1);
+                rooms[newX+1,newY].transform.Find("SmallRoom").transform.Find("Canvas").transform.Find("HorizontalDoorsButton").GetComponent<DoorButton>().OpenDoors();
             }
         }
         if(newX!=0){
-            if(rooms[newX-1,newY] != null){
-                newGameObject.transform.Find("SmallRoom").transform.Find("DoorLeft").GetComponent<DoorsEdit>().OpenDoor();
-                rooms[newX-1,newY].transform.Find("SmallRoom").transform.Find("DoorRight").GetComponent<DoorsEdit>().OpenDoor();
+            if(rooms[newX-1,newY] != null){//left
+                GameObject door1 = newGameObject.transform.Find("SmallRoom").transform.Find("DoorLeft").gameObject;
+                GameObject door2 = rooms[newX-1,newY].transform.Find("SmallRoom").transform.Find("DoorRight").gameObject;
+                newGameObject.transform.Find("SmallRoom").transform.Find("Canvas").transform.Find("HorizontalDoorsButton").GetComponent<DoorButton>().SetDoors(door1, door2);
+                newGameObject.transform.Find("SmallRoom").transform.Find("Canvas").transform.Find("HorizontalDoorsButton").GetComponent<DoorButton>().OpenDoors();
             }
         }
         if(newY!=gridSize-1){
-            if(rooms[newX,newY+1] != null){
-                newGameObject.transform.Find("SmallRoom").transform.Find("DoorUp").GetComponent<DoorsEdit>().OpenDoor();
-                rooms[newX,newY+1].transform.Find("SmallRoom").transform.Find("DoorDown").GetComponent<DoorsEdit>().OpenDoor();
+            if(rooms[newX,newY+1] != null){//up
+                GameObject door1 = newGameObject.transform.Find("SmallRoom").transform.Find("DoorUp").gameObject;
+                GameObject door2 = rooms[newX,newY+1].transform.Find("SmallRoom").transform.Find("DoorDown").gameObject;
+                newGameObject.transform.Find("SmallRoom").transform.Find("Canvas").transform.Find("VerticalDoorsButton").GetComponent<DoorButton>().SetDoors(door1, door2);
+                newGameObject.transform.Find("SmallRoom").transform.Find("Canvas").transform.Find("VerticalDoorsButton").GetComponent<DoorButton>().OpenDoors();
             }
         }
         if(newY!=0){
-            if(rooms[newX,newY-1] != null){
-                newGameObject.transform.Find("SmallRoom").transform.Find("DoorDown").GetComponent<DoorsEdit>().OpenDoor();
-                rooms[newX,newY-1].transform.Find("SmallRoom").transform.Find("DoorUp").GetComponent<DoorsEdit>().OpenDoor();
+            if(rooms[newX,newY-1] != null){//down
+                GameObject door1 = newGameObject.transform.Find("SmallRoom").transform.Find("DoorDown").gameObject;
+                GameObject door2 = rooms[newX,newY-1].transform.Find("SmallRoom").transform.Find("DoorUp").gameObject;
+                rooms[newX,newY-1].transform.Find("SmallRoom").transform.Find("Canvas").transform.Find("VerticalDoorsButton").GetComponent<DoorButton>().SetDoors(door2, door1);
+                rooms[newX,newY-1].transform.Find("SmallRoom").transform.Find("Canvas").transform.Find("VerticalDoorsButton").GetComponent<DoorButton>().OpenDoors();
             }
         }
 
