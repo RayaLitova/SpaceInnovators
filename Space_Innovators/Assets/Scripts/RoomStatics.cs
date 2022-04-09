@@ -53,7 +53,6 @@ public class RoomStatics : MonoBehaviour
 
     public void Produce(){
         work++;
-        Debug.Log(gameObject.name);
         if(work>=produce_at * (1/roomLevel)){
             if(gameObject.name == "Lab"){
                 GameObject room = gameObject.GetComponent<LabProduce>().UnlockRoom();
