@@ -19,16 +19,16 @@ public class NotificationControl : MonoBehaviour
         if(isAwaiting){
             awaiting.Remove(awaiting.ElementAt(0).Key);
         }
-        GameObject n = GameObject.Find("NotificationsCanvas").transform.GetChild(notificationNumber).gameObject;
+        GameObject n = GameObject.Find("Notifications").transform.GetChild(notificationNumber).gameObject;
         n.SetActive(true);
         n.transform.GetChild(1).GetComponent<Text>().text = title;
         n.transform.GetChild(2).GetComponent<Text>().text = text;
 
         Color c = n.transform.GetChild(0).GetComponent<Image>().color;
-        c.a = 255f;
+        c.a = 1;
 
         Color c1 = n.transform.GetChild(1).GetComponent<Text>().color;
-        c1.a = 255f;
+        c1.a = 1;
         n.transform.GetChild(0).GetComponent<Image>().color = c;
         n.transform.GetChild(1).GetComponent<Text>().color = c1;
         n.transform.GetChild(2).GetComponent<Text>().color = c1;
@@ -42,6 +42,7 @@ public class NotificationControl : MonoBehaviour
     }
 
     public void Move(int num){
+        float res = 0f;
         if(isFull) isFull=false;
         int i=num;
         for(;i<3;i++){
@@ -54,6 +55,7 @@ public class NotificationControl : MonoBehaviour
             n.transform.GetChild(0).GetComponent<Image>().color = nn.transform.GetChild(0).GetComponent<Image>().color;
             n.transform.GetChild(1).GetComponent<Text>().color = nn.transform.GetChild(1).GetComponent<Text>().color;
             n.transform.GetChild(2).GetComponent<Text>().color = nn.transform.GetChild(2).GetComponent<Text>().color;
+            n.GetComponent<NotificationHide>().change(n.transform.GetChild(2).GetComponent<Text>().color.a);
         }
         notificationNumber--;
         if(notificationNumber<0) notificationNumber = 3;
