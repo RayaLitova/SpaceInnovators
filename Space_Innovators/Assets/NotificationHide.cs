@@ -31,6 +31,7 @@ public class NotificationHide : MonoBehaviour
         transform.GetChild(2).gameObject.GetComponent<Text>().color = c2;
         if(c1.a <= 0f){
             GameObject.Find("marioIdle").GetComponent<NotificationControl>().Move(0);
+            speed = 0.0015f;
         }else if(c1.a <= 0.4f){
             speed = 0.01f;
         }else{

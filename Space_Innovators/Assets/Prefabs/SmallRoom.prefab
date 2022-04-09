@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 7299576376629626813}
   - component: {fileID: 9114480006250453797}
   - component: {fileID: 9191984600967305530}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: DoorLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d617808aebc95b04ca0fb8cfa6f489de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  open: {fileID: 0}
+  open: {fileID: 21300000, guid: 5ce899cf15d4ef34aae38b4baaaf9bd8, type: 3}
   closed: {fileID: 5609806907330507056, guid: f991ecd814caf1d4c9a6cb7a2be0d455, type: 3}
 --- !u!1 &1405839035471252600
 GameObject:
@@ -1498,7 +1498,7 @@ GameObject:
   - component: {fileID: 5019017366617508023}
   - component: {fileID: 2839506983361401993}
   - component: {fileID: 6915281759527653369}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: DoorUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1622,7 +1622,7 @@ GameObject:
   - component: {fileID: 5081546781283472099}
   - component: {fileID: 6017665958841697256}
   - component: {fileID: 673829591450094466}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: DoorRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1732,7 +1732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d617808aebc95b04ca0fb8cfa6f489de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  open: {fileID: 0}
+  open: {fileID: 21300000, guid: 5ce899cf15d4ef34aae38b4baaaf9bd8, type: 3}
   closed: {fileID: 6539192745911305050, guid: f991ecd814caf1d4c9a6cb7a2be0d455, type: 3}
 --- !u!1 &7402431070237050137
 GameObject:
@@ -1746,7 +1746,7 @@ GameObject:
   - component: {fileID: 8006530634657471046}
   - component: {fileID: 8149342747628507414}
   - component: {fileID: 9083664997954155985}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: DoorDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
