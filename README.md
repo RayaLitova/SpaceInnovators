@@ -8,19 +8,14 @@
 
 ## Как да се изтегли играта:
 
-
-
 ### Инструкции за сваляне
 
-1) 
-2)
-3)
+1) Директорията може да бъде свалена директно като .zip (https://github.com/RayaLitova/SpaceInnovators/blob/main/SpaceInnovators.zip -> Download) или чрез "git clone https://github.com/RayaLitova/SpaceInnovators.git"
+2) Ако е свалена като .zip, директорията трябва да бъде разархивирана (може да се изпълни с помощта на помощна програма като 7zip (https://www.7-zip.org/download.html))
 
 ### Инструкции за стартиране
 
-1)
-2)
-3)
+1) След като директорията е свалена и разархивирана играта се стартира чрез файла "Space Innovators.exe"
 
 ## Използвани технологии:
 
