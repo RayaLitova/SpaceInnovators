@@ -10,6 +10,7 @@ public class RoomStatics : MonoBehaviour
     public int[] resourcesQuanity;
 
     public int produce_at;
+    public int upgrade_at;
     public int roomLevel = 1;
     public int condition = 100;
 
@@ -22,8 +23,13 @@ public class RoomStatics : MonoBehaviour
     private GameObject mario;
     private int work = 0;
 
+    private string tag;
+   
+    [SerializeField] public UpgradesGameObject UpgradesObject;
+
     void Start(){
         mario = GameObject.Find("marioIdle");
+
     }
 
     public bool CheckRequirements(){
@@ -54,8 +60,10 @@ public class RoomStatics : MonoBehaviour
     }
 
     public void Produce(){
+        if(gameObject.tag!= "Upgrading" || gameObject.tag!="Closed") tag = gameObject.tag;
+
         work++;
-        if(work>=produce_at * (1/roomLevel)){
+        if(work>=produce_at * (1/roomLevel) && gameObject.tag!="Upgrading"){
             if(gameObject.name == "Lab"){
                 GameObject room = gameObject.GetComponent<LabProduce>().UnlockRoom();
                 if(room!=null){
@@ -70,6 +78,9 @@ public class RoomStatics : MonoBehaviour
                 }
             }
             work=0;
+        }else if(work>=upgrade_at && gameObject.tag=="Upgrading"){
+            gameObject.tag = tag;
+            //apply upgrade
         }
     }
 

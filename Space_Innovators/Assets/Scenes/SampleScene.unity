@@ -792,6 +792,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 69163762}
+  - component: {fileID: 69163763}
   m_Layer: 0
   m_Name: StationMenu
   m_TagString: Untagged
@@ -814,6 +815,19 @@ Transform:
   m_Father: {fileID: 504181631}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &69163763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69163761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2eb22f32d691a428a4ae5e5dbee759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 229859505}
 --- !u!1 &78166929
 GameObject:
   m_ObjectHideFlags: 0
@@ -2160,7 +2174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &229859506
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12362,6 +12376,7 @@ GameObject:
   - component: {fileID: 1311464140}
   - component: {fileID: 1311464139}
   - component: {fileID: 1311464142}
+  - component: {fileID: 1311464143}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -12431,7 +12446,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1311464140}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1311464143}
+        m_TargetAssemblyTypeName: EnableCameraMovement, Assembly-CSharp
+        m_MethodName: OnClose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1311464140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12483,6 +12510,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
+--- !u!114 &1311464143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311464137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2eb22f32d691a428a4ae5e5dbee759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 229859505}
 --- !u!1 &1319223911
 GameObject:
   m_ObjectHideFlags: 0
@@ -14358,8 +14398,8 @@ GameObject:
   - component: {fileID: 1463581233}
   - component: {fileID: 1463581232}
   - component: {fileID: 1463581235}
-  - component: {fileID: 1463581237}
   - component: {fileID: 1463581236}
+  - component: {fileID: 1463581237}
   m_Layer: 5
   m_Name: CoosePlaceButton
   m_TagString: Untagged
@@ -14443,9 +14483,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuOpener, Assembly-CSharp
-        m_MethodName: Open
+      - m_Target: {fileID: 1463581237}
+        m_TargetAssemblyTypeName: EnableCameraMovement, Assembly-CSharp
+        m_MethodName: OnClose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14528,42 +14568,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1463581230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Script: {fileID: 11500000, guid: bd2eb22f32d691a428a4ae5e5dbee759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1463581236}
-          m_TargetAssemblyTypeName: DisableCameraMovement, Assembly-CSharp
-          m_MethodName: disable
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1463581236}
-          m_TargetAssemblyTypeName: DisableCameraMovement, Assembly-CSharp
-          m_MethodName: enable
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  menu: {fileID: 1321680000}
 --- !u!1 &1465497750
 GameObject:
   m_ObjectHideFlags: 0
@@ -19144,6 +19152,7 @@ GameObject:
   - component: {fileID: 1999913936}
   - component: {fileID: 1999913941}
   - component: {fileID: 1999913942}
+  - component: {fileID: 1999913940}
   m_Layer: 5
   m_Name: BuildButton
   m_TagString: UIButton
@@ -19303,6 +19312,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999913934}
   m_CullTransparentMesh: 1
+--- !u!114 &1999913940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999913934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2eb22f32d691a428a4ae5e5dbee759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 1321680000}
 --- !u!114 &1999913941
 MonoBehaviour:
   m_ObjectHideFlags: 0
