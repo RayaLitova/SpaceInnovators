@@ -231,6 +231,7 @@ MonoBehaviour:
   resourcesQuanity: 050000000400000008000000
   produce_at: 150
   roomLevel: 1
+  condition: 100
   planets: []
   rooms:
   - O2
@@ -672,6 +673,7 @@ GameObject:
   - component: {fileID: 1036505737595003438}
   - component: {fileID: 2951961498513506289}
   - component: {fileID: 5215018174701791202}
+  - component: {fileID: 1807299264388392248}
   m_Layer: 8
   m_Name: WaterStation
   m_TagString: Water Station
@@ -757,6 +759,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7708334, y: 0.9375, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1807299264388392248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5493737700527607631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dcdb331ee6ffdf4a88aaaf40dabf844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5801754878366985146
 GameObject:
   m_ObjectHideFlags: 0

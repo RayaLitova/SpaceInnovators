@@ -45,6 +45,12 @@ public class NpcAi : MonoBehaviour
     bool sleeping = false;
     bool wanderingForUpgrade = false;
     bool wanderingForWork = false;
+    bool isPanicked = false;
+
+    public GameObject currentRoom;
+
+    int currentPanicWaypoint = 0;
+
     Transform currentTarget;
     
     [SerializeField]public Transform bed;
@@ -90,10 +96,18 @@ public class NpcAi : MonoBehaviour
         mario.onBoardCount[transform.tag.Split('-')[0]]--;
     }
 
+    GameObject GetPanicWaypoint(){
+        foreach(GameObject i in GameObject.FindGameObjectsWithTag("Panic")){
+            Debug.Log(i.name);
+            if(i.name == "Panic(" + currentPanicWaypoint + ")" && i.transform.parent.parent.gameObject == currentRoom){
+                return i;
+            }
+        }
+        return null;
+    }
+
     void FixedUpdate()
     {
-       
-        
         o2_timer += Time.deltaTime;
         h2o_timer += Time.deltaTime;
         food_timer += Time.deltaTime;
@@ -122,19 +136,36 @@ public class NpcAi : MonoBehaviour
                 wanderingForWork=false;
             }
         }else if(wanderingForUpgrade){
-            if(actualTarget.tag != "Upgrading"){
+            if(actualTarget.tag != "Upgrading" || actualTarget.tag != "Closed"){
                 currentTarget=actualTarget;
                 wanderingForUpgrade = false;
             }
         }else if(actualTarget.tag ==  "Upgrading"){
             wanderingForUpgrade = true;
+        }else if(actualTarget.tag == "Closed"){
+            wanderingForUpgrade = true;
         }
+            
+        if(currentRoom.tag == "Closed"){
+            wanderingForUpgrade = false;
+            isPanicked = true;
+        }else{
+            isPanicked = false;
+        }
+
+
         if(currentWaipoint >= path.vectorPath.Count){
             reachedEndofPath = true;
             if(wanderingForUpgrade || wanderingForWork){
                 sleeping = false;
                 speed = 0.02f;           
                 RedirectCourse(GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform);
+            }else if(isPanicked){  
+                sleeping = false;
+                speed = 0.08f;
+                RedirectCourse(GetPanicWaypoint().transform);
+                currentPanicWaypoint++;   
+                if(currentPanicWaypoint == 3) currentPanicWaypoint = 0;
             }else{
                 speed =0.04f;
                 if(!sleeping){

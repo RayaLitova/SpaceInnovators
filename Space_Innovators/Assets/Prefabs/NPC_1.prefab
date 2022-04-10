@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 5522156344408280864}
   - component: {fileID: 1228658343968504629}
   - component: {fileID: 6299238692564547829}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: 'CrewButton '
   m_TagString: UIButton
   m_Icon: {fileID: 0}
@@ -1439,7 +1439,7 @@ GameObject:
   - component: {fileID: 4590142236565860774}
   m_Layer: 0
   m_Name: NPC_1
-  m_TagString: Untagged
+  m_TagString: Minion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1524,6 +1524,7 @@ MonoBehaviour:
   actualTarget: {fileID: 0}
   nextWaipointDistance: 1
   NPCGFX: {fileID: 7256881257276642170}
+  currentRoom: {fileID: 0}
   bed: {fileID: 0}
 --- !u!114 &3713876302766098301
 MonoBehaviour:

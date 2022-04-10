@@ -24,6 +24,9 @@ TagManager:
   - Used:Vertical Farm
   - Water Station
   - Used:Water Station
+  - Closed
+  - Panic
+  - Minion
   layers:
   - Default
   - TransparentFX

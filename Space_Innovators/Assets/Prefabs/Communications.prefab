@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 4219707156724799865}
   - component: {fileID: 4219707156724799866}
   - component: {fileID: 4454610163601370920}
+  - component: {fileID: 3362950929109543513}
   m_Layer: 8
   m_Name: Communication Station
   m_TagString: Communications
@@ -409,6 +410,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5742476, y: 1.690552}
   m_EdgeRadius: 0
+--- !u!114 &3362950929109543513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4219707156724799867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dcdb331ee6ffdf4a88aaaf40dabf844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4219707157199631179
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,6 +516,7 @@ GameObject:
   - component: {fileID: 6198123156612010100}
   - component: {fileID: 5206982914904882380}
   - component: {fileID: 4626712529546828820}
+  - component: {fileID: 7454419816605346767}
   m_Layer: 0
   m_Name: Communications
   m_TagString: Untagged
@@ -557,11 +571,14 @@ MonoBehaviour:
   - Colored metal
   resourcesQuanity: 0500000004000000
   produce_at: 150
+  upgrade_at: 0
   roomLevel: 1
+  condition: 100
   planets: []
   rooms: []
   producedResources: []
   producedResourcesQuantity: 
+  UpgradesObject: {fileID: 7454419816605346767}
 --- !u!114 &4626712529546828820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,6 +591,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b019f19b3d23ba84db5463badd3d0135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7454419816605346767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198123156612010091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca92a69f8ae059c448c2fdb16b6de9ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrades:
+  - roomName: 
+    description: 
+    requiredLevel: 0
+    upgrade_at: 0
+    isAvailable: 0
+    levelToNext: 0
 --- !u!1001 &7727348401808084588
 PrefabInstance:
   m_ObjectHideFlags: 0
