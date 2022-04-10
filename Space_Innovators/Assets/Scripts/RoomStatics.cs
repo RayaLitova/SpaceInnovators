@@ -10,7 +10,7 @@ public class RoomStatics : MonoBehaviour
     public int[] resourcesQuanity;
 
     public int produce_at;
-    public int roomLevel;
+    public int roomLevel = 1;
     public int condition = 100;
 
     public string[] planets;

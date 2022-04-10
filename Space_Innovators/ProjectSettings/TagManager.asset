@@ -26,6 +26,7 @@ TagManager:
   - Used:Water Station
   - Closed
   - Panic
+  - Minion
   layers:
   - Default
   - TransparentFX

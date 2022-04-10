@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 1742859150175527083}
   - component: {fileID: 9189558817845862274}
   - component: {fileID: 6663741676417364851}
+  - component: {fileID: 2813874542405508027}
   m_Layer: 8
   m_Name: O2 Sation
   m_TagString: O2
@@ -192,6 +193,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.25, y: 0.7259476}
   m_EdgeRadius: 0
+--- !u!114 &2813874542405508027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2331910188245920189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dcdb331ee6ffdf4a88aaaf40dabf844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2440028700631533696
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +288,7 @@ MonoBehaviour:
   resourcesQuanity: 050000000100000004000000
   produce_at: 150
   roomLevel: 1
+  condition: 100
   planets: []
   rooms: []
   producedResources:

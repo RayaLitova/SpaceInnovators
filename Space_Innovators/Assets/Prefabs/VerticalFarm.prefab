@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 860298202902856482}
   - component: {fileID: 6195257165681067714}
   - component: {fileID: 4658757039201435611}
+  - component: {fileID: 7473430350002673933}
   m_Layer: 8
   m_Name: Vertical Farm Station
   m_TagString: Vertical Farm
@@ -480,6 +481,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.41666663, y: 0.83333325, z: 0.19999999}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7473430350002673933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2667259955875092564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dcdb331ee6ffdf4a88aaaf40dabf844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6123668694227931047
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,6 +693,7 @@ MonoBehaviour:
   resourcesQuanity: 05000000010000000400000002000000
   produce_at: 150
   roomLevel: 1
+  condition: 100
   planets: []
   rooms:
   - O2

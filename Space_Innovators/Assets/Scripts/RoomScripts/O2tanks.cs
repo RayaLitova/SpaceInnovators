@@ -4,27 +4,24 @@ using UnityEngine;
 
 public class O2tanks : MonoBehaviour
 {
-    private int o2Remaining = 189;
-    private int bottleNum = 189/10;
+    private int bottleNum;
     public int minionCount = 1;
 
     private float nextActionTime = 0f;
     private float period = 100f;
-    private bool Alive = true;
     
+    void Start(){
+        bottleNum = GameObject.Find("marioIdle").GetComponent<ResourcesClass>().resources["O2"]/10;
+        minionCount = GameObject.FindGameObjectsWithTag("Minion").Length;
+    }
+
     void Update()
     {
-        if (Time.time > nextActionTime && Alive){
-            nextActionTime += period/minionCount;
-            o2Remaining--;
-            if(o2Remaining/10 != bottleNum){
-                bottleNum = (o2Remaining/10);
-                GameObject.Destroy(transform.Find("o2tank (" + bottleNum + ")").gameObject);
-            }
-            if(o2Remaining==0){
-                Debug.Log("u dead lol"); //kill minions that require O2
-                Alive = false;
-            }
+        if(GameObject.Find("marioIdle").GetComponent<ResourcesClass>().resources["O2"]/10 != bottleNum){
+            bottleNum = (GameObject.Find("marioIdle").GetComponent<ResourcesClass>().resources["O2"]/10);
+            //for(int i=0;i<)
+            //gameObject.Find()
         }
+        
     }
 }
