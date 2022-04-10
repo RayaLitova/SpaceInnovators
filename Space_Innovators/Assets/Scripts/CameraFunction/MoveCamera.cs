@@ -8,6 +8,7 @@ public class MoveCamera : MonoBehaviour
     private Vector3 Origin;
     private Vector3 Difference;
     public static bool drag = false;
+    private Vector3 position = new Vector3();
 
     private void Update()
     {
@@ -24,6 +25,9 @@ public class MoveCamera : MonoBehaviour
             Camera.main.transform.position = Origin - Difference;
         }
 
-        
+        position.x = Mathf.Clamp(Camera.main.transform.position.x, -75 + Camera.main.orthographicSize, 75 - Camera.main.orthographicSize);
+        position.y = Mathf.Clamp(Camera.main.transform.position.y, -55 + Camera.main.orthographicSize, 55 - Camera.main.orthographicSize);
+        position.z = -10;
+        Camera.main.transform.position = position;
     }
 }
