@@ -5,6 +5,7 @@ using UnityEngine;
 public class MinionInRoom : MonoBehaviour
 {
     public void OnTriggerEnter2D(Collider2D c){
-        c.gameObject.GetComponent<NpcAi>().currentRoom = transform.parent.gameObject;
+        if(c.gameObject.tag == "Minion")
+            c.gameObject.GetComponent<NpcAi>().currentRoom = transform.parent.gameObject;
     }
 }

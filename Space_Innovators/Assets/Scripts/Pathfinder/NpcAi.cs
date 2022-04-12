@@ -39,6 +39,7 @@ public class NpcAi : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
     private Animator anim;
+    private Animator bedAnim;
     [SerializeField] Transform NPCGFX;
     GetWorkNeeded Working;
 
@@ -61,6 +62,7 @@ public class NpcAi : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         anim = NPCGFX.GetComponent<Animator>();
+        bedAnim = bed.GetComponent<Animator>();
 
         if(/**/actualTarget==null){
             wanderingForWork = true;
@@ -136,7 +138,7 @@ public class NpcAi : MonoBehaviour
                 wanderingForWork=false;
             }
         }else if(wanderingForUpgrade){
-            if(actualTarget.tag != "Upgrading" || actualTarget.tag != "Closed"){
+            if(actualTarget.tag != "Upgrading" && actualTarget.tag != "Closed"){
                 currentTarget=actualTarget;
                 wanderingForUpgrade = false;
             }
@@ -158,10 +160,14 @@ public class NpcAi : MonoBehaviour
             reachedEndofPath = true;
             if(wanderingForUpgrade || wanderingForWork){
                 sleeping = false;
+                anim.SetBool("Sleeping", false);
+                bedAnim.SetBool("Sleeping", false);
                 speed = 0.02f;           
                 RedirectCourse(GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform);
             }else if(isPanicked){  
                 sleeping = false;
+                anim.SetBool("Sleeping", false);
+                bedAnim.SetBool("Sleeping", false);
                 speed = 0.08f;
                 RedirectCourse(GetPanicWaypoint().transform);
                 currentPanicWaypoint++;   
@@ -172,7 +178,7 @@ public class NpcAi : MonoBehaviour
                     Stats.energy--;
                     currentTarget.parent.gameObject.GetComponent<RoomStatics>().Produce();
                 }else{
-                    bed.gameObject.GetComponent<Animator>().SetBool("Sleeping", true);
+                    bedAnim.SetBool("Sleeping", true);
                     anim.SetBool("Sleeping", true);
                     transform.position = bed.position;
                     Stats.energy++;
@@ -186,6 +192,7 @@ public class NpcAi : MonoBehaviour
 
         }else{
             reachedEndofPath = false;
+            bedAnim.SetBool("Sleeping", false);
             anim.SetBool("Sleeping", false);
         }
         if(Stats.energy <= 0.1*Stats.max_energy && sleeping == false ){

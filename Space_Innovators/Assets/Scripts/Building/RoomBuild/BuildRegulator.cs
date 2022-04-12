@@ -33,6 +33,7 @@ public class BuildRegulator : MonoBehaviour
     public Dictionary<string,List<string>> ProfessionsForPlanet = new Dictionary<string,List<string>>();
 
     private Dictionary<string, int> PlanetsNum = new Dictionary<string,int>();
+    private System.Random random = new System.Random();
   
     public int GetCenter(){
         return center;
@@ -62,10 +63,6 @@ public class BuildRegulator : MonoBehaviour
     public void addCrewMate( string Planet, string Profession){
         Vector3 objectPOS = Vector3.zero;
         GameObject newGameObject = Instantiate(Crewmate, objectPOS, Quaternion.identity);
-        //newGameObject.tag = Planet+"-"+Profession;
-        /*if(Planet == "Earth"){
-            newGameObject.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController  = earthController;
-        };//Floaroma*/
 
         newGameObject.GetComponent<NPCStats>().Planet = Planet;
         newGameObject.GetComponent<NPCStats>().Profession = Profession;
@@ -73,10 +70,16 @@ public class BuildRegulator : MonoBehaviour
         //GameObject.FindGameObjectsWithTag("Station")[targetIndex].transform.tag = "UsedStation";
         newGameObject.transform.GetComponent<NpcAi>().bed = GameObject.FindGameObjectsWithTag("Bed")[0].transform;
 
-        newGameObject.transform.GetComponent<NpcAi>().bed.GetComponent<Animator>().SetInteger("PlanetNum", PlanetsNum[Planet]); //add gender
-        if(Planet == "Earth"){
-            //newGameObject.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController  = earthController;
-        }
+        int gender = random.Next(100);
+        if(gender <= 49) gender = 0;
+        else if(gender <= 98) gender = 1;
+        else gender = 2;
+        newGameObject.transform.GetComponent<NpcAi>().bed.GetComponent<Animator>().SetFloat("PlanetNum", PlanetsNum[Planet]);
+        newGameObject.transform.GetComponent<NpcAi>().bed.GetComponent<Animator>().SetFloat("Gender", gender);
+
+        newGameObject.transform.GetChild(0).GetComponent<Animator>().SetFloat("PlanetNum", PlanetsNum[Planet]);
+        newGameObject.transform.GetChild(0).GetComponent<Animator>().SetFloat("Gender", gender);
+
         GameObject.FindGameObjectsWithTag("Bed")[0].transform.tag = "UsedBed";
         onBoardCount[Planet]++;
     }
