@@ -14,6 +14,7 @@ public class ChangePlanetIcon : MonoBehaviour
     public Text Energy;
     public Text Health;
     public Text Count;
+    public Text PlanetName;
     [SerializeField] TMPro.TMP_Dropdown DropDown;
 
     // Update is called once per frame
@@ -27,6 +28,7 @@ public class ChangePlanetIcon : MonoBehaviour
         Energy.text = stats[3].ToString();
         Health.text = stats[4].ToString();
         Count.text = GameObject.Find("marioIdle").GetComponent<BuildRegulator>().onBoardCount[Planet].ToString();
+        PlanetName.text = Planet;
         //UpdateOptions();
     }
 

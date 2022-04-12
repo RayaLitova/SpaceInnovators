@@ -89,11 +89,17 @@ public class NpcAi : MonoBehaviour
     }
 
     public void Die(){
-        actualTarget.tag = actualTarget.tag.Split(':')[1];
+        if(actualTarget.tag.Contains("Used")){
+            actualTarget.tag = actualTarget.tag.Split(':')[1];
+        }else if(actualTarget.tag.Contains("Upgrading")){
+
+        }
+        
         bed.tag = "Bed";
-        Destroy(gameObject);
         BuildRegulator mario = GameObject.Find("marioIdle").GetComponent<BuildRegulator>();
         mario.onBoardCount[transform.tag.Split('-')[0]]--;
+        Destroy(gameObject);
+        
     }
 
     GameObject GetPanicWaypoint(){
@@ -128,29 +134,45 @@ public class NpcAi : MonoBehaviour
         if(path == null){
             return;
         }
+       
         if(wanderingForWork){
             if(GameObject.FindGameObjectsWithTag(Stats.targetTag).Length!=0){
                 actualTarget = GameObject.FindGameObjectsWithTag(Stats.targetTag)[0].transform;
                 actualTarget.tag = "Used:"+ actualTarget.tag;
                 currentTarget = actualTarget;
                 wanderingForWork=false;
+                movementStopped = false;
             }
         }else if(wanderingForUpgrade){
-            if(actualTarget.tag != "Upgrading" || actualTarget.tag != "Closed"){
+            if(actualTarget.tag != "Upgrading" && actualTarget.tag != "Closed"){
                 currentTarget=actualTarget;
                 wanderingForUpgrade = false;
+                movementStopped = false;
             }
         }else if(actualTarget.tag ==  "Upgrading"){
             wanderingForUpgrade = true;
+            movementStopped = false;
         }else if(actualTarget.tag == "Closed"){
             wanderingForUpgrade = true;
+            movementStopped = false;
+        }else{
+             // za mehanicite i doktorite trqbva da se napravi kato wandervat za rabota da se setva actual target na null \/
+            if(actualTarget.tag != "Upgrading" && actualTarget.tag != "Closed" && actualTarget.tag != Stats.targetTag){
+                actualTarget = null;
+                //currentTarget=actualTarget;
+                //eventualno tuka shte bugne posle kato nqkoi mehanik se opita da spi dokato wanderva zaradi movementStopped promenite
+                wanderingForWork = true;
+                movementStopped = false;
+            }
         }
             
         if(currentRoom.tag == "Closed"){
             wanderingForUpgrade = false;
             isPanicked = true;
+            movementStopped = false;
         }else{
             isPanicked = false;
+            movementStopped = false;
         }
 
 
