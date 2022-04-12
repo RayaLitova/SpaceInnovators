@@ -8,6 +8,7 @@ public class ChangeBuidingIcon : MonoBehaviour
     //[SerializeField] public Sprite[] Images;
     [SerializeField] Image img;
     [SerializeField] Text Desc;
+    [SerializeField] Text RoomName;
     [SerializeField] GameObject[] MatReqs;
     [SerializeField] GameObject[] RoomReqs;
     [SerializeField] GameObject[] PlanetReqs;
@@ -70,6 +71,9 @@ public class ChangeBuidingIcon : MonoBehaviour
 
         //description
         Desc.text = RoomStatics.GetDescription(room.name);
+
+        //roomname
+        RoomName.text = room.name;
     }
 
     public void Reset(){
