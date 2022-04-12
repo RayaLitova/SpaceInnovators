@@ -15160,6 +15160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8569eb56b383e4ba0d3214f8c35f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  earthController: {fileID: 9100000, guid: b32bfff4dd07e484db83f4fe22f41ada, type: 2}
+  a: {fileID: 9100000, guid: cdd06a9a2e5428342bf70ae71769e92e, type: 2}
   offset: 7.75
   Crewmate: {fileID: 7256881257374545043, guid: 896dea04c2110c94886256bb4f54102d, type: 3}
   unlockedRooms:

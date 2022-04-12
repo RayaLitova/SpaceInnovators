@@ -172,6 +172,7 @@ public class NpcAi : MonoBehaviour
                     Stats.energy--;
                     currentTarget.parent.gameObject.GetComponent<RoomStatics>().Produce();
                 }else{
+                    bed.gameObject.GetComponent<Animator>().SetBool("Sleeping", true);
                     anim.SetBool("Sleeping", true);
                     transform.position = bed.position;
                     Stats.energy++;
