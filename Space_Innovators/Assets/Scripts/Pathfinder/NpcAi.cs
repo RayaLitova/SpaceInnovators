@@ -67,7 +67,6 @@ public class NpcAi : MonoBehaviour
         if(/**/actualTarget==null){
             wanderingForWork = true;
             currentTarget = GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform;
-
         }else{
             if(actualTarget.tag == "Upgrading"){
                 wanderingForUpgrade=true;
@@ -91,17 +90,11 @@ public class NpcAi : MonoBehaviour
     }
 
     public void Die(){
-        if(actualTarget.tag.Contains("Used")){
-            actualTarget.tag = actualTarget.tag.Split(':')[1];
-        }else if(actualTarget.tag.Contains("Upgrading")){
-
-        }
-        
+        actualTarget.tag = actualTarget.tag.Split(':')[1];
         bed.tag = "Bed";
+        Destroy(gameObject);
         BuildRegulator mario = GameObject.Find("marioIdle").GetComponent<BuildRegulator>();
         mario.onBoardCount[transform.tag.Split('-')[0]]--;
-        Destroy(gameObject);
-        
     }
 
     GameObject GetPanicWaypoint(){
@@ -136,28 +129,23 @@ public class NpcAi : MonoBehaviour
         if(path == null){
             return;
         }
-       
-        if(wanderingForWork){
+
+        if(isPanicked){
+        }else if(wanderingForWork){
             if(GameObject.FindGameObjectsWithTag(Stats.targetTag).Length!=0){
                 actualTarget = GameObject.FindGameObjectsWithTag(Stats.targetTag)[0].transform;
                 actualTarget.tag = "Used:"+ actualTarget.tag;
                 currentTarget = actualTarget;
                 wanderingForWork=false;
-                movementStopped = false;
             }
         }else if(wanderingForUpgrade){
             if(actualTarget.tag != "Upgrading" && actualTarget.tag != "Closed"){
                 currentTarget=actualTarget;
                 wanderingForUpgrade = false;
-                movementStopped = false;
             }
-        }else if(actualTarget.tag ==  "Upgrading"){
+        }else if(actualTarget != null && (actualTarget.tag == "Upgrading" || actualTarget.tag == "Closed")){
             wanderingForUpgrade = true;
-            movementStopped = false;
-        }else if(actualTarget.tag == "Closed"){
-            wanderingForUpgrade = true;
-            movementStopped = false;
-        }else{
+        }/*else{
              // za mehanicite i doktorite trqbva da se napravi kato wandervat za rabota da se setva actual target na null \/
             if(actualTarget.tag != "Upgrading" && actualTarget.tag != "Closed" && actualTarget.tag != Stats.targetTag){
                 actualTarget = null;
@@ -166,27 +154,40 @@ public class NpcAi : MonoBehaviour
                 wanderingForWork = true;
                 movementStopped = false;
             }
-        }
-            
+        }    */
+
         if(currentRoom.tag == "Closed"){
-            wanderingForUpgrade = false;
-            isPanicked = true;
-            movementStopped = false;
-        }else{
-            isPanicked = false;
-            movementStopped = false;
-        }
-
-
-        if(currentWaipoint >= path.vectorPath.Count){
-            reachedEndofPath = true;
-            if(wanderingForUpgrade || wanderingForWork){
+            if(!isPanicked){
                 sleeping = false;
                 anim.SetBool("Sleeping", false);
                 bedAnim.SetBool("Sleeping", false);
-                speed = 0.02f;           
-                RedirectCourse(GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform);
-            }else if(isPanicked){  
+                speed = 0.08f;
+                RedirectCourse(GetPanicWaypoint().transform);
+                currentPanicWaypoint++;
+                isPanicked = true;   
+            }
+            movementStopped = false;
+        }else if(currentTarget != null && currentTarget.parent.gameObject.tag == "Closed"){
+            if(currentTarget==actualTarget || actualTarget == null){
+                do{
+                    currentTarget = GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform;
+                    if(actualTarget == null) actualTarget = GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform;
+                }while(currentTarget.parent.gameObject.tag == "Closed" || actualTarget == currentTarget);
+                RedirectCourse(currentTarget);
+                isPanicked = false;
+                currentPanicWaypoint = 0;
+            }
+        }else{
+            currentTarget = actualTarget;
+            if(currentTarget == null)
+                currentTarget = GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform;
+            currentPanicWaypoint = 0;
+            isPanicked = false;
+        }
+
+        if(currentWaipoint >= path.vectorPath.Count){
+            reachedEndofPath = true;
+            if(isPanicked){  
                 sleeping = false;
                 anim.SetBool("Sleeping", false);
                 bedAnim.SetBool("Sleeping", false);
@@ -194,8 +195,14 @@ public class NpcAi : MonoBehaviour
                 RedirectCourse(GetPanicWaypoint().transform);
                 currentPanicWaypoint++;   
                 if(currentPanicWaypoint == 3) currentPanicWaypoint = 0;
+            }else if(wanderingForUpgrade || wanderingForWork){
+                sleeping = false;
+                anim.SetBool("Sleeping", false);
+                bedAnim.SetBool("Sleeping", false);
+                speed = 0.02f;           
+                RedirectCourse(GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform);
             }else{
-                speed =0.04f;
+                speed = 0.04f;
                 if(!sleeping){
                     Stats.energy--;
                     currentTarget.parent.gameObject.GetComponent<RoomStatics>().Produce();
