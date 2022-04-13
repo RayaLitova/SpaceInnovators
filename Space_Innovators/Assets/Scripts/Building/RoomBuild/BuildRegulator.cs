@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEditor.Animations;
+
 
 /*
 Map Values:
@@ -12,8 +14,7 @@ Map Values:
 */
 
 public class BuildRegulator : MonoBehaviour
-{
-    
+{   
     static int gridSize = 21;
     static int center = (gridSize-1)/2;
     public int[,] map = new int[gridSize, gridSize];
@@ -30,6 +31,9 @@ public class BuildRegulator : MonoBehaviour
     public Dictionary<string,Sprite> planetIcons = new Dictionary<string,Sprite>();
     public Dictionary<string,int> onBoardCount = new Dictionary<string,int>();
     public Dictionary<string,List<string>> ProfessionsForPlanet = new Dictionary<string,List<string>>();
+
+    private Dictionary<string, int> PlanetsNum = new Dictionary<string,int>();
+    private System.Random random = new System.Random();
   
     public int GetCenter(){
         return center;
@@ -59,12 +63,23 @@ public class BuildRegulator : MonoBehaviour
     public void addCrewMate( string Planet, string Profession){
         Vector3 objectPOS = Vector3.zero;
         GameObject newGameObject = Instantiate(Crewmate, objectPOS, Quaternion.identity);
-        //newGameObject.tag = Planet+"-"+Profession;
+
         newGameObject.GetComponent<NPCStats>().Planet = Planet;
         newGameObject.GetComponent<NPCStats>().Profession = Profession;
         newGameObject.GetComponent<NpcAi>().actualTarget = null;
         //GameObject.FindGameObjectsWithTag("Station")[targetIndex].transform.tag = "UsedStation";
         newGameObject.transform.GetComponent<NpcAi>().bed = GameObject.FindGameObjectsWithTag("Bed")[0].transform;
+
+        int gender = random.Next(100);
+        if(gender <= 49) gender = 0;
+        else if(gender <= 98) gender = 1;
+        else gender = 2;
+        newGameObject.transform.GetComponent<NpcAi>().bed.GetComponent<Animator>().SetFloat("PlanetNum", PlanetsNum[Planet]);
+        newGameObject.transform.GetComponent<NpcAi>().bed.GetComponent<Animator>().SetFloat("Gender", gender);
+
+        newGameObject.transform.GetChild(0).GetComponent<Animator>().SetFloat("PlanetNum", PlanetsNum[Planet]);
+        newGameObject.transform.GetChild(0).GetComponent<Animator>().SetFloat("Gender", gender);
+
         GameObject.FindGameObjectsWithTag("Bed")[0].transform.tag = "UsedBed";
         onBoardCount[Planet]++;
     }
@@ -138,7 +153,8 @@ public class BuildRegulator : MonoBehaviour
 
     void Start()
     {   
-        
+        PlanetsNum.Add("Earth", 0);
+        PlanetsNum.Add("Floaroma",1);
         
         UnclockPlanet("Earth", null);
         List<string> Floaromaspecific  = new List<string>();
