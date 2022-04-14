@@ -4,7 +4,7 @@ using UnityEngine;
 using Pathfinding;
 using UnityEngine.UI;
 
-public class NpcAi : MonoBehaviour
+public class NpcAi2 : MonoBehaviour
 {
     [SerializeField] public Transform actualTarget;//IN ROOM
     NPCStats Stats;
@@ -14,6 +14,7 @@ public class NpcAi : MonoBehaviour
 
     Path path;
     int currentWaipoint = 0;
+    bool reachedEndofPath = false;
     
     float _t=0;
     float o2_timer = 0;
@@ -55,7 +56,7 @@ public class NpcAi : MonoBehaviour
         if(path == null){
             return;
         }
-        Debug.Log(currentTarget);
+
         if(sleeping){
             anim.SetBool("Sleeping", true);
             bedAnim.SetBool("Sleeping", true);
@@ -64,13 +65,8 @@ public class NpcAi : MonoBehaviour
             bedAnim.SetBool("Sleeping", false);
         }
 
-        Debug.Log(isPanicked);
         //------FIND WORK-------
-        if(!isPanicked && !sleeping){
-            if(status!="wanderingForWork" && actualTarget != null && (actualTarget.parent.gameObject.tag  == "Upgrading" || actualTarget.parent.gameObject.tag  == "Closed")){
-                status = "wanderingForUpgrade";
-            }
-
+        if(!isPanicked){
             if(status == "wanderingForWork"){
                 if(GameObject.FindGameObjectsWithTag(Stats.targetTag).Length!=0){
                     actualTarget = GameObject.FindGameObjectsWithTag(Stats.targetTag)[0].transform;
@@ -85,39 +81,46 @@ public class NpcAi : MonoBehaviour
                 }
             }
 
-            if(currentTarget != null && currentTarget.parent.gameObject.tag == "Closed"){ //on target closed
-                RedirectCourse(GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform);
+            if(actualTarget != null && (actualTarget.parent.gameObject.tag  == "Upgrading" || actualTarget.parent.gameObject.tag  == "Closed")){
+                status = "wanderingForUpgrade";
+                isPanicked = false;
             }
-        
         }
         //----------Panic---------
         if(currentRoom!=null && currentRoom.gameObject.tag == "Closed"){
             if(!isPanicked){//execute once
-                transform.position = currentRoom.position;
                 sleeping = false;
                 speed = 0.08f;
                 RedirectCourse(GetPanicWaypoint().transform);
                 isPanicked = true;   
             }
-        }else if(isPanicked){
+        }else if(currentTarget != null && currentTarget.parent.gameObject.tag == "Closed"){ //on target closed
+            if(currentTarget==actualTarget || actualTarget == null || currentTarget==bed){ //execute once
+                do{
+                    currentTarget = GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform;
+                    if(actualTarget == null) actualTarget = GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform;
+                }while(currentTarget.parent.gameObject.tag == "Closed" || actualTarget == currentTarget);
+                RedirectCourse(currentTarget);
+                isPanicked = false;
+            }
+        }else{
             if(actualTarget!=null && currentTarget!=actualTarget && currentTarget!=bed && currentTarget!=null){
                 if(Stats.energy<Stats.max_energy)
                     currentTarget = bed;
                 else currentTarget = actualTarget;
                 RedirectCourse(currentTarget);
             }
-            if(actualTarget == null){
+            if(currentTarget == null){
                 currentTarget = GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform;
                 RedirectCourse(currentTarget);
             }
             
             isPanicked = false;
-            if(status == "wanderingForWork" || status == "wanderingForUpgrade") speed = 0.02f;
-            else speed = 0.04f;
         }
 
         //--------on path completed--------
         if(currentWaipoint >= path.vectorPath.Count){
+            reachedEndofPath = true;
             if(currentTarget == bed) sleeping = true;
             //-----------panicked--------------
             if(isPanicked){  
@@ -126,7 +129,7 @@ public class NpcAi : MonoBehaviour
                 RedirectCourse(GetPanicWaypoint().transform);
             
             //-------wandering----------
-            }else if(!sleeping && (status == "wanderingForUpgrade" || status == "wanderingForWork")){ 
+            }else if(status == "wanderingForUpgrade" || status == "wanderingForWork"){ 
                 sleeping = false;
                 speed = 0.02f;           
                 RedirectCourse(GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform);
@@ -136,20 +139,22 @@ public class NpcAi : MonoBehaviour
                 speed = 0.04f;
                 if(!sleeping){
                     Stats.energy--;
-                    if(currentTarget.parent.gameObject.GetComponent<RoomStatics>()!=null) currentTarget.parent.gameObject.GetComponent<RoomStatics>().Produce();
+                    if(currentTarget!=null) currentTarget.parent.gameObject.GetComponent<RoomStatics>().Produce();
                 }else{
                     Stats.energy++;
                 }
             }
 
+        }else{ //--------not reached end of path-------------
+            reachedEndofPath = false;
         }
 
         //----------sleeping--------------
-        if(Stats.energy <= 0.1*Stats.max_energy && sleeping == false && currentTarget!=bed){
+        if(Stats.energy <= 0.1*Stats.max_energy && sleeping == false ){
             RedirectCourse(bed);
             //sleeping = true;
         }else if(Stats.energy >= Stats.max_energy && sleeping == true ){
-            RedirectCourse(actualTarget);
+            RedirectCourse(/**/currentTarget.transform);
             sleeping = false;
         }  
         anim.SetInteger("Speed",0);
@@ -185,7 +190,7 @@ public class NpcAi : MonoBehaviour
             anim.SetFloat("Y", -1);
         }
 
-        if(!sleeping){
+        if(!anim.GetBool("Sleeping")){
             transform.position = Vector3.Lerp(transform.position, path.vectorPath[currentWaipoint], speed);
         }
 
@@ -231,7 +236,7 @@ public class NpcAi : MonoBehaviour
     }
 
     public void Die(){
-        if(actualTarget!=null) actualTarget.tag = actualTarget.tag.Split(':')[1];
+        actualTarget.tag = actualTarget.tag.Split(':')[1];
         bed.tag = "Bed";
         BuildRegulator mario = GameObject.Find("marioIdle").GetComponent<BuildRegulator>();
         mario.onBoardCount[transform.tag.Split('-')[0]]--;
