@@ -20,6 +20,8 @@ public class NPCStats : MonoBehaviour
     [SerializeField] Text[] vals;
     [SerializeField] Text[] maxVals;
     [SerializeField] Text proftext;
+    private Sprite sickGFX;
+    private Color32 color;
 
     void Start(){
         int[] Stats = NPCStats.GetStatsByTag(Planet);
@@ -30,15 +32,21 @@ public class NPCStats : MonoBehaviour
         max_health = Stats[4];
         SetMaxValue(0,max_health);
         SetMaxValue(1,max_energy);
+        SetMaxValue(2,100);
         energy = max_energy;
         health = max_health;
+        sickness = 0;
         targetTag = NPCStats.GetTargetTagByTag(Profession, Planet);
         proftext.text = Profession;
+        if(Planet == "Earth") sickGFX = Resources.Load<Sprite>("EarthSickness");
+        else sickGFX = Resources.Load<Sprite>("FloaromaSickness");
+        color = Color.white;
     }
 
     public void Consume(string name, int quantity){
-        if(sickness>0) sickness+=10;
-        if(sickness==100) health -= 10;
+        if(sickness>0 && sickness<100) sickness+=10;
+        if(sickness>=100) health -= 10; 
+        if(sickness>100) sickness = 100;
         if(!GameObject.Find("marioIdle").GetComponent<ResourcesClass>().SubtractResource(name,quantity)){
             health-=15;
             if(health<=0){
@@ -104,5 +112,10 @@ public class NPCStats : MonoBehaviour
     void Update(){
         SetValue(0,health);
         SetValue(1,energy);
+        SetValue(2,sickness);
+        color.a = (byte)(sickness * 255/100);
+        //sickGFX.color = color;
+        transform.Find("Sickness").GetComponent<SpriteRenderer>().sprite = sickGFX;
+        transform.Find("Sickness").GetComponent<SpriteRenderer>().color = color;
     }
 }

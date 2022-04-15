@@ -53,6 +53,8 @@ public class RoomStatics : MonoBehaviour
     public void StartUpgrade(){
         gameObject.tag = "Upgrading";
         transform.Find("SmallRoom").tag = "Upgrading";
+        transform.Find("SmallRoom").Find("ClosedForUpgrade").gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        transform.Find("SmallRoom").Find("RoomUpgradeRibbon").gameObject.GetComponent<SpriteRenderer>().enabled = true;
         for(int i=0;i<resourcesQuanity.Length;i++){
             mario.GetComponent<ResourcesClass>().SubtractResource(resourcesNames[i], resourcesQuanity[i]*(25/100*roomLevel));
         }
@@ -112,6 +114,8 @@ public class RoomStatics : MonoBehaviour
             for(int i=0;i<producedResources.Length;i++){
                 producedResourcesQuantity[i] = producedResourcesQuantity[i]+producedResourcesQuantity[i]*1/10;
             }
+            transform.Find("SmallRoom").Find("ClosedForUpgrade").gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            transform.Find("SmallRoom").Find("RoomUpgradeRibbon").gameObject.GetComponent<SpriteRenderer>().enabled = false;
             work = 0;
         }
     }
