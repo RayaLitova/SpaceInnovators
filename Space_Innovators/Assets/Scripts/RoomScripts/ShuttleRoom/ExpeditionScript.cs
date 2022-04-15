@@ -101,7 +101,7 @@ public class ExpeditionScript : MonoBehaviour
                 Ress.SetActive(false);
                 progressBar.gameObject.SetActive(true);
                 progressBar.maxValue = roket.maxes[0]*50;
-                progressBar.value = roket.currs[0];
+                progressBar.value = roket.maxes[0]*50 - roket.currs[0];
                 // PROGRESS BAR
             }
         }

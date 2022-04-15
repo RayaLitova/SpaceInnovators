@@ -98,6 +98,8 @@ public class ChoosePlaceToBuild : MonoBehaviour
                         newGameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0,255,0,147);
                     }
                     
+                }else{
+                    newGameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0,255,0,147);
                 }
             }
             if(Input.GetKeyDown(KeyCode.Escape)){

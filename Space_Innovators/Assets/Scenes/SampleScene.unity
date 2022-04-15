@@ -3102,7 +3102,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2005956597
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 2ced2bae9a6ab094281dc4ecba68a1fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12049,7 +12049,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 10
   m_Viewport: {fileID: 1963991898}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1217978475}
@@ -22245,7 +22245,7 @@ SortingGroup:
   m_GameObject: {fileID: 2018579450}
   m_Enabled: 1
   m_SortingLayerID: 2005956597
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 2
 --- !u!114 &2018579453
 MonoBehaviour:
