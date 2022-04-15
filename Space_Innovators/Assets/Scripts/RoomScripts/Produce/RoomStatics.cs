@@ -9,8 +9,8 @@ public class RoomStatics : MonoBehaviour
     public string[] resourcesNames;
     public int[] resourcesQuanity;
 
-    public int produce_at;
-    public int upgrade_at;
+    public int produce_at=150;
+    public int upgrade_at=150;
     public int roomLevel = 1;
     public int condition = 100;
 
@@ -23,13 +23,41 @@ public class RoomStatics : MonoBehaviour
     private GameObject mario;
     private int work = 0;
 
-    private string tag;
-   
-    [SerializeField] public UpgradesGameObject UpgradesObject;
+    private string tag = "Untagged";
 
     void Start(){
         mario = GameObject.Find("marioIdle");
+    }
 
+    public string GetUpgradeDesc(){
+        string text = "";
+        if(producedResources[0] == "Food" || producedResources[0] == "Water")
+            text+= ("Chance for minion to get sick " + (60-(10*roomLevel)) + "% ->" + (60-(10*(roomLevel+1))) + "%");
+        
+        
+        for(int i=0;i<producedResources.Length;i++){
+            text += producedResources[i] + " x" + producedResourcesQuantity[i] + " -> x" + (producedResourcesQuantity[i]+producedResourcesQuantity[i]*1/10) + ", ";
+        }
+        return text; 
+    }
+
+    public bool CheckUpgradeRequirements(){
+        int SatisfiedRequirements = 0;
+        for(int i=0;i<resourcesQuanity.Length;i++){
+            if(mario.GetComponent<ResourcesClass>().resources[resourcesNames[i]] >= resourcesQuanity[i]*(25/100*roomLevel)) SatisfiedRequirements++;
+        }
+        if(SatisfiedRequirements==resourcesQuanity.Length) return true;
+        return false;
+    }
+
+    public void StartUpgrade(){
+        gameObject.tag = "Upgrading";
+        transform.Find("SmallRoom").tag = "Upgrading";
+        for(int i=0;i<resourcesQuanity.Length;i++){
+            mario.GetComponent<ResourcesClass>().SubtractResource(resourcesNames[i], resourcesQuanity[i]*(25/100*roomLevel));
+        }
+        mario.GetComponent<BuildRegulator>().unlockedUpgrades.Remove(gameObject.name);
+        if(roomLevel+1<4) GameObject.Find("Lab").GetComponent<LabProduce>().unlockableUpgrades.Add(gameObject.name);
     }
 
     public bool CheckRequirements(){
@@ -60,12 +88,11 @@ public class RoomStatics : MonoBehaviour
     }
 
     public void Produce(){
-        if(gameObject.tag!= "Upgrading" || gameObject.tag!="Closed") tag = gameObject.tag;
-
         work++;
+        Debug.Log(work);
         if(work>=produce_at * (1/roomLevel) && gameObject.tag!="Upgrading"){
             if(gameObject.name == "Lab"){
-                GameObject room = gameObject.GetComponent<LabProduce>().UnlockRoom();
+                GameObject room = gameObject.GetComponent<LabProduce>().unlock();
                 if(room!=null){
                     GameObject.Find("marioIdle").gameObject.GetComponent<BuildRegulator>().unlockedRooms.Add(room);
                     GameObject.Find("BuildButton").gameObject.GetComponent<BuildScrolScript>().UpdateBuildOptions();
@@ -80,7 +107,12 @@ public class RoomStatics : MonoBehaviour
             work=0;
         }else if(work>=upgrade_at && gameObject.tag=="Upgrading"){
             gameObject.tag = tag;
-            //apply upgrade
+            transform.Find("SmallRoom").tag = tag;
+            roomLevel++;
+            for(int i=0;i<producedResources.Length;i++){
+                producedResourcesQuantity[i] = producedResourcesQuantity[i]+producedResourcesQuantity[i]*1/10;
+            }
+            work = 0;
         }
     }
 

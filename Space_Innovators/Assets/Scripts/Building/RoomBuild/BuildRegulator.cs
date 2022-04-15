@@ -27,6 +27,7 @@ public class BuildRegulator : MonoBehaviour
     [SerializeField] GameObject Crewmate;
     //[SerializeField] public string[] Tags;
     [SerializeField] public List<GameObject> unlockedRooms;
+    [SerializeField] public List<string> unlockedUpgrades;
     [SerializeField] private List<string> BuiltRooms;
     [SerializeField] public List<string> unlockedPlanets;
     public Dictionary<string,Sprite> planetIcons = new Dictionary<string,Sprite>();
@@ -156,6 +157,14 @@ public class BuildRegulator : MonoBehaviour
 
     public List<string> GetBuiltRooms(){
         return BuiltRooms;
+    }
+
+    public List<string> GetUnlockedRoomsToString(){
+        List<string> res = new List<string>();
+        foreach(GameObject i in unlockedRooms){
+            res.Add(i.name);
+        }
+        return res;
     }
 
     void Start()

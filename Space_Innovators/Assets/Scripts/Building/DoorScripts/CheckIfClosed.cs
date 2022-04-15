@@ -18,5 +18,7 @@ public class CheckIfClosed : MonoBehaviour
                 else transform.parent.gameObject.tag = actualTag;
             else transform.parent.gameObject.tag = actualTag;
         else transform.parent.gameObject.tag = actualTag; 
+
+        transform.parent.Find("SmallRoom").tag = transform.parent.gameObject.tag;
     }
 }

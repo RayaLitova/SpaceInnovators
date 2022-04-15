@@ -571,14 +571,13 @@ MonoBehaviour:
   - Colored metal
   resourcesQuanity: 0500000004000000
   produce_at: 150
-  upgrade_at: 0
+  upgrade_at: 150
   roomLevel: 1
   condition: 100
   planets: []
   rooms: []
   producedResources: []
   producedResourcesQuantity: 
-  UpgradesObject: {fileID: 7454419816605346767}
 --- !u!114 &4626712529546828820
 MonoBehaviour:
   m_ObjectHideFlags: 0
