@@ -38,6 +38,8 @@ public class NpcAi : MonoBehaviour
     Transform currentTarget; //IN ROOM
     [SerializeField]public Transform bed;//IN ROOM
 
+    private bool dead = false;
+
     void Start()
     {
         Stats = transform.GetComponent<NPCStats>();
@@ -46,16 +48,17 @@ public class NpcAi : MonoBehaviour
         anim = NPCGFX.GetComponent<Animator>();
         bedAnim = bed.GetComponent<Animator>();
         currentTarget = GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform;
+        actualTarget = null;
         seeker.StartPath(rb.position, /**/currentTarget.transform.position, OnPathComplete);
         status = "wanderingForWork";
     }
 
     void FixedUpdate(){
+        if(dead) Destroy(gameObject);
         Consume();
         if(path == null){
             return;
         }
-        Debug.Log(currentTarget);
         if(sleeping){
             anim.SetBool("Sleeping", true);
             bedAnim.SetBool("Sleeping", true);
@@ -64,19 +67,19 @@ public class NpcAi : MonoBehaviour
             bedAnim.SetBool("Sleeping", false);
         }
 
-        Debug.Log(isPanicked);
         //------FIND WORK-------
         if(!isPanicked && !sleeping){
-            if(status!="wanderingForWork" && actualTarget != null && (actualTarget.parent.gameObject.tag  == "Upgrading" || actualTarget.parent.gameObject.tag  == "Closed")){
-                status = "wanderingForUpgrade";
-            }
-
             if(status == "wanderingForWork"){
                 if(GameObject.FindGameObjectsWithTag(Stats.targetTag).Length!=0){
                     actualTarget = GameObject.FindGameObjectsWithTag(Stats.targetTag)[0].transform;
-                    actualTarget.tag = "Used:"+ actualTarget.tag;
+                    if(actualTarget.tag == "Upgrading"){
+                        actualTarget = actualTarget.transform.Find("SmallRoom").Find("Excursion");
+                        status = "upgrading";
+                    }else{
+                        actualTarget.tag = "Used:"+ actualTarget.tag;
+                        status = "default";
+                    }
                     RedirectCourse(actualTarget);
-                    status = "default";
                 }
             }else if(status == "wanderingForUpgrade"){
                 if(actualTarget.parent.gameObject.tag != "Upgrading" && actualTarget.parent.gameObject.tag  != "Closed"){
@@ -88,9 +91,19 @@ public class NpcAi : MonoBehaviour
             if(currentTarget != null && currentTarget.parent.gameObject.tag == "Closed"){ //on target closed
                 RedirectCourse(GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform);
             }
+
+            if(status!="upgrading" && status!="wanderingForWork" && actualTarget != null && (actualTarget.parent.gameObject.tag  == "Upgrading" || actualTarget.parent.gameObject.tag  == "Closed")){
+                status = "wanderingForUpgrade";
+            }
+            if(status == "upgrading" && actualTarget.parent.gameObject.tag!="Upgrading"){
+                actualTarget = null;
+                RedirectCourse(GameObject.FindGameObjectsWithTag("Excursion")[Random.Range(0, GameObject.FindGameObjectsWithTag("Excursion").Length)].transform);
+                status = "wanderingForWork";
+            }
         
         }
         //----------Panic---------
+
         if(currentRoom!=null && currentRoom.gameObject.tag == "Closed"){
             if(!isPanicked){//execute once
                 transform.position = currentRoom.position;
@@ -99,7 +112,7 @@ public class NpcAi : MonoBehaviour
                 RedirectCourse(GetPanicWaypoint().transform);
                 isPanicked = true;   
             }
-        }else if(isPanicked){
+        }else if(isPanicked && currentRoom!=null && currentRoom.gameObject.tag !="Closed"){
             if(actualTarget!=null && currentTarget!=actualTarget && currentTarget!=bed && currentTarget!=null){
                 if(Stats.energy<Stats.max_energy)
                     currentTarget = bed;
@@ -137,6 +150,7 @@ public class NpcAi : MonoBehaviour
                 if(!sleeping){
                     Stats.energy--;
                     if(currentTarget.parent.gameObject.GetComponent<RoomStatics>()!=null) currentTarget.parent.gameObject.GetComponent<RoomStatics>().Produce();
+                    else if(currentTarget.parent.parent.gameObject.GetComponent<RoomStatics>()!=null) currentTarget.parent.parent.gameObject.GetComponent<RoomStatics>().Produce();
                 }else{
                     Stats.energy++;
                 }
@@ -205,14 +219,35 @@ public class NpcAi : MonoBehaviour
         if(o2_timer >= 20f){
             Stats.Consume("O2", Stats.O2);
             o2_timer =0;
+            if(GameObject.Find("O2") == null){
+                if(Random.Range(0,100)<50){
+                    Stats.sickness+=10;
+                }
+            }else if(Random.Range(0,100)<(60-(10*(GameObject.Find("02").GetComponent<RoomStatics>().roomLevel)))){
+                Stats.sickness += 10;
+            }
         }
         if(h2o_timer >= 30f ){
             Stats.Consume("Water", Stats.Water);
             h2o_timer =0;
+            if(GameObject.Find("Water Station") == null){
+                if(Random.Range(0,100)<50){
+                    Stats.sickness+=10;
+                }
+            }else if(Random.Range(0,100)<(60-(10*(GameObject.Find("Water Station").GetComponent<RoomStatics>().roomLevel)))){
+                Stats.sickness += 10;
+            }
         }
         if(food_timer >= 40f ){
             Stats.Consume("Food", Stats.Food);
             food_timer=0;
+            if(GameObject.Find("VerticalFarm") == null){
+                if(Random.Range(0,100)<50){
+                    Stats.sickness+=10;
+                }
+            }else if(Random.Range(0,100)<(60-(10*(GameObject.Find("VerticalFarm").GetComponent<RoomStatics>().roomLevel)))){
+                Stats.sickness += 10;
+            }
         }
     }
 
@@ -231,6 +266,7 @@ public class NpcAi : MonoBehaviour
     }
 
     public void Die(){
+        dead = true;
         if(actualTarget!=null) actualTarget.tag = actualTarget.tag.Split(':')[1];
         bed.tag = "Bed";
         BuildRegulator mario = GameObject.Find("marioIdle").GetComponent<BuildRegulator>();

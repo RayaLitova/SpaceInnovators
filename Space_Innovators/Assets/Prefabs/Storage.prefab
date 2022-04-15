@@ -1935,14 +1935,13 @@ MonoBehaviour:
   - Black metal
   resourcesQuanity: 05000000
   produce_at: 0
-  upgrade_at: 0
+  upgrade_at: 150
   roomLevel: 0
   condition: 100
   planets: []
   rooms: []
   producedResources: []
   producedResourcesQuantity: 
-  UpgradesObject: {fileID: 0}
 --- !u!1001 &2433581585938620449
 PrefabInstance:
   m_ObjectHideFlags: 0
