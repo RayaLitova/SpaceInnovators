@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6663741676417364851}
   - component: {fileID: 2813874542405508027}
   m_Layer: 8
-  m_Name: O2 Sation
+  m_Name: O2 Station
   m_TagString: O2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,6 +287,7 @@ MonoBehaviour:
   - Water
   resourcesQuanity: 050000000100000004000000
   produce_at: 150
+  upgrade_at: 150
   roomLevel: 1
   condition: 100
   planets: []

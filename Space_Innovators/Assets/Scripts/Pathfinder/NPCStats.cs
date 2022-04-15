@@ -15,6 +15,7 @@ public class NPCStats : MonoBehaviour
     public string Planet;
     public string Profession;
     public string targetTag;
+    public int sickness = 0;
     [SerializeField] Slider[] Bars;
     [SerializeField] Text[] vals;
     [SerializeField] Text[] maxVals;
@@ -36,6 +37,8 @@ public class NPCStats : MonoBehaviour
     }
 
     public void Consume(string name, int quantity){
+        if(sickness>0) sickness+=10;
+        if(sickness==100) health -= 10;
         if(!GameObject.Find("marioIdle").GetComponent<ResourcesClass>().SubtractResource(name,quantity)){
             health-=15;
             if(health<=0){
