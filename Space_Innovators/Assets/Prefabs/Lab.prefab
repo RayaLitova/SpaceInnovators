@@ -888,6 +888,7 @@ MonoBehaviour:
   - Water
   resourcesQuanity: 05000000020000000300000001000000
   produce_at: 200
+  upgrade_at: 0
   roomLevel: 1
   condition: 100
   planets: []
@@ -895,6 +896,7 @@ MonoBehaviour:
   - O2
   producedResources: []
   producedResourcesQuantity: 
+  UpgradesObject: {fileID: 0}
 --- !u!114 &3599653159181443138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,6 +913,7 @@ MonoBehaviour:
   - {fileID: 8902655021416011805, guid: e2044583f38033649ab8a0a5fbacec20, type: 3}
   - {fileID: 2523226976645764337, guid: 053a336c43a9373458fa059efa71641e, type: 3}
   - {fileID: 7649158307249947608, guid: 5ef7ce74d4114894487e3f008fb7b473, type: 3}
+  - {fileID: 2523226976645764337, guid: 03c9ba771419f054e964825e94f28601, type: 3}
   upgrades: []
 --- !u!1 &6345306532905213922
 GameObject:

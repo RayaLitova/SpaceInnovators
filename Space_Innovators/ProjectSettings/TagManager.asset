@@ -27,6 +27,9 @@ TagManager:
   - Closed
   - Panic
   - Minion
+  - Shuttle Room
+  - Pilot Station
+  - Used:Pilot Station
   layers:
   - Default
   - TransparentFX
