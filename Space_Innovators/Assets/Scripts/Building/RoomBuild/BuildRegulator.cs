@@ -33,6 +33,7 @@ public class BuildRegulator : MonoBehaviour
     public Dictionary<string,Sprite> planetIcons = new Dictionary<string,Sprite>();
     public Dictionary<string,int> onBoardCount = new Dictionary<string,int>();
     public List<string> PlanetsToUnlock = new List<string>();
+    public List<GameObject> PilotsOnBoard = new List<GameObject>();
     public Dictionary<string,List<string>> ProfessionsForPlanet = new Dictionary<string,List<string>>();
 
     private Dictionary<string, int> PlanetsNum = new Dictionary<string,int>();
@@ -86,6 +87,10 @@ public class BuildRegulator : MonoBehaviour
         newGameObject.transform.GetChild(0).GetComponent<Animator>().SetFloat("Gender", gender);
 
         GameObject.FindGameObjectsWithTag("Bed")[0].transform.tag = "UsedBed";
+
+        if(Profession == "Pilot"){
+            PilotsOnBoard.Add(newGameObject);
+        }
         onBoardCount[Planet]++;
     }
 
@@ -149,7 +154,7 @@ public class BuildRegulator : MonoBehaviour
             gameObject.GetComponent<ResourcesClass>().SubtractResource(name, quantity);
         }
 
-        if(room.name == "Lab"){
+        if(room.name == "Lab" || room.name == "Shuttle Room"){
             unlockedRooms.Remove(room);
         }
         AstarPath.active.Scan();

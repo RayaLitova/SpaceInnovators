@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-    public string status = "Destroyed";
+    public string status;
 
     SpriteRenderer img;
     public GameObject[] pilots;
     ResourcesClass resources;
     BuildRegulator BL;
     [SerializeField]RoomStatics shuttleRooom;
+    string[] ressText = {"Fuel", "Food", "Water", "O2"};
+    public int[] maxes  = new int[4];
+    public int[] currs  = new int[4];
     public int MetalNeeded;
     public int ColorNeeded;
-    public int maxFuel;
-    public int Fuel;
-    public int maxFood;
-    public int Food;
-    public int maxWater;
-    public int Water;
-    public int maxO2;
-    public int O2;
     bool Discovered = false;
     private System.Random random = new System.Random();
     // Start is called before the first frame update
@@ -32,97 +27,94 @@ public class Rocket : MonoBehaviour
     }
 
     public void Restock(){
-        int resourceNeeded = maxFuel - Fuel;
-        if(resourceNeeded < resources.CheckResource("Fuel")){
-            resourceNeeded = resources.CheckResource("Fuel");
+        for(int i=0; i<4; i++){
+            int resourceNeeded = maxes[i] - currs[i];
+            if(resourceNeeded > resources.CheckResource(ressText[i])){ //fills the rocket with the needed recources for expedition
+                resourceNeeded = resources.CheckResource(ressText[i]); // if there are not enough resources restocks with al of the current resources
+            }
+            resources.SubtractResource(ressText[i], resourceNeeded);
+            currs[i] += resourceNeeded;
         }
-        resources.SubtractResource("Fuel", resourceNeeded);
-        Fuel += resourceNeeded;
-
-        resourceNeeded = maxFood - Food;
-        if(resourceNeeded < resources.CheckResource("Food")){
-            resourceNeeded = resources.CheckResource("Food");
-        }
-        resources.SubtractResource("Food", resourceNeeded);
-        Food += resourceNeeded;
-
-        resourceNeeded = maxWater - Water;
-        if(resourceNeeded < resources.CheckResource("Water")){
-            resourceNeeded = resources.CheckResource("Water");
-        }
-        resources.SubtractResource("Water", resourceNeeded);
-        Water += resourceNeeded;
-
-        resourceNeeded = maxO2 -O2;
-        if(resourceNeeded < resources.CheckResource("O2")){
-            resourceNeeded = resources.CheckResource("O2");
-        }
-        resources.SubtractResource("O2", resourceNeeded);
-        O2 += resourceNeeded;
         
     }
 
-    public void ReBuild(){
-        if(status == "Not Builded"){
+    public bool ReBuild(){ 
+        if(MetalNeeded > resources.CheckResource("Black metal")){ // checks for resources
+            return false;
+        }
+        if(ColorNeeded > resources.CheckResource("Colored metal")){
+            return false;
+        }
+        if(status == "Not Built"){
             resources.SubtractResource("Black metal", MetalNeeded);
-            resources.SubtractResource("Colored metal", ColorNeeded);
+            resources.SubtractResource("Colored metal", ColorNeeded); //builds and subracts resources
+            status = "On Station";
+            return true;
         }
+        return false;
         
     }
 
-    public void StartExpedition(){
-        if(pilots[0]==null || pilots[1]==null){
-            return;
+    public int StartExpedition(){
+        if(pilots[0]==null || pilots[1]==null){ //cnacel start if there are not enough pilots
+            return 0;
         }
-        if(Fuel == maxFuel && Food == maxFood && Water == maxWater && O2 == maxO2){
-            Food = 0;
-            Water = 0;
-            O2 = 0;
+        if(currs[0] == maxes[0] && currs[1] == maxes[1] && currs[2] == maxes[2] && currs[3] == maxes[3]){ //check resources needed to startt expedition
+            
             status = "On Expedition";
-            Fuel *= 50;
+            for(int i = 1; i<4; i++){ //sets recources 0 to set up for the next expedition
+                currs[i] = 0;
+            }
+            currs[0] *= 50; //multipliews fuel so that the fixed updates subtract aproximateli 1 fuel per second
+            return 2;
         }
+        return 1;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        maxFuel = shuttleRooom.roomLevel * 50;
-        maxFood = shuttleRooom.roomLevel * 10 * 2;
-        maxWater = shuttleRooom.roomLevel * 20 * 2;
-        maxO2 = shuttleRooom.roomLevel * 30 * 2;
-        MetalNeeded = 30 + 5 * shuttleRooom.roomLevel;
-        ColorNeeded = 10 + 1 * shuttleRooom.roomLevel;
+        maxes[0] = shuttleRooom.roomLevel * 1; //50 //Fuel
+        maxes[1] = shuttleRooom.roomLevel * 1 * 2; //10 //Food
+        maxes[2] = shuttleRooom.roomLevel * 1 * 2; //20 //Water
+        maxes[3] = shuttleRooom.roomLevel * 1 * 2; //30 //O2
+        MetalNeeded = 1 + 0 * shuttleRooom.roomLevel; //30 + 5 //black metal needed for rocked building
+        ColorNeeded = 1 + 1 * shuttleRooom.roomLevel; // 10 + 1 //colored metal needed for rocked building
 
-        if(status == "On Station"){
-            img.color = new Color32(255,255,255,255);
-            foreach(GameObject pilot in pilots){
-                pilot.transform.GetComponent<SpriteRenderer>().color = new Color32(255,255,255,255);
-                pilot.transform.GetComponent<NpcAi>().enabled = true;
+        if(status == "On Station"){ //when rocket is on station 
+            img.color = new Color32(255,255,255,255); //enables image to represent present shuttle
+            if(pilots[0]!=null && pilots[1]!=null){
+                foreach(GameObject pilot in pilots){
+                    pilot.transform.GetComponent<SpriteRenderer>().color = new Color32(255,255,255,255); //enables pilots
+                    pilot.transform.GetComponent<NpcAi>().enabled = true;
+                }
             }
-
+            
         }else if(status == "On Expedition"){
             img.color = new Color32(255,255,255,0);
             foreach(GameObject pilot in pilots){
-                pilot.transform.GetComponent<SpriteRenderer>().color = new Color32(255,255,255,0);
+                pilot.transform.GetComponent<SpriteRenderer>().color = new Color32(255,255,255,0); //disables pilots
                 pilot.transform.GetComponent<NpcAi>().enabled = false;
+                //eventualno izkluchi cukaneto
             }
             string planet = "";
-            if(Fuel==0){
+            if(currs[0]==0){ //Fuel == 0
                 if(Discovered){
-                    BL.UnclockPlanet(planet, null);
+                    BL.UnclockPlanet(planet, null); //if planet is discovered during expedition ulocks the planet
                 } 
-                status = "On Station";
+                status = "On Station"; 
                 Discovered = false;
             } 
-            if(Fuel>0){
+            if(currs[0]>0){ //Fuel > 0
                 if(!Discovered){
-                    if(random.Next(1,100/shuttleRooom.roomLevel)==1){
-                        planet = BL.PlanetsToUnlock[random.Next(0,BL.PlanetsToUnlock.Count-1)];
+                    if(random.Next(1,100/shuttleRooom.roomLevel)==1){ //if not yet discovered check the chancess to discover
+                        planet = BL.PlanetsToUnlock[random.Next(0,BL.PlanetsToUnlock.Count-1)]; //discover
                         Discovered = true;
                     }
                 }
-                Fuel --;
-                if(random.Next(1,100*shuttleRooom.roomLevel)<=10){
+                currs[0]--; //Fuel --
+                if(random.Next(1,100*shuttleRooom.roomLevel)<=10){ //check the chances for destruction during expedition
+                    currs[0]=0;
                     status ="Destroyed";
                     Discovered = false;
                 }
@@ -130,13 +122,13 @@ public class Rocket : MonoBehaviour
             
 
         }else if(status == "Destroyed"){
-            transform.GetComponent<SpriteRenderer>().color = new Color32(255,255,255,0);
+            transform.GetComponent<SpriteRenderer>().color = new Color32(255,255,255,0); //if destroyed  kill both pilots
             pilots[0].GetComponent<NpcAi>().Die();
             pilots[1].GetComponent<NpcAi>().Die();
-            status = "Not Builded";
+            status = "Not Built";
 
-        }else if(status == "Not Builded"){
-            transform.GetComponent<SpriteRenderer>().color = new Color32(255,255,255,0);
+        }else if(status == "Not Built"){
+            transform.GetComponent<SpriteRenderer>().color = new Color32(255,255,255,0); //set the shuttle image not active to represent missing shuttle
         }
     }
 }

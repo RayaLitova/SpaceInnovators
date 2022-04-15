@@ -402,21 +402,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da9ad5ca539db54ab247477d63f9dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: NotBuilded
+  status: Not Built
   pilots:
   - {fileID: 0}
   - {fileID: 0}
   shuttleRooom: {fileID: 3669082764220366825}
+  maxes: 00000000000000000000000000000000
+  currs: 00000000000000000000000000000000
   MetalNeeded: 0
   ColorNeeded: 0
-  maxFuel: 0
-  Fuel: 0
-  maxFood: 0
-  Food: 0
-  maxWater: 0
-  Water: 0
-  maxO2: 0
-  O2: 0
 --- !u!1 &1996639579383563200
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +875,6 @@ MonoBehaviour:
   rooms: []
   producedResources: []
   producedResourcesQuantity: 
-  UpgradesObject: {fileID: 0}
 --- !u!1 &2560190664276284624
 GameObject:
   m_ObjectHideFlags: 0
