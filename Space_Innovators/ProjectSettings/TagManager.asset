@@ -79,6 +79,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Upgrade
+    uniqueID: 1385502593
+    locked: 0
   - name: UI
     uniqueID: 2005956597
     locked: 0
