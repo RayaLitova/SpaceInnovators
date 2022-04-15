@@ -60,8 +60,8 @@ public class NpcAi : MonoBehaviour
             return;
         }
         if(sleeping){
-            anim.SetBool("Sleeping", true);
             bedAnim.SetBool("Sleeping", true);
+            anim.SetBool("Sleeping", true);
         }else{
             anim.SetBool("Sleeping", false);
             bedAnim.SetBool("Sleeping", false);
@@ -198,7 +198,7 @@ public class NpcAi : MonoBehaviour
             anim.SetFloat("X", 0);
             anim.SetFloat("Y", -1);
         }
-
+        //--------------movement---------------
         if(!sleeping){
             transform.position = Vector3.Lerp(transform.position, path.vectorPath[currentWaipoint], speed);
         }
@@ -210,6 +210,13 @@ public class NpcAi : MonoBehaviour
         }
     }
     
+    public void GiveMeds(){
+        while(Stats.sickness>0){
+            if(!GameObject.Find("marioIdle").GetComponent<ResourcesClass>().SubtractResource("Medicine", 1)) return;
+            Stats.sickness-=20;
+        }
+        if(Stats.sickness<0) Stats.sickness = 0;
+    }
 
     void Consume(){
         o2_timer += Time.deltaTime;
@@ -278,5 +285,12 @@ public class NpcAi : MonoBehaviour
         currentPanicWaypoint++;
         if(currentPanicWaypoint==3) currentPanicWaypoint = 0;
         return currentRoom.Find("SmallRoom").Find("Panic("+currentPanicWaypoint+")").gameObject;
+    }
+
+    void OnTriggerEnter2D(Collider2D c){
+        if(c.gameObject.tag == "Minion"){
+            if(Stats.sickness>30 && c.gameObject.GetComponent<NPCStats>().sickness<100) c.gameObject.GetComponent<NPCStats>().sickness += 10;
+            if(c.gameObject.GetComponent<NPCStats>().sickness>100) c.gameObject.GetComponent<NPCStats>().sickness=100;
+        }
     }
 }
