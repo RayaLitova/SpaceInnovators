@@ -155,9 +155,9 @@ public class ResourcesClass : MonoBehaviour
             resourcesMax[resourcesMax.ElementAt(i).Key] = maxValue;
         }
 
-        resourcesMax["O2"] = OxygenValue;
-        resourcesMax["Water"] = WaterValue;
-        resourcesMax["Food"] = FoodValue;
+        resourcesMax["O2"] = maxValue;  //    resourcesMax["O2"] = OxygenValue;
+        resourcesMax["Water"] = maxValue;  //  resourcesMax["Water"] = WaterValue;
+        resourcesMax["Food"] = maxValue;  //    resourcesMax["Food"] = FoodValue;
 
     }
 
