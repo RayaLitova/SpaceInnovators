@@ -76,6 +76,9 @@ public class NPCStats : MonoBehaviour
         else if(Tag.Contains("Mechanic")){
             targettag = "Upgrading";
         }
+        else if(Tag.Contains("Pilot")){
+            targettag = "Pilot Station";
+        }
         return targettag;
     }
 

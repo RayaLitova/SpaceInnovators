@@ -10,7 +10,8 @@ Map Values:
     0 - Empty, but way from structures
     1 - Taken
     2 - Empty and close to structure
-    3 - Damaged    
+    3 - Damaged 
+    4 - Restricted   
 */
 
 public class BuildRegulator : MonoBehaviour
@@ -31,6 +32,8 @@ public class BuildRegulator : MonoBehaviour
     [SerializeField] public List<string> unlockedPlanets;
     public Dictionary<string,Sprite> planetIcons = new Dictionary<string,Sprite>();
     public Dictionary<string,int> onBoardCount = new Dictionary<string,int>();
+    public List<string> PlanetsToUnlock = new List<string>();
+    public List<GameObject> PilotsOnBoard = new List<GameObject>();
     public Dictionary<string,List<string>> ProfessionsForPlanet = new Dictionary<string,List<string>>();
 
     private Dictionary<string, int> PlanetsNum = new Dictionary<string,int>();
@@ -44,6 +47,7 @@ public class BuildRegulator : MonoBehaviour
     }
 
     public void UnclockPlanet(string PlanetName, List<string> AdditionaProfesions){
+        PlanetsToUnlock.Remove(PlanetName);
         unlockedPlanets.Add(PlanetName);
         onBoardCount.Add(PlanetName,0);
         planetIcons.Add(PlanetName, Resources.Load<Sprite>(PlanetName+"Icon"));
@@ -54,6 +58,7 @@ public class BuildRegulator : MonoBehaviour
         ProfessionsForPlanet[PlanetName].Add("Water Manager");
         ProfessionsForPlanet[PlanetName].Add("Botanist");
         ProfessionsForPlanet[PlanetName].Add("Mechanic");
+        ProfessionsForPlanet[PlanetName].Add("Pilot");
         if(AdditionaProfesions!=null){
             foreach(string prof in AdditionaProfesions){
                 ProfessionsForPlanet[PlanetName].Add(prof);
@@ -82,6 +87,10 @@ public class BuildRegulator : MonoBehaviour
         newGameObject.transform.GetChild(0).GetComponent<Animator>().SetFloat("Gender", gender);
 
         GameObject.FindGameObjectsWithTag("Bed")[0].transform.tag = "UsedBed";
+
+        if(Profession == "Pilot"){
+            PilotsOnBoard.Add(newGameObject);
+        }
         onBoardCount[Planet]++;
     }
 
@@ -131,7 +140,10 @@ public class BuildRegulator : MonoBehaviour
 
         if(newX!=0){if(map[newX-1,newY] != 1) map[newX-1,newY] = 2;}
 
-        if(newY!=gridSize-1){if(map[newX,newY+1] != 1) map[newX,newY+1] = 2;}
+        if(newY!=gridSize-1){
+            if(map[newX,newY+1] != 1) map[newX,newY+1] = 2;
+            if(room.name == "Shuttle Room") map[newX,newY+1] = 4;
+        }
 
         if(newY!=0){if(map[newX,newY-1] != 1) map[newX,newY-1] = 2;}
 
@@ -142,7 +154,7 @@ public class BuildRegulator : MonoBehaviour
             gameObject.GetComponent<ResourcesClass>().SubtractResource(name, quantity);
         }
 
-        if(room.name == "Lab"){
+        if(room.name == "Lab" || room.name == "Shuttle Room"){
             unlockedRooms.Remove(room);
         }
         AstarPath.active.Scan();
@@ -164,11 +176,11 @@ public class BuildRegulator : MonoBehaviour
     {   
         PlanetsNum.Add("Earth", 0);
         PlanetsNum.Add("Floaroma",1);
-        
+        PlanetsToUnlock.Add("Floaroma");
         UnclockPlanet("Earth", null);
-        List<string> Floaromaspecific  = new List<string>();
-        Floaromaspecific.Add("nqkva profesiq deto shte e samo za tam");
-        UnclockPlanet("Floaroma", Floaromaspecific);
+        //List<string> Floaromaspecific  = new List<string>();
+        //Floaromaspecific.Add("nqkva profesiq deto shte e samo za tam");
+        //UnclockPlanet("Floaroma", Floaromaspecific);
         buildRoom(center,center,unlockedRooms[0]);
 
         buildRoom(center-1,center,unlockedRooms[1]);
