@@ -74,7 +74,16 @@ public class ChoosePlaceToBuild : MonoBehaviour
             }  
             if (Input.GetKeyDown(KeyCode.Return)){  
                 if(BL.map[newX,newY]==2){
-                    Done = true;
+                    if(BuildButton.room.name == "Shuttle Room"){
+                        if(BL.map[newX,newY+1]==1 || BL.map[newX,newY+1]==3){
+                            cantBuild.fading = 255;
+                        }else{
+                            Done = true;
+                        }
+                        
+                    }else{
+                        Done = true;
+                    }              
                 }else{
                     cantBuild.fading = 255;
                 }
@@ -82,7 +91,16 @@ public class ChoosePlaceToBuild : MonoBehaviour
             if(BL.map[newX,newY]!=2){
                 newGameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(255,0,0,147);
             }else{
-                newGameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0,255,0,147);
+                if(BuildButton.room.name == "Shuttle Room"){
+                    if(BL.map[newX,newY+1]==1 || BL.map[newX,newY+1]==3){
+                        newGameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(255,0,0,147);
+                    }else{
+                        newGameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0,255,0,147);
+                    }
+                    
+                }else{
+                    newGameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(0,255,0,147);
+                }
             }
             if(Input.GetKeyDown(KeyCode.Escape)){
                 Cancel();
