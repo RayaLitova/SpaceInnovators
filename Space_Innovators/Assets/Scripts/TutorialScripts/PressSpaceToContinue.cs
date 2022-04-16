@@ -22,7 +22,7 @@ public class PressSpaceToContinue : MonoBehaviour
         "You can see your currently posessed resources and the maximum capacity of your station from the 'Storage' menu",
         "Your station cannot evolve without the help of your minions/crewmates - they go around the station and do assigned tasks",
         "Keep in mind that they don't know everything and are specialized in only 1 task, so be careful when choosing their profession",
-        "Choose your new crewmates from the 'Crew' menu. Select their origin, which is responsible for their appearance and needs, and then choose their profession",
+        "Choose your new crewmates from the 'Crew' menu. Select their origin, which is responsible for their appearance and needs, and then choose their profession (Researcher)",
         "They require resources to survive. If you don't provide them enough resources they will slowly begin to die",
         "Space has exposed you to new illnesses. Keep your minions safe and healthy by regularly checking their health and sickness level by clicking on them",
         "That's everything you need to know, and remember, you must take care of your base and prevent it from destruction! Have fun with Space Innovators!"

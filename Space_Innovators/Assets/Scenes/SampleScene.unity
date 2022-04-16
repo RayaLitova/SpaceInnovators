@@ -2177,7 +2177,7 @@ RectTransform:
   m_LocalScale: {x: 4, y: 4, z: 0}
   m_Children: []
   m_Father: {fileID: 504181631}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14175,7 +14175,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 504181631}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18360,7 +18360,6 @@ MonoBehaviour:
   - {fileID: 2440028700631533696, guid: 915b18a3867100c488c405c850e6fb7b, type: 3}
   - {fileID: 6198123156612010091, guid: 56117e7ef02b3c54eadd4239380d5172, type: 3}
   - {fileID: 5555745174492201655, guid: 2d4102fa8891d934b89f0e53858e2303, type: 3}
-  - {fileID: 2523226976645764337, guid: 03c9ba771419f054e964825e94f28601, type: 3}
   unlockedUpgrades: []
   BuiltRooms: []
   unlockedPlanets: []
@@ -18868,7 +18867,7 @@ RectTransform:
   - {fileID: 980138014}
   - {fileID: 1218983631}
   m_Father: {fileID: 504181631}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -75,12 +75,12 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        maxes[0] = shuttleRooom.roomLevel * 1; //50 //Fuel
-        maxes[1] = shuttleRooom.roomLevel * 1 * 2; //10 //Food
-        maxes[2] = shuttleRooom.roomLevel * 1 * 2; //20 //Water
-        maxes[3] = shuttleRooom.roomLevel * 1 * 2; //30 //O2
-        MetalNeeded = 1 + 0 * shuttleRooom.roomLevel; //30 + 5 //black metal needed for rocked building
-        ColorNeeded = 1 + 1 * shuttleRooom.roomLevel; // 10 + 1 //colored metal needed for rocked building
+        maxes[0] = shuttleRooom.roomLevel * 50; //50 //Fuel
+        maxes[1] = shuttleRooom.roomLevel * 10 * 2; //10 //Food
+        maxes[2] = shuttleRooom.roomLevel * 20 * 2; //20 //Water
+        maxes[3] = shuttleRooom.roomLevel * 30 * 2; //30 //O2
+        MetalNeeded = 30 + 5 * shuttleRooom.roomLevel; //30 + 5 //black metal needed for rocked building
+        ColorNeeded = 10 + 1 * shuttleRooom.roomLevel; // 10 + 1 //colored metal needed for rocked building
 
         if(status == "On Station"){ //when rocket is on station 
             img.color = new Color32(255,255,255,255); //enables image to represent present shuttle
@@ -115,7 +115,7 @@ public class Rocket : MonoBehaviour
                     }
                 }
                 currs[0]--; //Fuel --
-                if(random.Next(1,500*shuttleRooom.roomLevel)<=1){ //check the chances for destruction during expedition
+                if(random.Next(1,100*shuttleRooom.roomLevel)<=1){ //check the chances for destruction during expedition
                     currs[0]=0;
                     status ="Destroyed";
                     Discovered = false;

@@ -866,7 +866,7 @@ MonoBehaviour:
   - Black metal
   - Colored metal
   - Fuel
-  resourcesQuanity: 000000000000000000000000
+  resourcesQuanity: 060000000300000005000000
   produce_at: 150
   upgrade_at: 0
   roomLevel: 1
