@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
+using UnityEngine.SceneManagement;
 
 
 /*
@@ -187,10 +188,20 @@ public class BuildRegulator : MonoBehaviour
 
         buildRoom(center,center+1,unlockedRooms[2]);
 
-        //addCrewMate("Earth","Oxygen Manager");
-        //addCrewMate("Earth","Navigator");
+        addCrewMate("Earth","Oxygen Manager");
+        addCrewMate("Earth","Navigator");
         //addCrewMate("Earth","Researcher");
      
+    }
+
+    void Update(){
+        if(GameObject.FindGameObjectsWithTag("Minion").Length == 0){
+            GameOver();
+        }
+    }
+
+    void GameOver(){
+        AsyncOperation op = SceneManager.LoadSceneAsync("GameOver");
     }
 
 }

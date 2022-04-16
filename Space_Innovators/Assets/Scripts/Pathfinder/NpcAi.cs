@@ -55,6 +55,7 @@ public class NpcAi : MonoBehaviour
 
     void FixedUpdate(){
         if(dead) Destroy(gameObject);
+        else if(Stats.health<=0) Die();
         Consume();
         if(path == null){
             return;
@@ -230,7 +231,7 @@ public class NpcAi : MonoBehaviour
                 if(Random.Range(0,100)<50){
                     Stats.sickness+=10;
                 }
-            }else if(Random.Range(0,100)<(60-(10*(GameObject.Find("02").GetComponent<RoomStatics>().roomLevel)))){
+            }else if(Random.Range(0,100)<(25-(5*(GameObject.Find("02").GetComponent<RoomStatics>().roomLevel)))){
                 Stats.sickness += 10;
             }
         }
@@ -241,7 +242,7 @@ public class NpcAi : MonoBehaviour
                 if(Random.Range(0,100)<50){
                     Stats.sickness+=10;
                 }
-            }else if(Random.Range(0,100)<(60-(10*(GameObject.Find("Water Station").GetComponent<RoomStatics>().roomLevel)))){
+            }else if(Random.Range(0,100)<(30-(10*(GameObject.Find("Water Station").GetComponent<RoomStatics>().roomLevel)))){
                 Stats.sickness += 10;
             }
         }
@@ -252,7 +253,7 @@ public class NpcAi : MonoBehaviour
                 if(Random.Range(0,100)<50){
                     Stats.sickness+=10;
                 }
-            }else if(Random.Range(0,100)<(60-(10*(GameObject.Find("VerticalFarm").GetComponent<RoomStatics>().roomLevel)))){
+            }else if(Random.Range(0,100)<(30-(10*(GameObject.Find("VerticalFarm").GetComponent<RoomStatics>().roomLevel)))){
                 Stats.sickness += 10;
             }
         }
@@ -277,7 +278,7 @@ public class NpcAi : MonoBehaviour
         if(actualTarget!=null) actualTarget.tag = actualTarget.tag.Split(':')[1];
         bed.tag = "Bed";
         BuildRegulator mario = GameObject.Find("marioIdle").GetComponent<BuildRegulator>();
-        mario.onBoardCount[transform.tag.Split('-')[0]]--;
+        mario.onBoardCount[Stats.Planet]--;
         Destroy(gameObject);
     }
 

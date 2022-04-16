@@ -36,4 +36,7 @@ public class CameraZoom : MonoBehaviour
             Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, targetZoom, Time.deltaTime * zoomSpeed);
         }
     }
+    public void changeZoom(float tz){ //target zoom
+        Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, tz, Time.deltaTime * zoomSpeed);
+    }
 }

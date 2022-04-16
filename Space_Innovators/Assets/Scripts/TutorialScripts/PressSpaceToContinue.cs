@@ -8,21 +8,24 @@ public class PressSpaceToContinue : MonoBehaviour
     public Transform camera; 
     private string[] tutorialtext = {
         "Hi there, welcome to Space Innovators - a game in which you create and expand your own space station",
-        "This here is your station. It only has three rooms now, but you can expand it by building new rooms",
-        "And these people here are your minions/crewmates, they go around the station and do asigned tasks",
-        "Keep in mind that they don't know everything and are specialized in only 1 task, so be careful when choosing new minions/crewmates",
-        "This room is the main room - this is where your minions/crewmates stay when they don't have any tasks to do",
+        "This here is your station. It only has three rooms now, but you can expand it by building new ones",
+        "This room is the main room - this is where your minions/crewmates rest",
         "This is the oxygen room - from here oxygen is distributed across your station",
-        "There are oxygen tanks that have to be replaced once they have been emptied or else the oxygen will run out and your crew will pass out",
-        "This the Navigation and Communication room - in here you can look at a map of nearby planets, make contact with alien civilizations and send minions/crewmates on missions for resources once you have a shuttle constructed",
-        "Until then you can send missions to other planets or trade with alien civilizations, you can gather resources from tiny meteorites that fly by your station",
-        "Click on this meteorite to claim its resources",
+        "You can look at the status of any room by right-clicking on the working station",
+        "This is the Navigation and Communication room - in here you can look at a map of nearby planets, make contact with alien civilizations and receive resources from Earth and other friendly planets",
+        "Until then you can gather resources from tiny meteorites that fly by your station or receive them from Earth",
         "For now your storage is very limited",
         "If you want to expand it, you must build a storage room",
-        "To build a room, come talk to me (right click) and select the 'build room' option",
-        "Now try building a Lab - with this room you will be able to construct more complex technology",
-        "That's everything you have to know, and remember, you must take care of your base and prevent it from destruction",
-        "'ъъъъм аз половината време дори не знам какво казвам'"
+        "To build a room click on the 'Build' button and select the room you want to build",
+        "Now try building a Lab - with this room you'll be able to discover blueprints for new rooms or upgrade ones that are already discovered",
+        "From this menu you can see the requirements for your desired room and read the description to receive a better view of its functionality",
+        "You can see your currently posessed resources and the maximum capacity of your station from the 'Storage' menu",
+        "Your station cannot evolve without the help of your minions/crewmates - they go around the station and do assigned tasks",
+        "Keep in mind that they don't know everything and are specialized in only 1 task, so be careful when choosing their profession",
+        "Choose your new crewmates from the 'Crew' menu. Select their origin, which is responsible for their appearance and needs, and then choose their profession (Researcher)",
+        "They require resources to survive. If you don't provide them enough resources they will slowly begin to die",
+        "Space has exposed you to new illnesses. Keep your minions safe and healthy by regularly checking their health and sickness level by clicking on them",
+        "That's everything you need to know, and remember, you must take care of your base and prevent it from destruction! Have fun with Space Innovators!"
     };
 
     private Vector2[] mariopositions = new Vector2[20];
@@ -40,33 +43,27 @@ public class PressSpaceToContinue : MonoBehaviour
         for(int i=0;i<tutorialtext.Length;i++){
             mariopositions[i] = new Vector2(1f,0.2f);
         }
-        mariopositions[4] = new Vector2(6.6f, -1.9f);
-        mariopositions[5] = new Vector2(-4.7f, -1.3f);
-        mariopositions[6] = new Vector2(-4.7f, -1.3f);
-        mariopositions[7] = new Vector2(3.7f, 6.3f);
-        
+        mariopositions[0] = new Vector2(0f, 0f);//o2
+        mariopositions[1] = new Vector2(0f, 0f);
+        mariopositions[2] = new Vector2(0f, 0f);
+        mariopositions[3] = new Vector2(-7.75f, 0f);
+        mariopositions[4] = new Vector2(-7.75f, 0f);
+        mariopositions[5] = new Vector2(0f, 7.75f);//o2
+        mariopositions[6] = new Vector2(0f, 7.75f);
+        mariopositions[7] = new Vector2(0f, 7.75f);
+        for(int i=8; i<17;i++)
+            mariopositions[i] = new Vector2(0f, 0f);       
 
-        mario.position = mariopositions[0];
+        minion.position = mariopositions[0];
         txt.text = tutorialtext[0];
     }
 
     void Update()
     {   
-        if(currentPhrase == 2 || currentPhrase == 3){
-            camera.position = new Vector3(minion.position.x, minion.position.y, -2);
-        }else if(currentPhrase == 4 || currentPhrase == 5 || currentPhrase == 6 || currentPhrase == 7){
-            camera.position = new Vector3(mario.position.x, mario.position.y, -2);
-        }else if(currentPhrase == 9){
-            if(!flag){
-                meteorite.gameObject.GetComponent<Meteorite>().ShowMeteorite();
-                flag=true;
-            }
-            camera.position = new Vector3(meteorite.position.x, meteorite.position.y, -2);
-        }
-
         if(Input.GetKeyDown("space") && currentPhrase<max_phases){
             currentPhrase++;
-            mario.position = mariopositions[currentPhrase];
+            minion.position = mariopositions[currentPhrase];
+            camera.position = new Vector3(minion.position.x, minion.position.y, -2);    
             txt.text = tutorialtext[currentPhrase];
         } 
 
