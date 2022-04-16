@@ -230,7 +230,7 @@ public class NpcAi : MonoBehaviour
                 if(Random.Range(0,100)<50){
                     Stats.sickness+=10;
                 }
-            }else if(Random.Range(0,100)<(60-(10*(GameObject.Find("02").GetComponent<RoomStatics>().roomLevel)))){
+            }else if(Random.Range(0,100)<(30-(10*(GameObject.Find("02").GetComponent<RoomStatics>().roomLevel)))){
                 Stats.sickness += 10;
             }
         }
@@ -241,7 +241,7 @@ public class NpcAi : MonoBehaviour
                 if(Random.Range(0,100)<50){
                     Stats.sickness+=10;
                 }
-            }else if(Random.Range(0,100)<(60-(10*(GameObject.Find("Water Station").GetComponent<RoomStatics>().roomLevel)))){
+            }else if(Random.Range(0,100)<(30-(10*(GameObject.Find("Water Station").GetComponent<RoomStatics>().roomLevel)))){
                 Stats.sickness += 10;
             }
         }
@@ -252,7 +252,7 @@ public class NpcAi : MonoBehaviour
                 if(Random.Range(0,100)<50){
                     Stats.sickness+=10;
                 }
-            }else if(Random.Range(0,100)<(60-(10*(GameObject.Find("VerticalFarm").GetComponent<RoomStatics>().roomLevel)))){
+            }else if(Random.Range(0,100)<(30-(10*(GameObject.Find("VerticalFarm").GetComponent<RoomStatics>().roomLevel)))){
                 Stats.sickness += 10;
             }
         }
