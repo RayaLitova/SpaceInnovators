@@ -92,7 +92,6 @@ public class Rocket : MonoBehaviour
             }
             
         }else if(status == "On Expedition"){
-            //print("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
             img.color = new Color32(255,255,255,0);
             foreach(GameObject pilot in pilots){
                 pilot.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(255,255,255,0); //disables pilots
@@ -101,6 +100,11 @@ public class Rocket : MonoBehaviour
             }
             
             if(currs[0]==0){ //Fuel == 0
+                if(random.Next(1,100*shuttleRooom.roomLevel)<=20){ //check the chances for destruction during expedition
+                    currs[0]=0;
+                    status ="Destroyed";
+                    Discovered = false;
+                }
                 if(Discovered){
                     BL.UnclockPlanet(planet, null); //if planet is discovered during expedition ulocks the planet
                 } 
@@ -115,11 +119,7 @@ public class Rocket : MonoBehaviour
                     }
                 }
                 currs[0]--; //Fuel --
-                if(random.Next(1,100*shuttleRooom.roomLevel)<=1){ //check the chances for destruction during expedition
-                    currs[0]=0;
-                    status ="Destroyed";
-                    Discovered = false;
-                }
+                
             }
             
 
